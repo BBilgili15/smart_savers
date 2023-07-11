@@ -1,10 +1,12 @@
-import {View, Text} from 'react-native'
+import {View, Text, ProgressBarAndroidComponent} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
 
 // import components
-import AvailableBalanceDisplay from '../components/AvailableBalanceDisplay';
-import UpdateBalance from '../components/UpdateBalance';
+import AvailableBalanceDisplay from '../components/HomeScreen/AvailableBalanceDisplay';
+import UpdateBalance from '../components/HomeScreen/UpdateBalance';
+import UserProfile from '../components/HomeScreen/UserProfile';
+import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
   type HomeScreenProps = {
     availableAmount: number;
@@ -18,6 +20,8 @@ import UpdateBalance from '../components/UpdateBalance';
 
   return (
     <View>
+        <UserProfile/>
+        <LevelProgressBar/>
         <AvailableBalanceDisplay availableAmount={availableAmount}/>
         <UpdateBalance availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>
     </View>

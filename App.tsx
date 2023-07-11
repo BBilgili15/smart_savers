@@ -4,9 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { useState } from 'react';
 
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
 // Import Screens
 import HomeScreen from './screens/HomeScreen';
-import ChallengeScreen from './screens/ChallengeScreen';
+import ChallengeScreen from './screens/ChallengeDashboardScreen';
 import ChartsScreen from './screens/ChartsScreen';
 import PocketsScreen from './screens/PocketsScreen';
 
@@ -14,7 +16,7 @@ import PocketsScreen from './screens/PocketsScreen';
 export default function App() {
 
   //create bottom tab
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 // States
 const [availableAmount, setAvailableAmount] = useState<number>(0);
@@ -48,13 +50,20 @@ function Home(){
 
   return (
     <>
+      <SafeAreaView>
+
+      </SafeAreaView>
       <NavigationContainer>
         {/* //stack.navigator - initial screen = login
         //stack.screen
         //check if user
         //if yes take to home */}
         {/* <HomeScreen/> */}
-        <Tab.Navigator  screenOptions={{tabBarStyle: { position: 'absolute' }}}>
+        <Tab.Navigator
+          initialRouteName="Home"
+          activeColor="#edf6ed"
+          inactiveColor="#3E2465"
+          barStyle={{ backgroundColor: '#694FAD' }}>
             <Tab.Screen name="HO" component={Home}/>
             <Tab.Screen name="DC" component={GamesHub}/>
             <Tab.Screen name="HT" component={Habits}/>
