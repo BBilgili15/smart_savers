@@ -1,21 +1,19 @@
 import {View, Text, TouchableOpacity} from 'react-native'
-import {useState} from 'react'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-
+import ChallengeScreen from './ChallengeScreen';
 
 
   type ChallengeDashBoardScreenProps = {};
-
-
 
   const ChallengeDashBoardScreen: React.FC<ChallengeDashBoardScreenProps> = () => {
     
     const navigation = useNavigation();
   
     const launchDailyChallenge = () => {
-      navigation.navigate('ChallengeScreen', {});
-    }
+      navigation.navigate('ChallengeScreen' as never);
+    };
+    
     
 
   return (
