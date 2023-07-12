@@ -17,4 +17,4 @@ import React from 'react'
   )
 }
 
-export default ChallengeScreen
+export default ChallengeScreen;
