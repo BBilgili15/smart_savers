@@ -12,7 +12,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="category")
+//    @Column(name="category")
+//    change below:
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Column(name="amount")

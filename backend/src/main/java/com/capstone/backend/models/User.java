@@ -21,8 +21,16 @@ public class User {
     @Column(name="points")
     private int points;
 
-    @Column(name="level")
+//    change below. level should be from the options in enum??
+//    @Enumerated(EnumType.ORDINAL)
+//    @Column(name = "level")
+//    private Level level;
+    @Enumerated(EnumType.STRING)
     private Level level;
+
+
+//    @Column(name="level")
+//    private Level level;
 
     @Column(name="balance")
     private double balance;
