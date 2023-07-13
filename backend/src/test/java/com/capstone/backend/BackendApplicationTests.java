@@ -49,9 +49,15 @@ class BackendApplicationTests {
 		userRepository.deleteAll();
 		User user = new User("Ben", "parent@test.com");
 		userRepository.save(user);
-		Transaction transaction1= new Transaction(Category.EARNINGS,20.00, user);
+//		changes below
+		Category category = Category.EARNINGS;
+		Transaction transaction1= new Transaction(category,20.00, user);
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction1);
 		userRepository.save(user);
+
 		assertEquals(20.00, user.getBalance(),0.0);
+		System.out.println(transaction1.getCategory().getCategoryName());
+		System.out.println(user.getLevel().getTitle());
+//		Super Saver
 	}
 }

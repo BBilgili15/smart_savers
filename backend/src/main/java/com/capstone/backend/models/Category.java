@@ -19,6 +19,10 @@ public enum Category {
         this.categoryType = categoryType;
     }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
     public String getCategoryType() {
         return categoryType;
     }
