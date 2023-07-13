@@ -16,13 +16,13 @@ export const addTransaction = (payload: any) => {
 }
 
 export const deleteTransaction = (id: Number) => {
-    return fetch(baseURL + id, {
+    return fetch(baseURL + `/${id}`, {
         method: 'DELETE'
     })
 }
 
 export const updateTransaction = (payload: any, id: Number) => {
-  return fetch(baseURL + id, {
+  return fetch(baseURL + `/${id}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }

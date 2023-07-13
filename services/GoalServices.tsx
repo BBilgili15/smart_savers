@@ -16,13 +16,13 @@ export const addGoal = (payload: any) => {
 }
 
 export const deleteGoal = (id: Number) => {
-    return fetch(baseURL + id, {
+    return fetch(baseURL + `/${id}`, {
         method: 'DELETE'
     })
 }
 
 export const updateGoal = (payload: any, id: Number) => {
-  return fetch(baseURL + id, {
+  return fetch(baseURL + `/${id}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
