@@ -1,6 +1,8 @@
 import {View, Text, ProgressBarAndroidComponent} from 'react-native'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import React from 'react'
+
+import { getUser } from '../services/UserServices';
 
 // import components
 import AvailableBalanceDisplay from '../components/HomeScreen/AvailableBalanceDisplay';
@@ -15,15 +17,21 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
   const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount}) => {
     
+  const [currentUser, setCurrentUser] = useState<{ id: number, userName: string, parentEmail: string, points: number, level: any, balance: number } | null> () ;
+
+    useEffect( () => {
+      getUser(1)
+      .then(newUser => setCurrentUser(newUser))
+    }, [])
    
 
 
   return (
     <View>
-        <UserProfile/>
-        <LevelProgressBar/>
-        <AvailableBalanceDisplay availableAmount={availableAmount}/>
-        <UpdateBalance availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>
+        <UserProfile currentUser={currentUser}/>
+        <LevelProgressBar currentUser={currentUser}/>
+        <AvailableBalanceDisplay currentUser={currentUser}/>
+        <UpdateBalance currentUser={currentUser} />
     </View>
   )
 }
