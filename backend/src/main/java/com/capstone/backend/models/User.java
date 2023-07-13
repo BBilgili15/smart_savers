@@ -26,7 +26,6 @@ public class User {
 //    @Column(name = "level")
 //    private Level level;
     @Enumerated(EnumType.STRING)
-    @Column(name = "level")
     private Level level;
 
 
