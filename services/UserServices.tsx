@@ -1,10 +1,19 @@
 const baseURL = 'http://localhost:8080/users'
 
 
+
 export const getUsers = () => {
     return fetch(baseURL)
         .then(res => res.json())
 }
+
+export const getUser = (id: Number) => {
+    return fetch(baseURL + `/${id}`)
+       .then(res=>res.json())
+}
+
+
+
 
 export const addUser = (payload: any) => {
     return fetch(baseURL, {
@@ -16,13 +25,13 @@ export const addUser = (payload: any) => {
 }
 
 export const deleteUser = (id: Number) => {
-    return fetch(baseURL + id, {
+    return fetch(baseURL + `/${id}`, {
         method: 'DELETE'
     })
 }
 
 export const updateUser = (payload: any, id: Number) => {
-  return fetch(baseURL + id, {
+  return fetch(baseURL + `/${id}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
