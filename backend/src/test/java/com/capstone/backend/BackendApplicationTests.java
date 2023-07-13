@@ -60,4 +60,12 @@ class BackendApplicationTests {
 		System.out.println(user.getLevel().getTitle());
 //		Super Saver
 	}
+
+//	@Test
+	public void can_update_user_balance() {
+		userRepository.deleteAll();
+		User user = new User("Ben", "parent@test.com");
+		userRepository.save(user);
+
+	}
 }

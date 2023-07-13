@@ -30,4 +30,24 @@ public class UserController {
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setUserName(updatedUser.getUserName());
+            user.setBalance(updatedUser.getBalance());
+            user.setLevel(updatedUser.getLevel());
+            user.setPoints(updatedUser.getPoints());
+
+            userRepository.save(user);
+
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
