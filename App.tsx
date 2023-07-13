@@ -12,6 +12,7 @@ import ChallengeScreen from './screens/ChallengeScreen';
 import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
+import Header from './components/Header';
 
 
 export default function App() {
@@ -68,6 +69,7 @@ function Home(){
     <>
       <SafeAreaView style={styles.container} >
         <NavigationContainer>
+          <Header/>
           {/* //stack.navigator - initial screen = login
           //stack.screen
           //check if user
