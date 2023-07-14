@@ -6,6 +6,11 @@ export const getTransactions = () => {
         .then(res => res.json())
 }
 
+export const getTransactionsByUserId = (userId: number) => {
+    return fetch(`${baseURL}?byUserId=${userId}`)
+      .then(res => res.json());
+  }
+
 export const addTransaction = (payload: any) => {
     return fetch(baseURL, {
         method: 'POST',

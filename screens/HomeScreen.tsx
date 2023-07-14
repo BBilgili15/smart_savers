@@ -13,16 +13,18 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
   type HomeScreenProps = {
     availableAmount: number;
     setAvailableAmount: (amount:number) => void;
+    currentUser: any;
+    setCurrentUser: (user:any) => void;
   };
 
-  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount}) => {
+  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser}) => {
     
-  const [currentUser, setCurrentUser] = useState<{ id: number, userName: string, parentEmail: string, points: number, level: any, balance: number } | null> () ;
+  // const [currentUser, setCurrentUser] = useState<{ id: number, userName: string, parentEmail: string, points: number, level: any, balance: number } | null> () ;
 
-    useEffect( () => {
-      getUser(1)
-      .then(newUser => setCurrentUser(newUser))
-    }, [])
+    // useEffect( () => {
+    //   getUser(1)
+    //   .then(newUser => setCurrentUser(newUser))
+    // }, [])
    
 
 

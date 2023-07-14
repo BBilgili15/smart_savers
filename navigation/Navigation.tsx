@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 
 // Import Screens
 import ChallengeDashboardScreen from '../screens/ChallengeDashboardScreen';
@@ -12,10 +12,16 @@ import ChartsScreen from '../screens/ChartsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PocketsScreen from '../screens/PocketsScreen';
 
+import { getUser } from '../services/UserServices';
+import { getTransactionsByUserId } from '../services/TransactionServices';
+
 // Creating the stacks
 const Stack = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
+
+
+
 
 
 // Creating the component for inside stack layout
@@ -31,6 +37,28 @@ function InsideLayout() {
 const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userTransactions, setUserTransactions]=useState([])
+  
+  
+  
+  // useEffect
+  useEffect(() => {
+    getUser(1)
+      .then(newUser => setCurrentUser(newUser))
+  }, []);
+  
+  useEffect(() => {
+    if (currentUser) {
+      getTransactionsByUserId(1)
+      // getTransactionsByUserId(currentUser.id) error: Property 'id' does not exist on type 'never'.ts(2339)
+        .then(transactions => setUserTransactions(transactions))
+        .catch(error => {
+          console.log("Error fetching transactions:", error);
+        });
+    }
+  }, [currentUser]);
+
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -108,7 +136,7 @@ function GamesHub() {
 }
 
 function Habits() {
-  return <ChartsScreen />;
+  return <ChartsScreen currentUser={currentUser} userTransactions={userTransactions}/>;
 }
 
 function Pockets() {
@@ -118,7 +146,7 @@ function Pockets() {
 function Home() {
     const [availableAmount, setAvailableAmount] = useState<number>(0);
 
-    return <HomeScreen availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>;
+    return <HomeScreen currentUser={currentUser} setCurrentUser={setCurrentUser} availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>;
 }
 
 export { InsideLayout, LoginStack };
