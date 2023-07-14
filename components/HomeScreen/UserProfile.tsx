@@ -1,12 +1,14 @@
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native'
 import { getUser } from '../../services/UserServices'
 import {useState, useEffect} from 'react'
 import React from 'react'
 
   type UserProfileProps = {
+    currentUser: any
   };
 
-  const UserProfile: React.FC<UserProfileProps> = () => {
+  const UserProfile: React.FC<UserProfileProps> = ({currentUser}) => {
+
 
 
     const [currentUser, setCurrentUser] = useState<{ 
@@ -19,21 +21,37 @@ import React from 'react'
       displayName: string
     } | null> () ;
 
-    useEffect( () => {
-      getUser(1)
-      .then(newUser => setCurrentUser(newUser))
-    }, [])
+
 
   return (
-    <View>
-      <Text>User Profile</Text>
-      <Text>{currentUser ? currentUser.userName : null}</Text>
-      <Text>{currentUser ? currentUser.balance : null}</Text>
-      <Text>{currentUser ? currentUser.points : null}</Text>
-      <Text>{currentUser ? (currentUser.level === "ONE" ? "Super Saver" : "Test") : null}</Text>
-     
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.textSub}>{currentUser ? (currentUser.level === "ONE" ? "Savvy Spender" : "Test") : null}</Text>
+        <Image source={require('../../images/owl.jpg')} style={styles.image}/>
+        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.userName : null}</Text>
+      </View>
   )
 }
+
+const styles = StyleSheet.create({
+  image: {
+    height: 250,
+    width: 250,
+    borderRadius: 15,
+    margin: 25,
+  }, 
+  container: {
+    backgroundColor: 'lightpink',
+    alignItems: 'center',
+    margin: 20,
+  }, 
+  textMain: {
+    backgroundColor: 'lightblue',
+    fontSize: 30,
+  },
+  textSub: {
+    backgroundColor: 'lightgreen',
+    fontSize: 20,
+  }
+})
 
 export default UserProfile

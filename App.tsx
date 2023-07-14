@@ -2,8 +2,10 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 
+
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
+
 
 import { InsideLayout, LoginStack } from './navigation/Navigation';
 import LoginScreen from './screens/LoginScreen';
