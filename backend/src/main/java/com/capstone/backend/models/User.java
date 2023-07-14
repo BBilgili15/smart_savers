@@ -10,7 +10,10 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+
+    private String firebaseUserId;
 
     @Column(name="user_name")
     private String userName;
@@ -21,16 +24,8 @@ public class User {
     @Column(name="points")
     private int points;
 
-//    change below. level should be from the options in enum??
-//    @Enumerated(EnumType.ORDINAL)
-//    @Column(name = "level")
-//    private Level level;
     @Enumerated(EnumType.STRING)
     private Level level;
-
-
-//    @Column(name="level")
-//    private Level level;
 
     @Column(name="balance")
     private double balance;
@@ -58,6 +53,13 @@ public class User {
         return id;
     }
 
+    public String getFirebaseUserId() {
+        return firebaseUserId;
+    }
+
+    public void setFirebaseUserId(String firebaseUserId) {
+        this.firebaseUserId = firebaseUserId;
+    }
 
     public String getUserName() {
         return userName;

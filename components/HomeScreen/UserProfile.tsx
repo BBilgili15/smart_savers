@@ -12,17 +12,6 @@ import React from 'react'
 
 
 
-    // const retrieveUser = (id: number) => {
-    //     getUser(id)
-            // .then(newUser => setCurrentUser(newUser));
-    // }
-    
-
-
-
-console.log('this is a test for user',currentUser)
-
-  
 
 
   return (
