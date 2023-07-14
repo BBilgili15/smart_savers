@@ -80,9 +80,12 @@ function Home(){
                   tabBarShowLabel: false,
                   tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons name="home" color={color} size={55} />),
-                    tabBarActiveTintColor: 'orange',
-                    tabBarInactiveTintColor: 'purple',
+                    tabBarActiveTintColor:'#f15c55',
+                    tabBarInactiveTintColor:  '#ffcd3c',
                     tabBarIconStyle: { fontSize: 80 },
+                    tabBarInactiveBackgroundColor:'#35d0ba',
+                    tabBarActiveBackgroundColor:'#35d0ba'
+                    // tabBarBackground:'#35d0ba'
                   
                 }}/>
                 <Tab.Screen name="DC" component={GamesHub} options={{
@@ -92,8 +95,10 @@ function Home(){
                   tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons name="gamepad" color={color} size={55} />
                   ),
-                  tabBarActiveTintColor: 'orange',
-                  tabBarInactiveTintColor: 'purple', 
+                  tabBarActiveTintColor:'#f15c55',
+                  tabBarInactiveTintColor:  '#ffcd3c',
+                  tabBarInactiveBackgroundColor:'#35d0ba',
+                  tabBarActiveBackgroundColor:'#35d0ba'
                   // tabBarIconStyle: { fontSize: 40 }
                 }}/>
                 <Tab.Screen name="HT" component={Habits} options={{
@@ -103,8 +108,10 @@ function Home(){
                   tabBarIcon: ({ color, size }) => (
                     <AntDesign name="barschart" color={color} size={55} />
                   ),
-                  tabBarActiveTintColor: 'orange',
-                  tabBarInactiveTintColor: 'purple', 
+                  tabBarActiveTintColor:'#f15c55',
+                  tabBarInactiveTintColor:  '#ffcd3c',
+                  tabBarInactiveBackgroundColor:'#35d0ba',
+                  tabBarActiveBackgroundColor:'#35d0ba'
                   // tabBarIconStyle: { fontSize: 40 }
                 }}/>
                 <Tab.Screen name="SG" component={Pockets} options={{
@@ -114,8 +121,10 @@ function Home(){
                   tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons name="wallet" color={color} size={55}  />
                   ),
-                  tabBarActiveTintColor: 'orange',
-                  tabBarInactiveTintColor: 'purple', 
+                  tabBarActiveTintColor:'#f15c55',
+                  tabBarInactiveTintColor:  '#ffcd3c',
+                  tabBarInactiveBackgroundColor:'#35d0ba',
+                  tabBarActiveBackgroundColor:'#35d0ba'
                   // tabBarIconStyle: { fontSize: 40 }
                 }}/>
             </Tab.Navigator>

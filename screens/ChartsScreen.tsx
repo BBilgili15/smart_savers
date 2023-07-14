@@ -1,21 +1,22 @@
-import {View, Text} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
- 
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import Chart from '../components/ChartScreen/Chart';
+import Toggle from '../components/ChartScreen/Toggle';
 
+type ChartsScreenProps = {};
 
-  type ChartsScreenProps = {};
-
-  const ChartsScreen: React.FC<ChartsScreenProps> = () => {
-    
-   
-
+const ChartsScreen: React.FC<ChartsScreenProps> = () => {
+  const [selectedTab, setSelectedTab] = useState<string>('income');
 
   return (
-    <View>
-        <Text>Testing Charts Screen</Text>
-    </View>
-  )
-}
+    <>
+      <View style={{ flex: 1 }}>
+        <Toggle selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+   
+        <Chart selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      </View>
+    </>
+  );
+};
 
-export default ChartsScreen
+export default ChartsScreen;
