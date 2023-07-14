@@ -11,15 +11,6 @@ import React from 'react'
 
 
 
-    const [currentUser, setCurrentUser] = useState<{ 
-      id: number, 
-      userName: string, 
-      parentEmail: string, 
-      points: number, 
-      level: any, 
-      balance: number,
-      displayName: string
-    } | null> () ;
 
 
 

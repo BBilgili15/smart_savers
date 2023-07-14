@@ -1,5 +1,6 @@
 package com.capstone.backend.controllers;
 
+import com.capstone.backend.models.Level;
 import com.capstone.backend.models.User;
 import com.capstone.backend.repositories.UserRepository;
 import com.capstone.backend.services.FirebaseService;
@@ -36,7 +37,13 @@ public class UserController {
         try {
             String firebaseUserId = user.getFirebaseUserId();
             user.setFirebaseUserId(firebaseUserId);
+            user.setPoints(0);
+            user.setBalance(0.00);
+            user.setLevel(Level.ONE);
+            user.setParentEmail(user.getParentEmail());
+            user.setUserName(user.getUserName());
             User savedUser = userRepository.save(user);
+
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
