@@ -17,6 +17,7 @@ import LoginScreen from './screens/LoginScreen';
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
 
+
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
 
@@ -161,6 +162,7 @@ export default function App() {
   }
 
   return (
+
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <LoginStack.Navigator initialRouteName="Login">
