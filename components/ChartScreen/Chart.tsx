@@ -3,31 +3,39 @@ import { View, Text } from "react-native";
 import { getTransactions } from "../../services/TransactionServices";
 
 type ChartProps = {
+  currentUser: {
+    id: number;
+    userName: string;
+    parentEmail: string;
+    points: number;
+    level: any;
+    balance: number;
+  } | null;
+
+  userTransactions:{
+    id: number,
+		category: any,
+		amount: number,
+		// user:object
+  }[] | null;
+
   selectedTab: string;
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Chart: React.FC<ChartProps> = ({ selectedTab }) => {
-  const [currentTransaction, setCurrentTransaction] = useState<{
-    id: number;
-    amount: number;
-    category: any;
-  } | null>(null);
+const Chart: React.FC<ChartProps> = ({ selectedTab, currentUser,userTransactions }) => {
 
-  useEffect(() => {
-    getTransactions().then((newTransactions) =>
-      setCurrentTransaction(newTransactions[0])
-    );
-  }, []);
 
-  console.log("Current Transaction:", currentTransaction);
 
+console.log("Current user:", currentUser);
+console.log("Current transaction", userTransactions);
   return (
     <View>
       {selectedTab === "income" ? (
         <>
-          <Text>Transactions</Text>
-          <Text>{currentTransaction ? currentTransaction.amount : null}</Text>
+          <Text>currentUser:{currentUser?.userName}</Text>
+          <Text>currentUser's balance:{currentUser?.balance}</Text>
+          <Text>currentUser's transaction: {userTransactions && userTransactions[3] && userTransactions[3]?.amount}</Text>
         </>
       ) : (
         <View>

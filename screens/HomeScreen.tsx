@@ -10,19 +10,22 @@ import UpdateBalance from '../components/HomeScreen/UpdateBalance';
 import UserProfile from '../components/HomeScreen/UserProfile';
 import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
-  type HomeScreenProps = {
-    availableAmount: number;
-    setAvailableAmount: (amount:number) => void;
-  };
+type HomeScreenProps = {
+  currentUser: {
+    id: number;
+    userName: string;
+    parentEmail: string;
+    points: number;
+    level: any;
+    balance: number;
+  } | null;
+  availableAmount: number;
+  setAvailableAmount: (amount: number) => void;
+};
 
-  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount}) => {
+  const HomeScreen: React.FC<HomeScreenProps> = ({currentUser,availableAmount, setAvailableAmount}) => {
     
-  const [currentUser, setCurrentUser] = useState<{ id: number, userName: string, parentEmail: string, points: number, level: any, balance: number } | null> () ;
 
-    useEffect( () => {
-      getUser(1)
-      .then(newUser => setCurrentUser(newUser))
-    }, [])
    
 
 

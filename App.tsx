@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -13,6 +13,9 @@ import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import Header from './components/Header';
+import { getUser } from './services/UserServices';
+import {getTransactionsByUserId} from './services/TransactionServices'
+
 
 
 export default function App() {
@@ -26,6 +29,31 @@ const Tab = createBottomTabNavigator();
 
 // States
 const [availableAmount, setAvailableAmount] = useState<number>(0);
+const [currentUser, setCurrentUser] = useState(null);
+const [userTransactions, setUserTransactions]=useState([])
+
+
+// useEffect
+
+useEffect(() => {
+  getUser(1)
+    .then(newUser => setCurrentUser(newUser))
+}, []);
+
+useEffect(() => {
+  if (currentUser) {
+    getTransactionsByUserId(1)
+    // getTransactionsByUserId(currentUser.id) error: Property 'id' does not exist on type 'never'.ts(2339)
+      .then(transactions => setUserTransactions(transactions))
+      .catch(error => {
+        console.log("Error fetching transactions:", error);
+      });
+  }
+}, [currentUser]);
+// testing: 
+
+console.log("Current user:", currentUser);
+console.log("Current transaction", userTransactions);
 
 
 // View Functions (Bottom Bar Navigation)
@@ -48,7 +76,7 @@ function GamesHub(){
 
 function Habits(){
   return (
-    <ChartsScreen/>
+    <ChartsScreen  currentUser={currentUser} userTransactions={userTransactions}/>
   )
 }
 
@@ -58,15 +86,21 @@ function Pockets(){
   )
 }
 
-function Home(){
+function Home() {
   return (
-    <HomeScreen availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>
-  )
+    <HomeScreen
+      currentUser={currentUser}
+      availableAmount={availableAmount}
+      setAvailableAmount={setAvailableAmount}
+    />
+  );
 }
+
 
 
   return (
     <>
+
       <SafeAreaView style={styles.container} >
         <NavigationContainer>
           <Header/>
