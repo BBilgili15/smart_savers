@@ -29,7 +29,175 @@ const InsideStack = createNativeStackNavigator();
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const [userTransactions, setUserTransactions] = useState([]);
+  // const [userTransactions, setUserTransactions] = useState([]);
+
+
+
+
+
+// ZHU DUMMY DATA
+
+const [userTransactions, setUserTransactions]=useState(
+  [
+    {
+      "id": 1,
+      "category": "EARNINGS",
+      "amount": 20.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 2,
+      "category": "POCKET_MONEY",
+      "amount": 10.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 3,
+      "category": "GIFT",
+      "amount": 50.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 4,
+      "category": "OTHER_INCOME",
+      "amount": 80.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 5,
+      "category": "ENTERTAINMENT",
+      "amount": 40.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 6,
+      "category": "SHOPPING",
+      "amount": 10.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 7,
+      "category": "TRANSPORT",
+      "amount": 6.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 8,
+      "category": "FOOD",
+      "amount": 7.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 9,
+      "category": "OTHER_SPEND",
+      "amount": 12.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    },
+    {
+      "id": 10,
+      "category": "FOOD",
+      "amount": 10.0,
+      "user": {
+        "id": 2,
+        "userName": "Julie",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": -10.0
+      }
+    },
+    {
+      "id": 11,
+      "category": "FOOD",
+      "amount": 90.0,
+      "user": {
+        "id": 1,
+        "userName": "Ben",
+        "parentEmail": "parent@test.com",
+        "points": 0,
+        "level": "ONE",
+        "balance": 85.0
+      }
+    }
+  ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // useEffect for user authentication
   useEffect(() => {
