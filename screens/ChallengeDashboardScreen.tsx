@@ -3,6 +3,9 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import ChallengeScreen from './ChallengeScreen';
 
+// Import Components
+import ChallengeContainer from '../components/ChallengeDashboardScreen/ChallengeContainer';
+import StatsContainer from '../components/ChallengeDashboardScreen/StatsContainer';
 
   type ChallengeDashBoardScreenProps = {};
 
@@ -18,10 +21,8 @@ import ChallengeScreen from './ChallengeScreen';
 
   return (
     <View>
-        <Text>Stats and Streaks</Text>
-        <TouchableOpacity onPress={launchDailyChallenge}>
-          <Text>Button to launch game</Text>
-        </TouchableOpacity>
+        <StatsContainer/>
+        <ChallengeContainer/>
     </View>
   )
 }

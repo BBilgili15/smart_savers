@@ -1,18 +1,44 @@
 import {View, Text} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
+import LottieView from 'lottie-react-native';
 
+// Import Components
+import PocketCard from '../components/PocketsScreen/PocketCard';
+import PocketContainer from '../components/PocketsScreen/PocketContainer';
+import PocketInformationContainer from '../components/PocketsScreen/PocketInformationContainer';
 
   type PocketsScreenProps = {};
 
   const PocketsScreen: React.FC<PocketsScreenProps> = () => {
     
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowAnimation(true);
+  };
+
+  const onAnimationFinish = () => {
+    setShowAnimation(false);
+  };
+ 
    
 
 
   return (
     <View>
-        <Text>Testing Pockets Screen</Text>
+        {showAnimation && (
+        <LottieView
+          source={require('../animations/success.json')}
+          autoPlay
+          loop={false}
+          onAnimationFinish={onAnimationFinish}
+          style={{zIndex: 1}}
+        />
+      )}
+        
+        <PocketInformationContainer handleButtonClick={handleButtonClick}/>
+        <PocketContainer/>
     </View>
   )
 }
