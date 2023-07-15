@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name="user_name")
     private String userName;
@@ -54,7 +54,7 @@ public class User {
         this.balance = 0.0;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

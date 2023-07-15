@@ -93,9 +93,10 @@ class BackendApplicationTests {
 		System.out.println(transaction1.getCategory().getCategoryName());
 		System.out.println(user.getLevel().getTitle());
 //		Super Saver
+//		System.out.println(transactionRepository.findByCategoryCategoryTypeAndUserId(category.FOOD.getCategoryType(), 1));
 	}
 
-//	@Test
+	@Test
 	public void can_update_user_balance() {
 		userRepository.deleteAll();
 		User user = new User("Ben", "parent@test.com");

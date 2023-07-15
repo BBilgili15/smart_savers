@@ -53,13 +53,21 @@ public class TransactionController {
         }
     }
 
-    @GetMapping("/transactions")
-    public List<Transaction> getTransactionsByCategoryTypeAndUserId(
-            @RequestParam("categoryType") String categoryType,
-            @RequestParam("userId") Long userId
-    ) {
-        return transactionRepository.findByCategoryCategoryTypeAndUserId(categoryType, userId);
-    }
+//    @GetMapping(value = "/transactions/byCategoryAndUser")
+//    public List<Transaction> getTransactionsByCategoryTypeAndUserId(
+//            @RequestParam("byCategoryType") String categoryType,
+//            @RequestParam("byUserId") Long userId
+//    ) {
+//        return transactionRepository.findByCategoryCategoryTypeAndUserId(categoryType, userId);
+//    }
+
+//    @GetMapping(value = "/transactions/byCategoryAndUser")
+//    public List<Transaction> getTransactionsByCategoryTypeAndUserId(
+//            @RequestParam("CategoryType") String categoryType,
+//            @RequestParam("UserId") int userId
+//    ) {
+//        return transactionRepository.findByCategoryCategoryTypeAndUserId(categoryType, userId);
+//    }
 
 }
 

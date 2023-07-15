@@ -35,3 +35,8 @@ export const updateTransaction = (payload: any, id: Number) => {
   .then(res => res.json())
 }
 
+// export const getTransactionsByCatAndUserId = (categoryType:string, userId:number) => {
+//     return fetch(`${baseURL}/transactions?categoryType=${categoryType}&userId=${userId}`)
+//       .then(res => res.json());
+//   };
+  
