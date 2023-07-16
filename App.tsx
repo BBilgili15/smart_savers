@@ -14,6 +14,8 @@ import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
 
+import Header from './components/Header';
+
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
 
@@ -30,9 +32,6 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
   // const [userTransactions, setUserTransactions] = useState([]);
-
-
-
 
 
 // ZHU DUMMY DATA
@@ -222,9 +221,12 @@ const [userTransactions, setUserTransactions]=useState(
   // Creating the component for inside stack layout
   function InsideLayout() {
     return (
+      <>
+      <Header />
       <InsideStack.Navigator>
         <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
       </InsideStack.Navigator>
+      </>
     );
   }
 
@@ -245,6 +247,7 @@ const [userTransactions, setUserTransactions]=useState(
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -258,6 +261,7 @@ const [userTransactions, setUserTransactions]=useState(
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -271,6 +275,7 @@ const [userTransactions, setUserTransactions]=useState(
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -284,6 +289,7 @@ const [userTransactions, setUserTransactions]=useState(
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
       </Tab.Navigator>

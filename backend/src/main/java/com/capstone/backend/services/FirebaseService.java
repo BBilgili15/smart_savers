@@ -24,23 +24,5 @@ public class FirebaseService {
         this.databaseReference = databaseReference;
     }
 
-    public void insertUserDataToFirebase(User user) {
-        DatabaseReference userRef = databaseReference.child("users").child(user.getId().toString());
-
-        Map<String, Object> userData = new HashMap<>();
-        userData.put("userName", user.getUserName());
-        userData.put("parentEmail", user.getParentEmail());
-        userData.put("points", user.getPoints());
-        userData.put("level", user.getLevel().toString());
-        userData.put("balance", user.getBalance());
-
-        userRef.setValue(userData,  (error, ref) -> {
-            if (error == null) {
-                System.out.println("Data saved successfully.");
-            } else {
-                System.out.println("Failed to save data: " + error.getMessage());
-            }
-        });
-    }
 }
 
