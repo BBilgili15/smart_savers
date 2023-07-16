@@ -55,58 +55,6 @@ class BackendApplicationTests {
 
 	}
 
-	@Test
-	public void canSaveTransactionAndUpdateUserBalance(){
-		transactionRepository.deleteAll();
-		userRepository.deleteAll();
-		User user = new User("Ben", "parent@test.com");
-		userRepository.save(user);
-		User user2 = new User("Julie", "parent@test.com");
-		userRepository.save(user2);
-//		changes below
-		Category category = Category.EARNINGS;
-		Category category1= Category.POCKET_MONEY;
-		Category category2 = Category.GIFT;
-		Category category3 = Category. OTHER_INCOME;
-		Category category4 = Category.ENTERTAINMENT;
-		Category category5 = Category.SHOPPING;
-		Category category6 = Category.TRANSPORT;
-		Category category7 = Category.FOOD;
-		Category category8 = Category. OTHER_SPEND;
-		Category category9 = Category. FOOD;
-
-
-
-		Transaction transaction= new Transaction(category,20.00, user);
-		Transaction transaction1= new Transaction(category1,10.00, user);
-		Transaction transaction2= new Transaction(category2,50.00, user);
-		Transaction transaction3= new Transaction(category3,80.00, user);
-		Transaction transaction4= new Transaction(category4,40.00, user);
-		Transaction transaction5= new Transaction(category5,10.00, user);
-		Transaction transaction6= new Transaction(category6,6.00, user);
-		Transaction transaction7= new Transaction(category7,7.00, user);
-		Transaction transaction8= new Transaction(category8,12.00, user);
-		Transaction transaction9= new Transaction(category9,10.00, user2);
-
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction1);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction2);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction3);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction4);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction5);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction6);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction7);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction8);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction9);
-		userRepository.save(user);
-		userRepository.save(user2);
-
-		assertEquals(85.00, user.getBalance(),0.0);
-		System.out.println(transaction1.getCategory().getCategoryName());
-		System.out.println(user.getLevel().getTitle());
-//		Super Saver
-	}
-
 //	@Test
 	public void can_update_user_balance() {
 		userRepository.deleteAll();

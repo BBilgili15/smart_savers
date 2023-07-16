@@ -1,34 +1,34 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import React from 'react';
-import { useState, useEffect} from 'react';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import React from "react";
+import { useState, useEffect } from "react";
 
 // Import Screens
-import ChallengeDashboardScreen from '../screens/ChallengeDashboardScreen';
-import ChallengeScreen from '../screens/ChallengeScreen';
-import ChartsScreen from '../screens/ChartsScreen';
-import HomeScreen from '../screens/HomeScreen';
-import PocketsScreen from '../screens/PocketsScreen';
+import ChallengeDashboardScreen from "../screens/ChallengeDashboardScreen";
+import ChallengeScreen from "../screens/ChallengeScreen";
+import ChartsScreen from "../screens/ChartsScreen";
+import HomeScreen from "../screens/HomeScreen";
+import PocketsScreen from "../screens/PocketsScreen";
 
-import { getUser } from '../services/UserServices';
-import { getTransactionsByUserId } from '../services/TransactionServices';
+import { getUser } from "../services/UserServices";
+import { getTransactionsByUserId } from "../services/TransactionServices";
 
 // Creating the stacks
 const Stack = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
-
-
-
-
 // Creating the component for inside stack layout
 function InsideLayout() {
   return (
     <InsideStack.Navigator>
-      <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
+      <InsideStack.Screen
+        name="bottomTabs"
+        component={TabNavigator}
+        options={{ headerShown: false }}
+      />
     </InsideStack.Navigator>
   );
 }
@@ -38,22 +38,19 @@ const Tab = createBottomTabNavigator();
 
 function TabNavigator() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userTransactions, setUserTransactions]=useState([])
-  
-  
-  
+  const [userTransactions, setUserTransactions] = useState([]);
+
   // useEffect
   useEffect(() => {
-    getUser(1)
-      .then(newUser => setCurrentUser(newUser))
+    getUser(1).then((newUser) => setCurrentUser(newUser));
   }, []);
-  
+
   useEffect(() => {
     if (currentUser) {
       getTransactionsByUserId(1)
-      // getTransactionsByUserId(currentUser.id) error: Property 'id' does not exist on type 'never'.ts(2339)
-        .then(transactions => setUserTransactions(transactions))
-        .catch(error => {
+        // getTransactionsByUserId(currentUser.id) error: Property 'id' does not exist on type 'never'.ts(2339)
+        .then((transactions) => setUserTransactions(transactions))
+        .catch((error) => {
           console.log("Error fetching transactions:", error);
         });
     }
@@ -65,52 +62,56 @@ function TabNavigator() {
         name="HO"
         component={Home}
         options={{
-          tabBarLabel: 'HOME',
+          tabBarLabel: "HOME",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'purple',
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "purple",
+          headerShown: false,
         }}
       />
       <Tab.Screen
         name="DC"
         component={GamesHub}
         options={{
-          tabBarLabel: 'GAME',
+          tabBarLabel: "GAME",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="gamepad" color={color} size={size} />
           ),
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'purple',
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "purple",
+          headerShown: false,
         }}
       />
       <Tab.Screen
         name="HT"
         component={Habits}
         options={{
-          tabBarLabel: 'CHART',
+          tabBarLabel: "CHART",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="barschart" color={color} size={size} />
           ),
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'purple',
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "purple",
+          headerShown: false,
         }}
       />
       <Tab.Screen
         name="SG"
         component={Pockets}
         options={{
-          tabBarLabel: 'POCKETS',
+          tabBarLabel: "POCKETS",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="wallet" color={color} size={size} />
           ),
-          tabBarActiveTintColor: 'orange',
-          tabBarInactiveTintColor: 'purple',
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "purple",
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
@@ -136,7 +137,12 @@ function GamesHub() {
 }
 
 function Habits() {
-  return <ChartsScreen currentUser={currentUser} userTransactions={userTransactions}/>;
+  return (
+    <ChartsScreen
+      currentUser={currentUser}
+      userTransactions={userTransactions}
+    />
+  );
 }
 
 function Pockets() {
@@ -144,9 +150,16 @@ function Pockets() {
 }
 
 function Home() {
-    const [availableAmount, setAvailableAmount] = useState<number>(0);
+  const [availableAmount, setAvailableAmount] = useState<number>(0);
 
-    return <HomeScreen currentUser={currentUser} setCurrentUser={setCurrentUser} availableAmount={availableAmount} setAvailableAmount={setAvailableAmount}/>;
+  return (
+    <HomeScreen
+      currentUser={currentUser}
+      setCurrentUser={setCurrentUser}
+      availableAmount={availableAmount}
+      setAvailableAmount={setAvailableAmount}
+    />
+  );
 }
 
 export { InsideLayout, LoginStack };

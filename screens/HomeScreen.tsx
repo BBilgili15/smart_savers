@@ -15,17 +15,14 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
     setAvailableAmount: (amount:number) => void;
     currentUser: any;
     setCurrentUser: (user:any) => void;
+    userTransactions:any;
+    setUserTransactions:(transaction:any)=>void;
   };
 
-  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser}) => {
+  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions}) => {
     
-  // const [currentUser, setCurrentUser] = useState<{ id: number, userName: string, parentEmail: string, points: number, level: any, balance: number } | null> () ;
-
-    // useEffect( () => {
-    //   getUser(1)
-    //   .then(newUser => setCurrentUser(newUser))
-    // }, [])
-   
+  
+ 
 
 
   return (
@@ -33,9 +30,23 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
         <UserProfile currentUser={currentUser}/>
         <LevelProgressBar currentUser={currentUser}/>
         <AvailableBalanceDisplay currentUser={currentUser}/>
-        <UpdateBalance currentUser={currentUser} />
+        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}/>
     </View>
   )
 }
 
 export default HomeScreen
+
+
+//  {
+//     "category": "FOOD",
+//     "amount": 90.0,
+//     "user": {
+//       "id": 1,
+//       "userName": "Ben",
+//       "parentEmail": "parent@test.com",
+//       "points": 0,
+//       "level": "ONE",
+//       "balance": 85.0
+//     }
+//   }

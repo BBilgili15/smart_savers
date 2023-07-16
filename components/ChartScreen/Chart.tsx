@@ -51,13 +51,13 @@ const Chart: React.FC<ChartProps> = ({
       }[] = [];
 
 
-      if (selectedTab === "income") {
+      if (selectedTab === "income" ) {
         filteredTransactions = userTransactions.filter((transaction) =>
-          incomeCategories.includes(transaction.category.toUpperCase())
+        transaction.category && incomeCategories.includes(transaction.category.toUpperCase())
         );
-      } else if (selectedTab === "outgoing") {
+      } else if (selectedTab === "outgoing" ) {
         filteredTransactions = userTransactions.filter((transaction) =>
-          outgoingCategories.includes(transaction.category.toUpperCase())
+        transaction.category && outgoingCategories.includes(transaction.category.toUpperCase())
         );
       }
 

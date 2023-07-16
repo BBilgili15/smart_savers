@@ -53,12 +53,6 @@ public class TransactionController {
         }
     }
 
-//    @GetMapping("/transactions")
-//    public List<Transaction> getTransactionsByCategoryTypeAndUserId(
-//            @RequestParam("categoryType") String categoryType,
-//            @RequestParam("userId") Long userId
-//    ) {
-//        return transactionRepository.findByCategoryCategoryTypeAndUserId(categoryType, userId);
-//    }
+
 
 }
