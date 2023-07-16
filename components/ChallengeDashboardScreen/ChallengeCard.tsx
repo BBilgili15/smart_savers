@@ -4,14 +4,21 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 
   type ChallengeCardProps = {
+    completedDailyChallenge: boolean;
+    setCompletedDailyChallenge: (prop: any) => void;
   };
 
-  const ChallengeCard: React.FC<ChallengeCardProps> = () => {
+  // NOTE
+  // struggled to get the 'completedchallenge' state in the right places
+  // need to ensure that you can't run the challenge twice
+
+  const ChallengeCard: React.FC<ChallengeCardProps> = ({completedDailyChallenge, setCompletedDailyChallenge}) => {
 
     const navigation = useNavigation();
   
     const launchDailyChallenge = () => {
       navigation.navigate('ChallengeScreen' as never);
+      setCompletedDailyChallenge(true)
     };
 
   
@@ -20,7 +27,7 @@ import { useNavigation } from '@react-navigation/native';
   return (
     <TouchableOpacity style={styles.container} onPress={() => launchDailyChallenge()}>
       <Text style={styles.text}>Daily Challenge</Text>
-      <Image source={require('../../images/unchecked.png')} style={styles.image}/>
+      <Image source={completedDailyChallenge ? require('../../images/check.png') : require('../../images/unchecked.png')} style={styles.image} />
     </TouchableOpacity>
   )
 }

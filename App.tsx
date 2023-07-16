@@ -13,6 +13,7 @@ import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
+import Header from './components/Header';
 
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
@@ -222,9 +223,12 @@ const [userTransactions, setUserTransactions]=useState(
   // Creating the component for inside stack layout
   function InsideLayout() {
     return (
-      <InsideStack.Navigator>
-        <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
-      </InsideStack.Navigator>
+      <>
+      <Header/>
+        <InsideStack.Navigator>
+          <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
+        </InsideStack.Navigator>
+      </>
     );
   }
 
@@ -240,11 +244,12 @@ const [userTransactions, setUserTransactions]=useState(
           options={{
             tabBarLabel: 'HOME',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="home" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -253,11 +258,12 @@ const [userTransactions, setUserTransactions]=useState(
           options={{
             tabBarLabel: 'GAME',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="gamepad" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="gamepad" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -266,11 +272,12 @@ const [userTransactions, setUserTransactions]=useState(
           options={{
             tabBarLabel: 'CHART',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="barschart" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <AntDesign name="barschart" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -279,11 +286,12 @@ const [userTransactions, setUserTransactions]=useState(
           options={{
             tabBarLabel: 'POCKETS',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="wallet" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="wallet" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
+            headerShown: false,
           }}
         />
       </Tab.Navigator>

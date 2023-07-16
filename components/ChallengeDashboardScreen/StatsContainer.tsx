@@ -20,14 +20,13 @@ import React from 'react'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     width: 400,
     height: 300,
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
     margin: 10,
-    
   }
 })
 
