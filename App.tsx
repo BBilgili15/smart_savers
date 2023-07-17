@@ -161,7 +161,7 @@ useEffect(() => {
   }
 
   function Pockets() {
-    return <PocketsScreen />;
+    return <PocketsScreen currentUser={currentUser}/>;
   }
 
   function Home() {
