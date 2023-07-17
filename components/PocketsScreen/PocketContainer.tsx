@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
 
@@ -17,24 +17,28 @@ import PocketCard from './PocketCard';
 
   return (
     <ScrollView style={styles.container}>
+      
       <PocketCard/>
       <PocketCard/>
       <PocketCard/>
       <PocketCard/>
       <PocketCard/>
+      <View style={{marginBottom:500}}>
       <PocketCard/>
+      </View>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'lightblue',
+    backgroundColor: 'lightblue',
     width: 400,
     height: 600,
     alignSelf: 'center',
     // alignItems: 'center',
     margin: 10,
+  
     
   }
 })

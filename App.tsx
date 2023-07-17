@@ -51,12 +51,12 @@ export default function App() {
     });
   }, []);
 
-
-      getTransactionsByUserId(1) //need to add currentUser.id
+useEffect(() => {
+  if (currentUser)
+      getTransactionsByUserId(currentUser.id) //need to add currentUser.id
         .then((transactions) => setUserTransactions(transactions))
         .catch((error) => console.log('Error fetching transactions:', userTransactions));
-    }
-  }, [user]);
+  }, [currentUser]);
   // console.log(`this is the test how balance look like`,currentUser.balance)
 
 
@@ -206,4 +206,6 @@ const styles = StyleSheet.create({
     // backgroundColor: '#FDE9B1', // Pastel yellow color
   },
 });
+
+
 
