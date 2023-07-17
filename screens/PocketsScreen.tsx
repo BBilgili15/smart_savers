@@ -8,9 +8,11 @@ import PocketCard from '../components/PocketsScreen/PocketCard';
 import PocketContainer from '../components/PocketsScreen/PocketContainer';
 import PocketInformationContainer from '../components/PocketsScreen/PocketInformationContainer';
 
-  type PocketsScreenProps = {};
+  type PocketsScreenProps = {
+    currentUser:any
+  };
 
-  const PocketsScreen: React.FC<PocketsScreenProps> = () => {
+  const PocketsScreen: React.FC<PocketsScreenProps> = ({currentUser}) => {
     
   const [showAnimation, setShowAnimation] = useState(false);
 
@@ -37,7 +39,7 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
         />
       )}
         
-        <PocketInformationContainer handleButtonClick={handleButtonClick}/>
+        <PocketInformationContainer handleButtonClick={handleButtonClick} currentUser={currentUser}/>
         <PocketContainer/>
     </View>
   )
