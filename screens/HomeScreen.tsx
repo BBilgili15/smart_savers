@@ -10,7 +10,7 @@ import UpdateBalance from '../components/HomeScreen/UpdateBalance';
 import UserProfile from '../components/HomeScreen/UserProfile';
 import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
-  type HomeScreenProps = {
+  type HomeScreenProps = { 
     availableAmount: number;
     setAvailableAmount: (amount:number) => void;
     currentUser: any;
@@ -25,14 +25,14 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
  
 
 
-  return (
-    <View>
-        <UserProfile currentUser={currentUser}/>
-        <LevelProgressBar currentUser={currentUser}/>
-        <AvailableBalanceDisplay currentUser={currentUser}/>
-        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}/>
-    </View>
-  )
+    return (
+      <View>
+        <UserProfile currentUser={currentUser} />
+        <LevelProgressBar currentUser={currentUser} />
+        <AvailableBalanceDisplay currentUser={currentUser} />
+        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions} />
+      </View>
+    );
 }
 
 export default HomeScreen

@@ -39,14 +39,14 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
 
   function endButtonHandler() {
     setModalIsVisible(false);
-
+  
     const payload = {
       category: selectedCategory,
       amount: parseFloat(amount),
       user: currentUser,
     };
-
-    if (!payload.category || isNaN(payload.amount)) {
+  
+    if (payload.category && !isNaN(payload.amount)) {
       addTransaction(payload)
         .then((newTransaction) => {
           setUserTransactions([...userTransactions, newTransaction]);
@@ -55,10 +55,10 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
           console.log("Error adding transaction:", error);
         });
     }
-
-    // console.log("this is to test payload:", payload);
+  
+    console.log("this is to test payload:", payload);
   }
-
+  
 
 
 
