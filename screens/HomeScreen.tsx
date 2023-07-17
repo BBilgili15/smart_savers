@@ -1,4 +1,4 @@
-import {View, Text, ProgressBarAndroidComponent} from 'react-native'
+import {View, Text, ProgressBarAndroidComponent, ScrollView} from 'react-native'
 import {useState, useEffect} from 'react'
 import React from 'react'
 
@@ -26,12 +26,12 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
 
     return (
-      <View>
+      <ScrollView>
         <UserProfile currentUser={currentUser} />
         <LevelProgressBar currentUser={currentUser} />
         <AvailableBalanceDisplay currentUser={currentUser} />
         <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}  setCurrentUser={setCurrentUser}/>
-      </View>
+      </ScrollView>
     );
 }
 

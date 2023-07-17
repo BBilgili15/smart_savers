@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import Chart from '../components/ChartScreen/Chart';
 import Toggle from '../components/ChartScreen/Toggle';
 
@@ -24,10 +24,10 @@ const ChartsScreen: React.FC<ChartsScreenProps> = ({currentUser, userTransaction
   const [selectedTab, setSelectedTab] = useState<string>('income');
   return (
     <>
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
         <Toggle selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         <Chart selectedTab={selectedTab} setSelectedTab={setSelectedTab} currentUser={currentUser} userTransactions={userTransactions}/>
-      </View>
+      </ScrollView>
     </>
   );
 };

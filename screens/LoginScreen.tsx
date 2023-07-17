@@ -70,7 +70,6 @@ const LoginScreen = ({route, navigation}) => {
       if (response.ok) {
         const user = await response.json()
         setCurrentUser(user)
-        console.log("currentUser: ", currentUser)
         console.log("User:", user)
         console.log('Firebase user ID and user details sent to backend successfully');
       } else {

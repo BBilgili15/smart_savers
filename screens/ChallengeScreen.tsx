@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native'
+import {View, Text, ScrollView} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
 
@@ -17,10 +17,10 @@ import QuestionContainer from '../components/ChallengeScreen/QuestionContainer';
 
 
   return (
-    <View>
+    <ScrollView>
         <QuestionContainer question={"Tom receives £5 as his weekly pocket money. He wants to save up to buy a video game that costs £30. How many weeks will it take for Tom to save enough money to buy the game?"}/>
         <AnswerContainer/>
-    </View>
+    </ScrollView>
   )
 }
 
