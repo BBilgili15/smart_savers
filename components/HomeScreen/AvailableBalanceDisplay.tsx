@@ -1,45 +1,44 @@
-import {View, Text, StyleSheet} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-  type AvailableBalanceProps = {
-    currentUser: any
-  };
+type AvailableBalanceProps = {
+  currentUser: any;
+};
 
-  const AvailableBalanceDisplay: React.FC<AvailableBalanceProps> = ({currentUser}) => {
-    
-    // const [availableAmount, setAvailableAmount] = useState<number>(0);
-  
-    // const updateAvailableAmount = (amount: number) => {
-    //   const newAmount: number = availableAmount + amount;
-    //   setAvailableAmount(newAmount);
-    // }
-
-  
-
-
+const AvailableBalanceDisplay: React.FC<AvailableBalanceProps> = ({ currentUser }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Balance: {currentUser ? '£' + currentUser.balance : null}</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightpink',
+    backgroundColor: '#FDE9B1',
     width: 300,
     height: 100,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    borderColor: 'black',
+    borderColor: '#FFD700',
     borderWidth: 2,
-  }, 
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   text: {
-    fontSize: 30,
-  }
-})
+    fontSize: 28,
+    fontWeight: 'bold',
+    // color: '#FFD700',
+  },
+});
 
-export default AvailableBalanceDisplay
+export default AvailableBalanceDisplay;

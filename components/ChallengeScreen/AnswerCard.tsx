@@ -19,7 +19,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ answerText, handleButtonClick, 
     setIsPressed(false);
   };
 
-  const cardBackgroundColor = isPressed ? 'lightblue' : backgroundColor; // Use the prop for background color
+  const cardBackgroundColor = isPressed ? 'white' : backgroundColor; // Use the prop for background color
 
   return (
     <TouchableOpacity
@@ -28,7 +28,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ answerText, handleButtonClick, 
       onPressOut={handlePressOut}
       onPress={handleButtonClick}
     >
-      <Text>{answerText}</Text>
+      <Text style={styles.answerText}>{answerText}</Text>
     </TouchableOpacity>
   );
 };
@@ -38,16 +38,19 @@ const styles = StyleSheet.create({
     width: 175,
     height: 100,
     justifyContent: 'center',
-    alignSelf: 'center',
     alignItems: 'center',
     margin: 10,
+    borderRadius: 10,
     shadowColor: 'gray',
-    shadowOffset: { width: 3, height: 3 },
-    shadowOpacity: 5,
-    shadowRadius: 4,
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 20,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  answerText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
   },
 });
 

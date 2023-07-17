@@ -353,14 +353,15 @@ const [userTransactions, setUserTransactions]=useState(
   );
 }
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: '#FDE9B1', // Pastel yellow color
   },
 });
-
-
-
 
 
 

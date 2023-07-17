@@ -22,6 +22,7 @@
     "lottie-react-native": "^5.1.6",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-progress": "^5.0.0",
     "react-native-svg": "^13.10.0",
     "react-native-vector-icons": "^9.2.0",
     "victory-native": "^36.6.11"
