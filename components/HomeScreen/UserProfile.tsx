@@ -18,7 +18,7 @@ import React from 'react'
       <View style={styles.container}>
         <Text style={styles.textSub}>{currentUser ? (currentUser.level === "ONE" ? "Savvy Spender" : "Test") : null}</Text>
         <Image source={require('../../images/owl.jpg')} style={styles.image}/>
-        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.userName : null}</Text>
+        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
       </View>
   )
 }

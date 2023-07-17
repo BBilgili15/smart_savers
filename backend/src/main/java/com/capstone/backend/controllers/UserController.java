@@ -29,9 +29,10 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping(value = "/users/{id}")
-    public Optional<User> getUser(@PathVariable Long id){
-        return userRepository.findById(id);
+    @GetMapping(value = "/users/{firebaseUserId}")
+    public Optional<User> getUser(@PathVariable String firebaseUserId){
+        logger.info("Firebase userID: {}", firebaseUserId);
+        return userRepository.findByFirebaseUserId(firebaseUserId);
     }
 
 
