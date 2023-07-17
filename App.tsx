@@ -32,6 +32,7 @@ export default function App() {
   const [userTransactions, setUserTransactions] = useState([]);
 
 
+  // console.log("this is to test currentuser:",currentUser.balance);
 
 
   // useEffect for user authentication
@@ -53,7 +54,7 @@ export default function App() {
         .catch((error) => console.log('Error fetching transactions:', userTransactions));
     }
   }, [user]);
-  console.log(`this is the test how transactions look like`,userTransactions)
+  // console.log(`this is the test how balance look like`,currentUser.balance)
 
   // Creating the component for inside stack layout
   function InsideLayout() {

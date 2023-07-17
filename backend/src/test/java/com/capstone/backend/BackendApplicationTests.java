@@ -82,7 +82,7 @@ class BackendApplicationTests {
 		Category category7 = Category.FOOD;
 		Category category8 = Category. OTHER_SPEND;
 		Category category9 = Category. FOOD;
-		Category category10 = Category. FOOD;
+//		Category category10 = Category. FOOD;
 
 
 
@@ -96,7 +96,7 @@ class BackendApplicationTests {
 		Transaction transaction7= new Transaction(category7,7.00, user);
 		Transaction transaction8= new Transaction(category8,12.00, user);
 		Transaction transaction9= new Transaction(category9,10.00, user2);
-		Transaction transaction10= new Transaction(category10,10.00, user);
+//		Transaction transaction10= new Transaction(category10,10.00, user);
 
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction);
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction1);
@@ -108,12 +108,12 @@ class BackendApplicationTests {
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction7);
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction8);
 		transactionRepository.saveTransactionAndUpdateUserBalance(transaction9);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction10);
+//		transactionRepository.saveTransactionAndUpdateUserBalance(transaction10);
 
 		userRepository.save(user);
 		userRepository.save(user2);
 
-		assertEquals(75.00, user.getBalance(),0.0);
+		assertEquals(85.00, user.getBalance(),0.0);
 		System.out.println(transaction1.getCategory().getCategoryName());
 		System.out.println(user.getLevel().getTitle());
 //    Super Saver

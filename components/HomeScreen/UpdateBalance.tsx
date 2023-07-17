@@ -59,6 +59,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
     console.log("this is to test payload:", payload);
   }
   
+  
 
 
 
@@ -148,6 +149,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
                 }
                 style={styles.picker}
               >
+                 <Picker.Item label="" value="" /> 
                 {incomeCategoryOptions.map((incomeCategoryOption, index) => (
                   <Picker.Item
                     key={index}
@@ -168,6 +170,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
                 }
                 style={styles.picker}
               >
+                 <Picker.Item label="" value="" /> 
                 {spendingCategoryOptions.map(
                   (spendingCategoryOption, index) => (
                     <Picker.Item
