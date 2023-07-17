@@ -6,8 +6,8 @@ export const getUsers = () => {
         .then(res => res.json())
 }
 
-export const getUser = (id: Number) => {
-    return fetch(baseURL + `/${id}`)
+export const getUser = (uid: String) => {
+    return fetch(baseURL + `/${uid}`)
        .then(res=>res.json())
 }
 

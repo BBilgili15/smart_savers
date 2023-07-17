@@ -29,7 +29,7 @@ const LoginStack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
   // const [userTransactions, setUserTransactions] = useState([]);
 
@@ -201,22 +201,28 @@ const [userTransactions, setUserTransactions]=useState(
   // useEffect for user authentication
   useEffect(() => {
     onAuthStateChanged(FirebaseAuth, (user) => {
-      setUser(user);
+      if (!user) setCurrentUser(null)
+      console.log("User in App: ", user)
+      getUser(user.uid)
+        .then((newUser) => {
+          console.log({newUser})
+          setCurrentUser(newUser)
+        })
+        .catch((error) => console.log('Error fetching user:', error));
     });
   }, []);
 
-  // useEffect for fetching user data and transactions
-  useEffect(() => {
-    if (user) {
-      getUser(1)
-        .then((newUser) => setCurrentUser(newUser))
-        .catch((error) => console.log('Error fetching user:', error));
 
-      getTransactionsByUserId(1)
-        .then((transactions) => setUserTransactions(transactions))
-        .catch((error) => console.log('Error fetching transactions:', error));
-    }
-  }, [user]);
+  // useEffect for fetching user data and transactions
+  // useEffect(() => {
+  //   if (firebaseUser) {
+  //     getUser("TnP6BPAOI1RUJQiAYKoHfWDauIS2")
+  //       .then((newUser) => setCurrentUser(newUser))
+  //       .catch((error) => console.log('Error fetching user:', error));
+  //   }
+  // }, [firebaseUser]);
+  console.log("This is the currentUser: ", currentUser)
+  // console.log("EMAIL: ", firebaseUser.email)
 
   // Creating the component for inside stack layout
   function InsideLayout() {
@@ -340,10 +346,11 @@ const [userTransactions, setUserTransactions]=useState(
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <LoginStack.Navigator initialRouteName="Login">
-          {user ? (
+          {currentUser ? (
             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
           ) : (
-            <LoginStack.Screen name="Login" component={LoginScreen} />
+            <LoginStack.Screen name="Login" component={LoginScreen} initialParams={{setCurrentUser}}/>
+
           )}
         </LoginStack.Navigator>
       </NavigationContainer>

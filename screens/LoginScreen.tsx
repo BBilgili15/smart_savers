@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import { FirebaseAuth } from "../FirebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
 
-const LoginScreen = () => {
+// type LoginScreenProps = {
+//   currentUser: any;
+//   setCurrentUser: (user:any) => void;
+// };
+
+
+const LoginScreen = ({route, navigation}) => {
+  const { setCurrentUser } = route.params;
   const [email, setEmail] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
@@ -61,6 +68,10 @@ const LoginScreen = () => {
       });
 
       if (response.ok) {
+        const user = await response.json()
+        setCurrentUser(user)
+        console.log("currentUser: ", currentUser)
+        console.log("User:", user)
         console.log('Firebase user ID and user details sent to backend successfully');
       } else {
         console.log('Else Failed to send Firebase user ID and user details to backend', response.status, await response.text());
@@ -108,6 +119,7 @@ const LoginScreen = () => {
 
         // Send the Firebase user ID to the Spring backend
         await sendUserIdToBackend(firebaseResponse, displayName, email);
+        //set user here
       }
 
       alert('Registration Successful');
