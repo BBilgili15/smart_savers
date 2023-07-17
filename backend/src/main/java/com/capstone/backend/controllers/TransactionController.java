@@ -4,11 +4,13 @@ import com.capstone.backend.models.Transaction;
 import com.capstone.backend.models.User;
 import com.capstone.backend.repositories.TransactionRepository;
 import com.capstone.backend.repositories.UserRepository;
+import com.capstone.backend.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,9 +39,10 @@ public class TransactionController {
         }
     }
 
+    @Transactional
     @PostMapping(value = "/transactions")
     public ResponseEntity<Transaction> postTransaction(@RequestBody Transaction transaction){
-        transactionRepository.saveTransactionAndUpdateUserBalance(transaction);
+        TransactionService.saveTransactionAndUpdateUserBalance(transaction, transactionRepository,userRepository);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
 
@@ -53,12 +56,6 @@ public class TransactionController {
         }
     }
 
-//    @GetMapping("/transactions")
-//    public List<Transaction> getTransactionsByCategoryTypeAndUserId(
-//            @RequestParam("categoryType") String categoryType,
-//            @RequestParam("userId") Long userId
-//    ) {
-//        return transactionRepository.findByCategoryCategoryTypeAndUserId(categoryType, userId);
-//    }
+
 
 }

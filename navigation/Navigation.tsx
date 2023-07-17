@@ -1,41 +1,3 @@
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
-// import { AntDesign } from '@expo/vector-icons';
-// import React from 'react';
-// import { useState, useEffect} from 'react';
-
-// // Import Screens
-// import ChallengeDashboardScreen from '../screens/ChallengeDashboardScreen';
-// import ChallengeScreen from '../screens/ChallengeScreen';
-// import ChartsScreen from '../screens/ChartsScreen';
-// import HomeScreen from '../screens/HomeScreen';
-// import PocketsScreen from '../screens/PocketsScreen';
-
-// import { getUser } from '../services/UserServices';
-// import { getTransactionsByUserId } from '../services/TransactionServices';
-
-// // Creating the stacks
-// const Stack = createNativeStackNavigator();
-// const LoginStack = createNativeStackNavigator();
-// const InsideStack = createNativeStackNavigator();
-
-
-
-
-
-// // Creating the component for inside stack layout
-// function InsideLayout() {
-//   return (
-//     <InsideStack.Navigator>
-//       <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
-//     </InsideStack.Navigator>
-//   );
-// }
-
-// // Creating the bottom tab navigator & view functions
-// const Tab = createBottomTabNavigator();
-
 // function TabNavigator() {
 //   const [currentUser, setCurrentUser] = useState(null);
 //   const [userTransactions, setUserTransactions]=useState([])
@@ -150,3 +112,4 @@
 // }
 
 // export { InsideLayout, LoginStack };
+

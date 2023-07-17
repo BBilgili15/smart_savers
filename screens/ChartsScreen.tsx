@@ -16,6 +16,7 @@ type ChartsScreenProps = {
     id: number,
     category: any,
     amount: number,
+    user:any
     // user:object
   }[] | null
 };

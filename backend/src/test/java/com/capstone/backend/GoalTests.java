@@ -7,6 +7,7 @@ import com.capstone.backend.models.User;
 import com.capstone.backend.repositories.GoalRepository;
 import com.capstone.backend.repositories.TransactionRepository;
 import com.capstone.backend.repositories.UserRepository;
+import com.capstone.backend.services.TransactionService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ class GoalTests {
         User user = new User("Ben", "parent@test.com");
         userRepository.save(user);
         Transaction transaction1= new Transaction(Category.EARNINGS,20.00, user);
-        transactionRepository.saveTransactionAndUpdateUserBalance(transaction1);
+        TransactionService.saveTransactionAndUpdateUserBalance(transaction1, transactionRepository, userRepository);
         userRepository.save(user);
         Goal goal = new Goal("Shoes",100.00, user);
         goalRepository.save(goal);

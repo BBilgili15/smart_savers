@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
+
 // Import Screens
 import ChallengeDashboardScreen from './screens/ChallengeDashboardScreen';
 import ChallengeScreen from './screens/ChallengeScreen';
@@ -13,13 +14,11 @@ import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
-import Header from './components/Header';
-
 
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
 
-
+import Header from './components/Header';
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
 
@@ -31,171 +30,11 @@ const InsideStack = createNativeStackNavigator();
 export default function App() {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
-  // const [userTransactions, setUserTransactions] = useState([]);
+
+  const [userTransactions, setUserTransactions] = useState([]);
 
 
-// ZHU DUMMY DATA
-
-const [userTransactions, setUserTransactions]=useState(
-  [
-    {
-      "id": 1,
-      "category": "EARNINGS",
-      "amount": 20.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 2,
-      "category": "POCKET_MONEY",
-      "amount": 10.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 3,
-      "category": "GIFT",
-      "amount": 50.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 4,
-      "category": "OTHER_INCOME",
-      "amount": 80.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 5,
-      "category": "ENTERTAINMENT",
-      "amount": 40.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 6,
-      "category": "SHOPPING",
-      "amount": 10.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 7,
-      "category": "TRANSPORT",
-      "amount": 6.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 8,
-      "category": "FOOD",
-      "amount": 7.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 9,
-      "category": "OTHER_SPEND",
-      "amount": 12.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    },
-    {
-      "id": 10,
-      "category": "FOOD",
-      "amount": 10.0,
-      "user": {
-        "id": 2,
-        "userName": "Julie",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": -10.0
-      }
-    },
-    {
-      "id": 11,
-      "category": "FOOD",
-      "amount": 90.0,
-      "user": {
-        "id": 1,
-        "userName": "Ben",
-        "parentEmail": "parent@test.com",
-        "points": 0,
-        "level": "ONE",
-        "balance": 85.0
-      }
-    }
-  ])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // console.log("this is to test currentuser:",currentUser.balance);
 
 
   // useEffect for user authentication
@@ -213,16 +52,13 @@ const [userTransactions, setUserTransactions]=useState(
   }, []);
 
 
-  // useEffect for fetching user data and transactions
-  // useEffect(() => {
-  //   if (firebaseUser) {
-  //     getUser("TnP6BPAOI1RUJQiAYKoHfWDauIS2")
-  //       .then((newUser) => setCurrentUser(newUser))
-  //       .catch((error) => console.log('Error fetching user:', error));
-  //   }
-  // }, [firebaseUser]);
-  console.log("This is the currentUser: ", currentUser)
-  // console.log("EMAIL: ", firebaseUser.email)
+      getTransactionsByUserId(1) //need to add currentUser.id
+        .then((transactions) => setUserTransactions(transactions))
+        .catch((error) => console.log('Error fetching transactions:', userTransactions));
+    }
+  }, [user]);
+  // console.log(`this is the test how balance look like`,currentUser.balance)
+
 
   // Creating the component for inside stack layout
   function InsideLayout() {
@@ -337,6 +173,9 @@ const [userTransactions, setUserTransactions]=useState(
         setCurrentUser={setCurrentUser}
         availableAmount={availableAmount}
         setAvailableAmount={setAvailableAmount}
+        userTransactions={userTransactions}
+        setUserTransactions={setUserTransactions}
+
       />
     );
   }
@@ -368,48 +207,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
-// import { SafeAreaView, StyleSheet } from 'react-native';
-// import { NavigationContainer } from '@react-navigation/native';
-// import { useEffect, useState } from 'react';
-
-
-// import { User, onAuthStateChanged } from '@firebase/auth';
-// import { FirebaseAuth } from './FirebaseConfig';
-
-
-// import { InsideLayout, LoginStack } from './navigation/Navigation';
-// import LoginScreen from './screens/LoginScreen';
-
-// export default function App() {
-
-//   const [user, setUser] = useState<User | null>(null);
-
-//   useEffect(() => {
-//     onAuthStateChanged(FirebaseAuth, (user) => {
-//       setUser(user);
-//     });
-//   }, []);
-
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <NavigationContainer>
-//         <LoginStack.Navigator initialRouteName="Login">
-//           {user ? (
-//             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
-//           ) : (
-//             <LoginStack.Screen name="Login" component={LoginScreen} />
-//           )}
-//         </LoginStack.Navigator>
-//       </NavigationContainer>
-//     </SafeAreaView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-// });

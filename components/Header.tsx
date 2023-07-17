@@ -4,7 +4,6 @@ import React from 'react';
 import { FirebaseAuth } from '../FirebaseConfig';
 import { err } from 'react-native-svg/lib/typescript/xml';
 
-
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {

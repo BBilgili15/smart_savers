@@ -8,6 +8,7 @@ import com.capstone.backend.repositories.GoalRepository;
 import com.capstone.backend.repositories.TransactionRepository;
 import com.capstone.backend.repositories.UserRepository;
 import com.capstone.backend.services.FirebaseService;
+import com.capstone.backend.services.TransactionService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -113,6 +114,33 @@ class BackendApplicationTests {
 //		User user = new User("Ben", "parent@test.com");
 //		userRepository.save(user);}}
 
+
+
+
+		Transaction transaction= new Transaction(category,20.00, user);
+		Transaction transaction1= new Transaction(category1,10.00, user);
+		Transaction transaction2= new Transaction(category2,50.00, user);
+		Transaction transaction3= new Transaction(category3,80.00, user);
+		Transaction transaction4= new Transaction(category4,40.00, user);
+		Transaction transaction5= new Transaction(category5,10.00, user);
+		Transaction transaction6= new Transaction(category6,6.00, user);
+		Transaction transaction7= new Transaction(category7,7.00, user);
+		Transaction transaction8= new Transaction(category8,12.00, user);
+		Transaction transaction9= new Transaction(category9,10.00, user2);
+//		Transaction transaction10= new Transaction(category10,10.00, user);
+
+
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction1, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction2, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction3, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction4, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction5, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction6, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction7, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction8, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction9, transactionRepository, userRepository);
+//		transactionRepository.saveTransactionAndUpdateUserBalance(transaction10);
 
 
 
