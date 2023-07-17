@@ -16,12 +16,14 @@ type UpdateBalanceProps = {
   currentUser: any;
   userTransactions: any;
   setUserTransactions: (transaction: any) => void;
+  setCurrentUser:(currentUser: any) => void;
 };
 
 const UpdateBalance: React.FC<UpdateBalanceProps> = ({
   currentUser,
   userTransactions,
   setUserTransactions,
+  setCurrentUser
 }) => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -50,13 +52,16 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
       addTransaction(payload)
         .then((newTransaction) => {
           setUserTransactions([...userTransactions, newTransaction]);
+          setCurrentUser(newTransaction.user)
+          // ---------to be refactored 
+
         })
         .catch((error) => {
           console.log("Error adding transaction:", error);
         });
     }
   
-    console.log("this is to test payload:", payload);
+    console.log("this is to test currentuser:", currentUser);
   }
   
   

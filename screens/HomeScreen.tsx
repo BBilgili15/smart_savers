@@ -30,7 +30,7 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
         <UserProfile currentUser={currentUser} />
         <LevelProgressBar currentUser={currentUser} />
         <AvailableBalanceDisplay currentUser={currentUser} />
-        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions} />
+        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}  setCurrentUser={setCurrentUser}/>
       </View>
     );
 }

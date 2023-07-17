@@ -8,6 +8,7 @@ import com.capstone.backend.repositories.GoalRepository;
 import com.capstone.backend.repositories.TransactionRepository;
 import com.capstone.backend.repositories.UserRepository;
 import com.capstone.backend.services.FirebaseService;
+import com.capstone.backend.services.TransactionService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,7 +83,6 @@ class BackendApplicationTests {
 		Category category7 = Category.FOOD;
 		Category category8 = Category. OTHER_SPEND;
 		Category category9 = Category. FOOD;
-//		Category category10 = Category. FOOD;
 
 
 
@@ -98,20 +98,20 @@ class BackendApplicationTests {
 		Transaction transaction9= new Transaction(category9,10.00, user2);
 //		Transaction transaction10= new Transaction(category10,10.00, user);
 
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction1);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction2);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction3);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction4);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction5);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction6);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction7);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction8);
-		transactionRepository.saveTransactionAndUpdateUserBalance(transaction9);
+
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction1, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction2, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction3, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction4, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction5, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction6, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction7, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction8, transactionRepository, userRepository);
+		TransactionService.saveTransactionAndUpdateUserBalance(transaction9, transactionRepository, userRepository);
 //		transactionRepository.saveTransactionAndUpdateUserBalance(transaction10);
 
-		userRepository.save(user);
-		userRepository.save(user2);
+
 
 		assertEquals(85.00, user.getBalance(),0.0);
 		System.out.println(transaction1.getCategory().getCategoryName());
