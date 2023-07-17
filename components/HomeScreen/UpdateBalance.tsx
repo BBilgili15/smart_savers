@@ -105,9 +105,13 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
 
 
 
+type UpdateBalanceProps = {
+  currentUser: any;
+};
 
-
+const UpdateBalance: React.FC<UpdateBalanceProps> = () => {
   return (
+
     <>
     {/* ----------------these are 3 buttons  ----------------- */}
       <View style={styles.container}>
@@ -129,10 +133,6 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
           <Text style={styles.text}>Spend</Text>
         </TouchableOpacity>
       </View>
-
-
-
-
 
 
 
@@ -215,13 +215,19 @@ export default UpdateBalance;
 
 const styles = StyleSheet.create({
   container: {
+
     backgroundColor: "lightpink",
     flexDirection: "row",
+
+<!--     // backgroundColor: '#FDE9B1', -->
+<!--     flexDirection: 'row', -->
+
     width: 400,
     height: 100,
     alignSelf: "center",
     alignItems: "center",
     margin: 10,
+
     justifyContent: "space-evenly",
   },
   text: {
@@ -263,3 +269,40 @@ const styles = StyleSheet.create({
 });
 
 // https://reactnative.dev/docs/0.65/picker
+
+<!--     justifyContent: 'space-evenly',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  button: {
+    backgroundColor: '#7DD3FC',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+}); -->
+
+export default UpdateBalance;
+

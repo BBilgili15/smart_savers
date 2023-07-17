@@ -1,49 +1,77 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useState } from 'react';
 
-  type PocketCardProps = {
-    
-  };
+type PocketCardProps = {};
 
-  const PocketCard: React.FC<PocketCardProps> = () => {
+const PocketCard: React.FC<PocketCardProps> = () => {
+  const [currentAmount, setCurrentAmount] = useState(70);
+  const savingsGoal = 100;
+  const progressPercentage = (currentAmount / savingsGoal) * 100;
 
-
-  
-
+  const foregroundWidth = (350 * progressPercentage) / 100;
 
   return (
     <View style={styles.container}>
-      <View style={styles.savingBar}><Text>Progress Bar</Text></View>
+      <Text style={styles.heading}>New Trainers</Text>
+      <Text style={styles.subheading}>Saving Pocket</Text>
+      <View style={styles.savingBarBackground}>
+        <View style={[styles.savingBarForeground, { width: foregroundWidth }]}>
+          <Text style={styles.spending}>£{currentAmount.toFixed(2)}</Text>
+        </View>
+      </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFF',
     width: 375,
     height: 150,
-    justifyContent: 'flex-end',
-    alignSelf: 'center',
+    borderRadius: 20,
+    padding: 20,
+    justifyContent: 'space-between',
     alignItems: 'center',
     margin: 10,
-    shadowColor: 'gray',
-    shadowOffset: {width: 3, height: 3},
-    shadowOpacity: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
     shadowRadius: 4,
+    elevation: 5,
+    alignSelf: 'center',
+  },
+  savingBarBackground: {
+    width: 350,
+    height: 20,
+    backgroundColor: '#FFDFDF',
     borderRadius: 10,
-    // borderColor: 'black',
-    // borderWidth: 2,
-  }, 
-  savingBar: {
-    width: 375,
-    height: 50,
-    backgroundColor: 'lightblue',
+    overflow: 'hidden',
+  },
+  savingBarForeground: {
+    height: 20,
+    backgroundColor: '#FF4D4D',
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
-  }
-})
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  subheading: {
+    fontSize: 16,
+    color: '#666',
+  },
+  spending: {
+    fontSize: 14,
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+});
 
-export default PocketCard
+export default PocketCard;

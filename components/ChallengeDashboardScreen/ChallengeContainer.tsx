@@ -6,24 +6,19 @@ import React from 'react'
 import ChallengeCard from './ChallengeCard';
 
   type ChallengeContainerProps = {
-    
   };
 
   const ChallengeContainer: React.FC<ChallengeContainerProps> = () => {
 
-
+    const [completedDailyChallenge, setCompletedDailyChallenge] = useState(false);
   
 
 
   return (
     <ScrollView style={styles.container}>
-      <ChallengeCard/>
-      <ChallengeCard/>
-      <ChallengeCard/>
-      <ChallengeCard/>
-      <ChallengeCard/>
-      <ChallengeCard/>
-      <ChallengeCard/>
+      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
+      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
+      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
     </ScrollView>
   )
 }

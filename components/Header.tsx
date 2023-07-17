@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = () => {
       console.log('Error signing out: ', error);
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.headerLeft}>
@@ -37,36 +37,46 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'space-between',
     height: 75,
-    borderBottomWidth: 3,
-    borderBottomColor: 'black',
-    backgroundColor: '#ffffff'
+    // borderBottomWidth: 3,
+    // borderBottomColor: 'black',
+    backgroundColor: '#ffffff',
+    shadowColor: 'black',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 5,
+    shadowRadius: 4,
   },
   text: {
-    fontSize: 16,
-    // fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#000000',
     alignSelf: 'center',
-    backgroundColor: 'lightpink',
   },
   imageLogo: {
-    height: 75,
-    width: 75,
+    height: 50,
+    width: 50,
+    marginRight: 10,
   },
   imageLogout: {
     height: 30,
     width: 30,
   },
   headerLeft: {
-    backgroundColor: 'lightpink',
-    alignContent: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    // backgroundColor: '#FF69B4',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
   },
   headerRight: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: '#87CEFA',
     justifyContent: 'center',
-    padding: 20,
-  }
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    borderRadius: 15,
+    marginRight: 10,
+  },
 });
 
 export default Header;

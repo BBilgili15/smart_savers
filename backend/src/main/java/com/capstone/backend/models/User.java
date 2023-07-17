@@ -15,11 +15,11 @@ public class User {
 
     private String firebaseUserId;
 
-    @Column(name="user_name")
-    private String userName;
+    @Column(name="display_name")
+    private String displayName;
 
     @Column(name="parent_email")
-    private String parentEmail;
+    private String email;
 
     @Column(name="points")
     private int points;
@@ -41,12 +41,13 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String parentEmail) {
-        this.userName = userName;
-        this.parentEmail = parentEmail;
+    public User(String userName, String parentEmail, String firebaseUserId) {
+        this.displayName = userName;
+        this.email = parentEmail;
         this.points = 0;
         this.level = Level.ONE;
         this.balance = 0.0;
+        this.firebaseUserId = firebaseUserId;
     }
 
     public Long getId() {
@@ -61,20 +62,20 @@ public class User {
         this.firebaseUserId = firebaseUserId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getParentEmail() {
-        return parentEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getPoints() {
@@ -99,5 +100,31 @@ public class User {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firebaseUserId='" + firebaseUserId + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + displayName + '\'' +
+                '}';
     }
 }

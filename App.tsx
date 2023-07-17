@@ -14,6 +14,7 @@ import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
+
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
 
@@ -27,8 +28,9 @@ const LoginStack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
 export default function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
+
   const [userTransactions, setUserTransactions] = useState([]);
 
 
@@ -38,32 +40,34 @@ export default function App() {
   // useEffect for user authentication
   useEffect(() => {
     onAuthStateChanged(FirebaseAuth, (user) => {
-      setUser(user);
+      if (!user) setCurrentUser(null)
+      console.log("User in App: ", user)
+      getUser(user.uid)
+        .then((newUser) => {
+          console.log({newUser})
+          setCurrentUser(newUser)
+        })
+        .catch((error) => console.log('Error fetching user:', error));
     });
   }, []);
 
-  // useEffect for fetching user data and transactions
-  useEffect(() => {
-    if (user) {
-      getUser(1)
-        .then((newUser) => setCurrentUser(newUser))
-        .catch((error) => console.log('Error fetching user:', error));
 
-      getTransactionsByUserId(1)
+      getTransactionsByUserId(1) //need to add currentUser.id
         .then((transactions) => setUserTransactions(transactions))
         .catch((error) => console.log('Error fetching transactions:', userTransactions));
     }
   }, [user]);
   // console.log(`this is the test how balance look like`,currentUser.balance)
 
+
   // Creating the component for inside stack layout
   function InsideLayout() {
     return (
       <>
-      <Header />
-      <InsideStack.Navigator>
-        <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
-      </InsideStack.Navigator>
+      <Header/>
+        <InsideStack.Navigator>
+          <InsideStack.Screen name="bottomTabs" component={TabNavigator} options={{ headerShown: false }} />
+        </InsideStack.Navigator>
       </>
     );
   }
@@ -80,8 +84,8 @@ export default function App() {
           options={{
             tabBarLabel: 'HOME',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="home" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
@@ -94,8 +98,8 @@ export default function App() {
           options={{
             tabBarLabel: 'GAME',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="gamepad" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="gamepad" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
@@ -108,8 +112,8 @@ export default function App() {
           options={{
             tabBarLabel: 'CHART',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="barschart" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <AntDesign name="barschart" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
@@ -122,8 +126,8 @@ export default function App() {
           options={{
             tabBarLabel: 'POCKETS',
             tabBarShowLabel: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="wallet" color={color} size={size} />
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="wallet" color={color} size={45} />
             ),
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
@@ -181,10 +185,11 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <LoginStack.Navigator initialRouteName="Login">
-          {user ? (
+          {currentUser ? (
             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
           ) : (
-            <LoginStack.Screen name="Login" component={LoginScreen} />
+            <LoginStack.Screen name="Login" component={LoginScreen} initialParams={{setCurrentUser}}/>
+
           )}
         </LoginStack.Navigator>
       </NavigationContainer>
@@ -192,12 +197,13 @@ export default function App() {
   );
 }
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: '#FDE9B1', // Pastel yellow color
   },
 });
-
-
-
 

@@ -1,11 +1,18 @@
 import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView } from "react-native";
 import React, { useState } from "react";
 import { FirebaseAuth } from "../FirebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
 
-const LoginScreen = () => {
+// type LoginScreenProps = {
+//   currentUser: any;
+//   setCurrentUser: (user:any) => void;
+// };
+
+
+const LoginScreen = ({route, navigation}) => {
+  const { setCurrentUser } = route.params;
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const auth = FirebaseAuth;
@@ -13,11 +20,12 @@ const LoginScreen = () => {
   type FirebaseResponse = {
     _tokenResponse: {
       email: string;
-      expiresIn: string;
       idToken: string;
     };
     user: {
       uid: string;
+      displayName: string;
+      email: string;
     };
   };
   
@@ -36,24 +44,42 @@ const LoginScreen = () => {
   };
 
   // Function to send the Firebase user ID to the Spring backend
-  const sendUserIdToBackend = async (firebaseResponse: FirebaseResponse) => {
+  const sendUserIdToBackend = async (firebaseResponse: FirebaseResponse, username: string, email: string) => {
     try {
+
+      const payload = {
+        firebaseUserId: firebaseResponse.user.uid,
+        displayName: firebaseResponse.user.displayName,
+        email: firebaseResponse._tokenResponse.email,
+        username,
+      };
+  
+      console.log('Payload:', payload);
+
       const response = await fetch('http://localhost:8080/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ firebaseUserId: firebaseResponse.user.uid }),
+        body: JSON.stringify({ firebaseUserId: firebaseResponse.user.uid,
+        displayName: firebaseResponse.user.displayName,
+        email:firebaseResponse._tokenResponse.email,
+        username }),
       });
 
       if (response.ok) {
-        console.log('Firebase user ID sent to backend successfully');
+        const user = await response.json()
+        setCurrentUser(user)
+        console.log("currentUser: ", currentUser)
+        console.log("User:", user)
+        console.log('Firebase user ID and user details sent to backend successfully');
       } else {
-        console.log('Failed to send Firebase user ID to backend');
+        console.log('Else Failed to send Firebase user ID and user details to backend', response.status, await response.text());
+        console.log('Response Headers: ', response.headers);
       }
     } catch (error) {
       console.log(error);
-      alert('Failed to send Firebase user ID to backend');
+      alert('error Failed to send Firebase user ID and user details to backend');
     }
   };
 
@@ -67,23 +93,33 @@ const LoginScreen = () => {
       // Update the user's display name with the child's name
       const user = auth.currentUser;
       if (user) {
+        console.log("User: ", user);
+        console.log("displayName: ", displayName);
+        console.log("email: ", email);
+
         await updateProfile(user, {
-          displayName: username,
+          displayName: displayName,
         });
+
+        await updateEmail(user, email);
+
+        await user.reload();
 
         const firebaseResponse: FirebaseResponse = {
           _tokenResponse: {
-            email: userCredential.user.email || '',
-            expiresIn: '',
+            email: user.email || '',
             idToken: await userCredential.user.getIdToken(),
           },
           user: {
             uid: userCredential.user.uid,
+            email: userCredential.user.email || '',
+            displayName: user.displayName || '',
           },
         };
 
         // Send the Firebase user ID to the Spring backend
-        await sendUserIdToBackend(firebaseResponse);
+        await sendUserIdToBackend(firebaseResponse, displayName, email);
+        //set user here
       }
 
       alert('Registration Successful');
@@ -107,11 +143,11 @@ const LoginScreen = () => {
           onChangeText={(text) => setEmail(text)}
         />
         <TextInput
-          value={username}
+          value={displayName}
           style={styles.input}
           placeholder="Child's Name"
           autoCapitalize="none"
-          onChangeText={(text) => setUsername(text)}
+          onChangeText={(text) => setDisplayName(text)}
         />
         <TextInput
           secureTextEntry={true}
@@ -151,3 +187,39 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+// Alternative Style
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     paddingHorizontal: 20,
+//     backgroundColor: "#F8F8F8",
+//   },
+//   input: {
+//     marginVertical: 10,
+//     height: 50,
+//     borderWidth: 1,
+//     borderRadius: 8,
+//     paddingHorizontal: 12,
+//     backgroundColor: "#FFFFFF",
+//     borderColor: "#DDDDDD",
+//     fontSize: 16,
+//     color: "#333333",
+//   },
+//   button: {
+//     marginTop: 20,
+//     height: 50,
+//     borderRadius: 8,
+//     backgroundColor: "#007AFF",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   buttonText: {
+//     fontSize: 18,
+//     fontWeight: "bold",
+//     color: "#FFFFFF",
+//   }
+// });
+

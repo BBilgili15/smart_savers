@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native'
-import { getUser } from '../../services/UserServices'
+import { getUser } from '../../services/UserServices';
 import {useState, useEffect} from 'react'
 import React from 'react'
 
@@ -18,7 +18,7 @@ import React from 'react'
       <View style={styles.container}>
         <Text style={styles.textSub}>{currentUser ? (currentUser.level === "ONE" ? "Savvy Spender" : "Test") : null}</Text>
         <Image source={require('../../images/owl.jpg')} style={styles.image}/>
-        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.userName : null}</Text>
+        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
       </View>
   )
 }
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     margin: 25,
   }, 
   container: {
-    backgroundColor: 'lightpink',
+    // backgroundColor: 'lightpink',
     alignItems: 'center',
     margin: 20,
   }, 
   textMain: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     fontSize: 30,
   },
   textSub: {

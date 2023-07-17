@@ -16,14 +16,22 @@ public class FirebaseConfig {
 
     @Bean
     public FirebaseApp firebaseApp() throws IOException {
-        FileInputStream serviceAccount = new FileInputStream("/Users/user/CodeClan_work/finalProject/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://smartsavers-c0852-default-rtdb.europe-west1.firebasedatabase.app/")
-                .build();
+       // FileInputStream serviceAccount = new FileInputStream("/Users/user/CodeClan_work/finalProject/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
-        return FirebaseApp.initializeApp(options);
+        if (FirebaseApp.getApps().isEmpty()) {
+            FileInputStream serviceAccount = new FileInputStream("/Users/bartram/codeclan_work/CAPSTONE PROJECT/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
+
+
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl("https://smartsavers-c0852-default-rtdb.europe-west1.firebasedatabase.app/")
+                    .build();
+
+            return FirebaseApp.initializeApp(options);
+        } else {
+            return FirebaseApp.getInstance();
+        }
     }
 
     @Bean
