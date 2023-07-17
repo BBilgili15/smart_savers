@@ -12,6 +12,8 @@ import React from "react";
 import { addTransaction } from "../../services/TransactionServices";
 import { Picker } from "@react-native-picker/picker";
 
+import SaveForGoal from "./SaveForGoal";
+
 type UpdateBalanceProps = {
   currentUser: any;
   userTransactions: any;
@@ -30,14 +32,22 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
   const [amount, setAmount] = useState<string>("");
   const [modalType, setModalType] = useState("");
 
-
+  // 🎉🎉🎉🎉🎉-----------------------modal visibility for save button
+  const [saveModalVisible, setSaveModalVisible] = useState(false);
 
   function startButtonHandler(modalType: string) {
     setSelectedCategory("");
     setAmount("");
-    setModalType(modalType); // Set the modal based on the button clicked(income and spend)
+    setModalType(modalType);
     setModalIsVisible(true);
+    // 🎉🎉🎉🎉🎉-----------------save button related:
+    if (modalType === "save") {
+      setSaveModalVisible(true);
+    } else {
+      setSaveModalVisible(false);
+    }
   }
+
 
   function endButtonHandler() {
     setModalIsVisible(false);
@@ -53,7 +63,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
         .then((newTransaction) => {
           setUserTransactions([...userTransactions, newTransaction]);
           setCurrentUser(newTransaction.user)
-          // ---------to be refactored 
+
 
         })
         .catch((error) => {
@@ -64,9 +74,18 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
     console.log("this is to test currentuser:", currentUser);
   }
   
-  
 
 
+  // 🎉🎉🎉🎉🎉---------------------------this is for save button: 
+
+function startSaveForGoalHandler() {
+  setSaveModalVisible(true);
+}
+
+function endSaveForGoalHandler(){
+  setModalIsVisible(false)
+}
+  // -------
 
 
 
@@ -85,6 +104,8 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
       value: key,
     })
   );
+
+
 
   // ---------this is spending button related
   const spendingCategories: { [key: string]: string } = {
@@ -118,7 +139,11 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
           <Text style={styles.text}>Income</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+{/* 🎉🎉🎉🎉🎉--------------------------save button calls func to show modal: */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => startButtonHandler("save")}
+        >
           <Text style={styles.text}>Save</Text>
         </TouchableOpacity>
 
@@ -132,12 +157,19 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
 
 
 
-
-
+{/* 🎉🎉🎉🎉🎉---------------------------this is SaveForGoal Component */}
+<SaveForGoal
+  saveModalVisible={saveModalVisible}
+  currentUser={currentUser}
+  endSaveForGoalHandler={endSaveForGoalHandler}
+  setSaveModalVisible={setSaveModalVisible}
+/>
 
 
 
 {/* ------below is the modal------------- */}
+
+
       <Modal
         animationType="slide"
         visible={modalIsVisible}

@@ -48,18 +48,12 @@ public class GoalController {
 
     @PostMapping(value = "/goals")
     public ResponseEntity<Goal> postGoal(@RequestBody Goal goal) {
-        // Assuming you have the user ID available
         User user = userRepository.findById(goal.getUser().getId()).orElse(null); // Fetch the user from the repository
-
         if (user != null) {
-            goal.setUser(user); // Set the user object on the goal
-
-            // Call the service method to save the goal and update user goals
+            goal.setUser(user);
             GoalService.saveGoalAndUpdateUserGoals(goal, goalRepository, userRepository);
-
             return new ResponseEntity<>(goal, HttpStatus.CREATED);
         } else {
-            // Handle the case when the user is not found
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

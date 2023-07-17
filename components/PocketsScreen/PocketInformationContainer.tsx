@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import React from "react";
 import {addGoal} from '../../services/GoalServices';
+import { Picker } from "@react-native-picker/picker";
 
 type PocketInformationContainerProps = {
   currentUser: any;
@@ -46,8 +47,8 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
 
   const saveGoal=()=>{
     const newGoal={
-      goal_name:enteredGoalText,
-      target_amount:enteredAmount,
+      goalName:enteredGoalText,
+      targetAmount:enteredAmount,
       user:currentUser
     }
     addGoal(newGoal)
