@@ -1,9 +1,14 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useState, useEffect } from 'react';
+import React from 'react';
 import { FirebaseAuth } from '../FirebaseConfig';
+import { err } from 'react-native-svg/lib/typescript/xml';
+
 
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
+
   const handleSignOut = async () => {
     try {
       await FirebaseAuth.signOut();
@@ -18,9 +23,11 @@ const Header: React.FC<HeaderProps> = () => {
         <Image source={require('../images/pig.png')} style={styles.imageLogo} />
         <Text style={styles.text}>SmartSavers</Text>
       </View>
-      <TouchableOpacity style={styles.headerRight} onPress={handleSignOut}>
-        <Image source={require('../images/logout.png')} style={styles.imageLogout} />
+      <View style={styles.headerRight}>
+      <TouchableOpacity onPress={handleSignOut}>
+      <Image source={require('../images/logout.png')} style={styles.imageLogout} />
       </TouchableOpacity>
+      </View>
     </View>
   );
 };

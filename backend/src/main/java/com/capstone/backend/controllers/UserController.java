@@ -4,6 +4,8 @@ import com.capstone.backend.models.Level;
 import com.capstone.backend.models.User;
 import com.capstone.backend.repositories.UserRepository;
 import com.capstone.backend.services.FirebaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,16 +34,20 @@ public class UserController {
         return userRepository.findById(id);
     }
 
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @PostMapping(value = "/users")
     public ResponseEntity<User> postUser(@RequestBody User user) {
         try {
+            logger.info("Received Payload: {}", user.toString());
+
             String firebaseUserId = user.getFirebaseUserId();
             user.setFirebaseUserId(firebaseUserId);
             user.setPoints(0);
             user.setBalance(0.00);
             user.setLevel(Level.ONE);
-            user.setParentEmail(user.getParentEmail());
-            user.setUserName(user.getUserName());
+            user.setEmail(user.getEmail());
+            user.setDisplayName(user.getDisplayName());
             User savedUser = userRepository.save(user);
 
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
@@ -57,7 +63,7 @@ public class UserController {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setUserName(updatedUser.getUserName());
+            user.setDisplayName(updatedUser.getDisplayName());
             user.setBalance(updatedUser.getBalance());
             user.setLevel(updatedUser.getLevel());
             user.setPoints(updatedUser.getPoints());

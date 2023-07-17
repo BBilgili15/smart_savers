@@ -15,6 +15,7 @@ import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
 import Header from './components/Header';
 
+
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
 
@@ -31,9 +32,6 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentUser, setCurrentUser] = useState(null);
   // const [userTransactions, setUserTransactions] = useState([]);
-
-
-
 
 
 // ZHU DUMMY DATA

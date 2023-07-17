@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native'
-import { getUser } from '../../services/UserServices'
+import { getUser } from '../../services/UserServices';
 import {useState, useEffect} from 'react'
 import React from 'react'
 
