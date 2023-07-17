@@ -1,34 +1,34 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
 
-  type StatsContainerProps = {
-  };
+type StatsContainerProps = {};
 
-  const StatsContainer: React.FC<StatsContainerProps> = () => {
-
-
-  
-
-
+const StatsContainer: React.FC<StatsContainerProps> = () => {
   return (
     <View style={styles.container}>
-      <Text>Stats & Streaks</Text>
+      <Text style={styles.title}>Stats & Streaks</Text>
+      {/* Add your game statistics and graphs here */}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightblue',
     width: 400,
     height: 300,
+    backgroundColor: '#F6F6F6', // Light gray color
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
     margin: 10,
-    
-  }
-})
+    borderRadius: 10,
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+});
 
-export default StatsContainer
+export default StatsContainer;

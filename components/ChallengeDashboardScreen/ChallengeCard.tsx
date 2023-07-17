@@ -1,33 +1,36 @@
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-  type ChallengeCardProps = {
-  };
+type ChallengeCardProps = {
+  completedDailyChallenge: boolean;
+  setCompletedDailyChallenge: (prop: any) => void;
+};
 
-  const ChallengeCard: React.FC<ChallengeCardProps> = () => {
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ completedDailyChallenge, setCompletedDailyChallenge }) => {
+  const navigation = useNavigation();
 
-    const navigation = useNavigation();
-  
-    const launchDailyChallenge = () => {
+  const launchDailyChallenge = () => {
+    if (!completedDailyChallenge) {
       navigation.navigate('ChallengeScreen' as never);
-    };
-
-  
-
+      setCompletedDailyChallenge(true);
+    }
+  };
 
   return (
     <TouchableOpacity style={styles.container} onPress={() => launchDailyChallenge()}>
       <Text style={styles.text}>Daily Challenge</Text>
-      <Image source={require('../../images/unchecked.png')} style={styles.image}/>
+      <Image
+        source={completedDailyChallenge ? require('../../images/check.png') : require('../../images/unchecked.png')}
+        style={styles.image}
+      />
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#FDE9B1',
     width: 400,
     height: 75,
     justifyContent: 'space-between',
@@ -38,20 +41,26 @@ const styles = StyleSheet.create({
     paddingLeft: 50,
     paddingRight: 50,
     borderRadius: 30,
-    shadowColor: 'gray',
-    shadowOffset: {width: 3, height: 3},
-    shadowOpacity: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
     shadowRadius: 4,
-    borderColor: 'black',
+    elevation: 5,
+    borderColor: '#FFD700',
     borderWidth: 2,
-  }, 
+  },
   image: {
     height: 40,
-    width: 40
+    width: 40,
   },
   text: {
-    fontSize: 30,
-  }
-})
+    fontSize: 24,
+    fontWeight: 'bold',
+    // color: '#FFD700',
+  },
+});
 
-export default ChallengeCard
+export default ChallengeCard;

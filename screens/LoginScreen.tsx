@@ -175,3 +175,39 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   }
 });
+
+// Alternative Style
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     paddingHorizontal: 20,
+//     backgroundColor: "#F8F8F8",
+//   },
+//   input: {
+//     marginVertical: 10,
+//     height: 50,
+//     borderWidth: 1,
+//     borderRadius: 8,
+//     paddingHorizontal: 12,
+//     backgroundColor: "#FFFFFF",
+//     borderColor: "#DDDDDD",
+//     fontSize: 16,
+//     color: "#333333",
+//   },
+//   button: {
+//     marginTop: 20,
+//     height: 50,
+//     borderRadius: 8,
+//     backgroundColor: "#007AFF",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   buttonText: {
+//     fontSize: 18,
+//     fontWeight: "bold",
+//     color: "#FFFFFF",
+//   }
+// });
+

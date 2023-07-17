@@ -1,42 +1,31 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-  type UpdateBalanceProps = {
-    currentUser: any
-  };
+type UpdateBalanceProps = {
+  currentUser: any;
+};
 
-  const UpdateBalance: React.FC<UpdateBalanceProps> = () => {
-  
-    // const updateAvailableAmount = (amount: number) => {
-    //   const newAmount: number = availableAmount + amount;
-    //   setAvailableAmount(newAmount);
-    // }
-
-  
-
-
+const UpdateBalance: React.FC<UpdateBalanceProps> = () => {
   return (
     <View style={styles.container}>
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Income</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text}>Income</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Save</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text}>Save</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
-            <Text style={styles.text}>Spend</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text}>Spend</Text>
+      </TouchableOpacity>
     </View>
-  )
-}
-
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightpink',
+    // backgroundColor: '#FDE9B1',
     flexDirection: 'row',
     width: 400,
     height: 100,
@@ -44,21 +33,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
     justifyContent: 'space-evenly',
-  }, 
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   text: {
-    fontSize: 20,
-  }, 
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+  },
   button: {
-    borderColor: 'black',
-    borderWidth: 1,
-    padding: 15,
-    backgroundColor: 'lightblue',
-    height: 75,
-    width: 100,
+    backgroundColor: '#7DD3FC',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 20,
-  }
-})
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+});
 
-export default UpdateBalance
+export default UpdateBalance;

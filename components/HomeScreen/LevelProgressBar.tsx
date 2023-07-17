@@ -9,6 +9,7 @@ import React from 'react'
   const LevelProgressBar: React.FC<LevelProgressBarProps> = ({currentUser}) => {
 
 
+    // COPY PROGRESS BAR IN POCKETS
   
 
 
