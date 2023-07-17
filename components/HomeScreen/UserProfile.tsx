@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     margin: 25,
   }, 
   container: {
-    backgroundColor: 'lightpink',
+    // backgroundColor: 'lightpink',
     alignItems: 'center',
     margin: 20,
   }, 
   textMain: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     fontSize: 30,
   },
   textSub: {

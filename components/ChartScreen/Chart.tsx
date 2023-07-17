@@ -26,7 +26,7 @@ const Chart: React.FC<ChartProps> = ({
   currentUser,
   userTransactions,
 }) => {
-  const [graphicData, setGraphicData] = useState<{ x: string; y: number }[]>([{x: "Hiya :smiley:", y: 55}])
+  const [graphicData, setGraphicData] = useState<{ x: string; y: number }[]>([]);
   
   useEffect(() => {
     if (userTransactions) {
