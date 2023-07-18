@@ -9,10 +9,11 @@ import {
   TextInput,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { addGoal, getGoals } from "../../services/GoalServices";
-import { updateGoal } from "../../services/GoalServices";
+import { addGoal, getGoals, updateGoalAmountSaved } from "../../services/GoalServices";
+import { updateUser } from "../../services/UserServices";
 
 type SaveForGoalProps = {
+  setCurrentUser:(currentUser: any) => void;
   currentUser: any;
   saveModalVisible: boolean;
   endSaveForGoalHandler: any;
@@ -22,6 +23,7 @@ type SaveForGoalProps = {
 };
 
 const SaveForGoal: React.FC<SaveForGoalProps> = ({
+  setCurrentUser,
   currentUser,
   saveModalVisible,
   endSaveForGoalHandler,
@@ -33,43 +35,47 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
   const [selectedItem, setSelectedItem] = useState("");
   const [enteredGoalAmount, setEnteredGoalAmount] = useState("");
   
-  const reduceBalanceAddToPocket = () => {
+console.log("this is for goals: ", goals)
+ 
     // const currentBalance=currentUser.balance
-    // const newBalance=currentBalance-amount
+  
+
+  const reduceBalanceAddToPocket = () => {
+    // convert original type to numbers
+    
+    const idToSend=Number(selectedItem)
+    const amountToSave=Number(amount)
+    const newBalance=currentUser.balance-amountToSave
+
     const payload={
-      amountSaved:amount
+      amountSaved:amountToSave
       
     }
-    console.log("this is payload",payload)
-    updateGoal(payload, selectedItem)
+    const updatedUser = {
+      ...currentUser,
+      balance:newBalance
+  };
+
+    updateUser(updatedUser, currentUser.id)
+    .then(() => {
+      setCurrentUser(updatedUser);
+    })
+    .catch(error => {
+      console.error("Failed to update user: ", error);
+    })
+
+
+    console.log("this is payload for updating amountsaved(saveforgoal",payload,newBalance)
+    console.log("this is updateduser(saveforgoal)",updatedUser)
+
+    updateGoalAmountSaved(payload, idToSend)
+    updateUser
     setSaveModalVisible(false);
     endSaveForGoalHandler(); 
 
     console.log("this is selected item,", selectedItem)
   };
-
-  // useEffect(() => {
-  //   // Fetch goals and update state
-  //   getGoals()
-  //     .then((fetchedGoals) => {
-  //       setGoals(fetchedGoals);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error fetching goals:', error);
-  //     });
-  // }, []);
-
-
-
-
-  const endSaveForGoalHandler2 = () => {
-    setSaveModalVisible(false);
-    endSaveForGoalHandler(); 
-  };
-
-  const saveAmountHandler = (enteredAmount: string) => {
-    // setEnteredGoalAmount(Number(enteredAmount));
-  };
+  
 
 
   return (
@@ -82,26 +88,25 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
         <View style={styles.container}>
           <Picker
             selectedValue={selectedItem}
-            onValueChange={(itemValue: number) => setSelectedItem(itemValue)}
+            onValueChange={(itemValue: string) => setSelectedItem(itemValue)}
             style={styles.picker}
           >
-
-            <Picker.Item label="Select A Pocket" value="" />
-            {/* {goals.map((goal: any, index: number) => (
+            <Picker.Item label="select a pocket" value="" />
+            {goals.map((goal: any, index: number) => (
               <Picker.Item
                 key={index}
                 label={goal.goalName}
-                value={String(goal.id)}
+                value={goal.id}
               />
-            ))} */}
+            ))}
           </Picker>
-          <Text style={styles.modalText}>Enter income:</Text>
-         
+          {/* <Text style={styles.modalText}>Enter amount to pocket:</Text> */}
+          
           <TextInput
             style={styles.inputField}
             value={amount}
             onChangeText={(text) => setAmount(text)}
-            placeholder="Amount"
+            placeholder="Enter amount to pocket:"
             keyboardType="numeric"
           />
           <Button title="Save" onPress={() => reduceBalanceAddToPocket()} />
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
   picker: {
     width: "100%",
     height: 100,
-    marginBottom: 150,
+    marginBottom: 150
   },
   inputField: {
     width: "100%",

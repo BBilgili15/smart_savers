@@ -66,6 +66,24 @@ public class GoalController {
         }
     }
 
+    @PatchMapping(value = "/goals/{id}")
+    public ResponseEntity<Goal> updateGoalAmountSaved(@PathVariable Long id, @RequestBody Goal updatedGoal) {
+        Optional<Goal> optionalGoal = goalRepository.findById(id);
+
+        if (optionalGoal.isPresent()) {
+            Goal goal = optionalGoal.get();
+
+            if (updatedGoal.getAmountSaved() != null) {
+                goal.setAmountSaved(updatedGoal.getAmountSaved());
+            }
+
+            Goal savedGoal = goalRepository.save(goal);
+
+            return ResponseEntity.ok(savedGoal);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 
@@ -75,17 +93,27 @@ public class GoalController {
 
         if (optionalGoal.isPresent()) {
             Goal goal = optionalGoal.get();
-            goal.setAmountSaved(updatedGoal.getAmountSaved());
-            goal.setTargetAmount(updatedGoal.getTargetAmount());
-            goal.setGoalName(updatedGoal.getGoalName());
 
-            goalRepository.save(goal);
+            if (updatedGoal.getAmountSaved() != null) {
+                goal.setAmountSaved(updatedGoal.getAmountSaved());
+            }
+            if (updatedGoal.getTargetAmount() != null) {
+                goal.setTargetAmount(updatedGoal.getTargetAmount());
+            }
+            if (updatedGoal.getGoalName() != null) {
+                goal.setGoalName(updatedGoal.getGoalName());
+            }
 
-            return new ResponseEntity<>(goal, HttpStatus.OK);
+            Goal savedGoal = goalRepository.save(goal);
+
+            return ResponseEntity.ok(savedGoal);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
     }
+
+
+
 
 
     @DeleteMapping(value = "/goals/{id}")

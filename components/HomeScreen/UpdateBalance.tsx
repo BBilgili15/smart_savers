@@ -164,6 +164,7 @@ function endSaveForGoalHandler(){
 
 {/* 🎉🎉🎉🎉🎉---------------------------this is SaveForGoal Component */}
 <SaveForGoal
+setCurrentUser={setCurrentUser}
 goals={goals}
 setGoals={setGoals}
   saveModalVisible={saveModalVisible}

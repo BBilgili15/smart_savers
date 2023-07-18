@@ -22,7 +22,7 @@ const LoginScreen = ({route, navigation}: LoginScreenProps) => {
   const [selectedAnimal, setSelectedAnimal] = useState("");
   const auth = FirebaseAuth;
 
-  const handleAnimalSelect = (animal) => {
+  const handleAnimalSelect = (animal:any) => {
     setSelectedAnimal(animal);
   };
   
@@ -176,7 +176,7 @@ const LoginScreen = ({route, navigation}: LoginScreenProps) => {
           autoCapitalize="none"
           onChangeText={(text) => setPassword(text)}
         />
-        <AnimalSelector onAnimalSelect={(animal) => handleAnimalSelect(animal)} />
+        <AnimalSelector onAnimalSelect={(animal:any) => handleAnimalSelect(animal)} />
         {loading ? (
           <ActivityIndicator size="large" color="#35d0ba" />
         ) : (
