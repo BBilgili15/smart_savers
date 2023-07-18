@@ -1,23 +1,23 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useState } from 'react';
 
-type PocketCardProps = {};
+type PocketCardProps = {
+  goalName: string;
+  goalTarget: number;
+  amountSaved: number;
+};
 
-const PocketCard: React.FC<PocketCardProps> = () => {
-  const [currentAmount, setCurrentAmount] = useState(70);
-  const savingsGoal = 100;
-  const progressPercentage = (currentAmount / savingsGoal) * 100;
-
-  const foregroundWidth = (350 * progressPercentage) / 100;
+const PocketCard: React.FC<PocketCardProps> = ({ goalName, goalTarget, amountSaved }) => {
+  const progressPercentage = (amountSaved / goalTarget) * 100;
+  const foregroundWidth = Math.max((350 * progressPercentage) / 100, 0.1 * 350); // minimum width is now 10%
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>New Trainers</Text>
+      <Text style={styles.heading}>{goalName}</Text>
       <Text style={styles.subheading}>Saving Pocket</Text>
       <View style={styles.savingBarBackground}>
         <View style={[styles.savingBarForeground, { width: foregroundWidth }]}>
-          <Text style={styles.spending}>£{currentAmount.toFixed(2)}</Text>
+          <Text style={styles.spending}>£{amountSaved}</Text>
         </View>
       </View>
     </View>
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 3,
-      
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,

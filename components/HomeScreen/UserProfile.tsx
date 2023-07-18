@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   textSub: {
-    backgroundColor: 'lightgreen',
+    // backgroundColor: 'lightgreen',
     fontSize: 20,
   }
 })

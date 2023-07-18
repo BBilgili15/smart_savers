@@ -211,11 +211,8 @@ export default UpdateBalance;
 
 
 
-// ---------------this is for styling--------------
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightpink",
     flexDirection: "row",
     width: 400,
     height: 100,
@@ -226,17 +223,25 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
   },
   button: {
-    borderColor: "black",
-    borderWidth: 1,
     padding: 15,
-    backgroundColor: "lightblue",
-    height: 75,
+    backgroundColor: "#4287f5",
+    height: 60,
     width: 100,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   incomeContainer: {
     flex: 1,
@@ -246,6 +251,7 @@ const styles = StyleSheet.create({
   modalText: {
     fontSize: 18,
     marginBottom: 10,
+    fontWeight: "bold",
   },
   modalContainer: {
     height: 80,
@@ -255,11 +261,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: 200,
+    marginBottom: 10,
   },
   picker: {
     width: 200,
     marginBottom: 10,
   },
+  
 });
+
 
 // https://reactnative.dev/docs/0.65/picker

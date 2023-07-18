@@ -48,7 +48,6 @@ public class GoalController {
 
     @PostMapping(value = "/goals")
     public ResponseEntity<Goal> postGoal(@RequestBody Goal goal) {
-        // Assuming you have the user ID available
         User user = userRepository.findById(goal.getUser().getId()).orElse(null); // Fetch the user from the repository
 
         if (user != null) {
