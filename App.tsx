@@ -7,13 +7,13 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-// Import Screens
 import ChallengeDashboardScreen from './screens/ChallengeDashboardScreen';
 import ChallengeScreen from './screens/ChallengeScreen';
 import ChartsScreen from './screens/ChartsScreen';
 import HomeScreen from './screens/HomeScreen';
 import PocketsScreen from './screens/PocketsScreen';
 import LoginScreen from './screens/LoginScreen';
+
 
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
@@ -22,42 +22,41 @@ import Header from './components/Header';
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
 
+
 // Creating the stacks
 const Stack = createNativeStackNavigator();
 const LoginStack = createNativeStackNavigator();
 const InsideStack = createNativeStackNavigator();
 
-export default function App() {
-  const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
-  const [currentUser, setCurrentUser] = useState(null);
+type AppProps = {};
 
+export default function App(_: AppProps) {
+  const [firebaseUser, setFirebaseUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userTransactions, setUserTransactions] = useState([]);
 
 
-  // console.log("this is to test currentuser:",currentUser.balance);
-
-
-  // useEffect for user authentication
   useEffect(() => {
     onAuthStateChanged(FirebaseAuth, (user) => {
-      if (!user) setCurrentUser(null)
-      console.log("User in App: ", user)
-      getUser(user.uid)
-        .then((newUser) => {
-          console.log({newUser})
-          setCurrentUser(newUser)
-        })
-        .catch((error) => console.log('Error fetching user:', error));
+      if (user) {
+        getUser(user.uid)
+          .then((newUser) => {
+            setCurrentUser(newUser);
+          })
+          .catch((error) => console.log('Error fetching user:', error));
+      } else {
+        setCurrentUser(null);
+      }
     });
   }, []);
+  
 
 useEffect(() => {
   if (currentUser)
-      getTransactionsByUserId(currentUser.id) //need to add currentUser.id
+      getTransactionsByUserId(currentUser.id) 
         .then((transactions) => setUserTransactions(transactions))
         .catch((error) => console.log('Error fetching transactions:', userTransactions));
   }, [currentUser]);
-  // console.log(`this is the test how balance look like`,currentUser.balance)
 
 
   // Creating the component for inside stack layout
@@ -186,9 +185,11 @@ useEffect(() => {
       <NavigationContainer>
         <LoginStack.Navigator initialRouteName="Login">
           {currentUser ? (
+            <>
             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
+            </>
           ) : (
-            <LoginStack.Screen name="Login" component={LoginScreen} initialParams={{setCurrentUser}}/>
+            <LoginStack.Screen name="Smart Savers Login" component={LoginScreen} initialParams={{setCurrentUser}}/>
 
           )}
         </LoginStack.Navigator>

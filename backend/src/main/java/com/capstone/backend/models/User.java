@@ -38,17 +38,23 @@ public class User {
     @JsonIgnoreProperties({"user"})
     private List<Transaction> transactions;
 
+    @Column(name="favourite_animal")
+    private String favouriteAnimal;
+
+
     public User() {
     }
 
-    public User(String userName, String parentEmail, String firebaseUserId) {
+    public User(String userName, String parentEmail, String firebaseUserId, String favouriteAnimal) {
         this.displayName = userName;
         this.email = parentEmail;
         this.points = 0;
         this.level = Level.ONE;
         this.balance = 0.0;
         this.firebaseUserId = firebaseUserId;
+        this.favouriteAnimal = favouriteAnimal;
     }
+
 
     public Long getId() {
         return id;
@@ -118,6 +124,14 @@ public class User {
         this.transactions = transactions;
     }
 
+    public String getFavouriteAnimal() {
+        return favouriteAnimal;
+    }
+
+    public void setFavouriteAnimal(String favouriteAnimal) {
+        this.favouriteAnimal = favouriteAnimal;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -125,6 +139,7 @@ public class User {
                 ", displayName='" + displayName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + displayName + '\'' +
+                ", favouriteAnimal='" + favouriteAnimal + '\'' +
                 '}';
     }
 }

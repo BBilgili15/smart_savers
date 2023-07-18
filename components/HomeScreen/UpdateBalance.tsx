@@ -73,10 +73,10 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
   //------- this is income button related
   // app needs value to show options, db need key to store info
   const incomeCategories: { [key: string]: string } = {
-    EARNINGS: "earnings",
-    POCKET_MONEY: "pocket money",
-    GIFT: "GIFT",
-    OTHER_INCOME: "other",
+    EARNINGS: "Earnings",
+    POCKET_MONEY: "Pocket Money",
+    GIFT: "Gift",
+    OTHER_INCOME: "Other",
   };
 
   const incomeCategoryOptions = Object.entries(incomeCategories).map(
@@ -88,11 +88,11 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
 
   // ---------this is spending button related
   const spendingCategories: { [key: string]: string } = {
-    ENTERTAINMENT: "entertainment",
-    SHOPPING: "shopping",
-    TRANSPORT: "transport",
-    FOOD: "food",
-    OTHER_SPEND: "other",
+    ENTERTAINMENT: "Entertainment",
+    SHOPPING: "Shopping",
+    TRANSPORT: "Transport",
+    FOOD: "Food",
+    OTHER_SPEND: "Other",
   };
 
   const spendingCategoryOptions = Object.entries(spendingCategories).map(
@@ -146,7 +146,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
         <View style={styles.incomeContainer}>
           {modalType === "income" ? (
             <>
-              <Text style={styles.modalText}>Where is the income from?</Text>
+              <Text style={styles.modalText}>Where did your money come from?</Text>
               <Picker
                 selectedValue={selectedCategory}
                 onValueChange={(itemValue: string) =>
@@ -163,11 +163,11 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
                   />
                 ))}
               </Picker>
-              <Text style={styles.modalText}>Enter income:</Text>
+              <Text style={styles.modalText}>What was the amount you received?</Text>
             </>
           ) : (
             <>
-              <Text style={styles.modalText}>Where does it spend on?</Text>
+              <Text style={styles.modalText}>What did you spend money on?</Text>
               <Picker
                 selectedValue={selectedCategory}
                 onValueChange={(itemValue: string) =>
@@ -186,7 +186,7 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
                   )
                 )}
               </Picker>
-              <Text style={styles.modalText}>Enter spending:</Text>
+              <Text style={styles.modalText}>What was the amount spent?</Text>
             </>
           )}
 
@@ -194,10 +194,10 @@ const UpdateBalance: React.FC<UpdateBalanceProps> = ({
             style={styles.inputField}
             value={amount}
             onChangeText={(text) => setAmount(text)}
-            placeholder="Amount"
+            placeholder="£"
             keyboardType="numeric"
           />
-          <Button title="done" onPress={() => endButtonHandler()} />
+          <Button title="Submit" onPress={() => endButtonHandler()} />
     
         </View>
       </Modal>
