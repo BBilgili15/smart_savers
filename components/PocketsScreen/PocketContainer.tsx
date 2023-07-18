@@ -6,33 +6,30 @@ import React from 'react'
 import PocketCard from './PocketCard';
 
   type PocketContainerProps = {
-    
+    currentUser: any
   };
 
-  const PocketContainer: React.FC<PocketContainerProps> = () => {
+  const PocketContainer: React.FC<PocketContainerProps> = ({currentUser}) => {
 
 
+  const pocketCardComponents = currentUser.goals.map((goal: any) => {
+    return (
+      <PocketCard key={goal.goalId} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} />
+    )
+  })
   
 
 
   return (
     <ScrollView style={styles.container}>
-      
-      <PocketCard/>
-      <PocketCard/>
-      <PocketCard/>
-      <PocketCard/>
-      <PocketCard/>
-      <View style={{marginBottom:500}}>
-      <PocketCard/>
-      </View>
+      {pocketCardComponents}
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
     width: 400,
     height: 600,
     alignSelf: 'center',

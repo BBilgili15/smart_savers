@@ -40,7 +40,7 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
       )}
         
         <PocketInformationContainer handleButtonClick={handleButtonClick} currentUser={currentUser}/>
-        <PocketContainer/>
+        <PocketContainer currentUser={currentUser}/>
     </View>
   )
 }

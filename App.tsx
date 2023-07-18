@@ -160,7 +160,7 @@ useEffect(() => {
   }
 
   function Pockets() {
-    return <PocketsScreen currentUser={currentUser}/>;
+    return <PocketsScreen currentUser={currentUser} />;
   }
 
   function Home() {

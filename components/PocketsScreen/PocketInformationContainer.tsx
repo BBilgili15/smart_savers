@@ -7,7 +7,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import {addGoal} from '../../services/GoalServices';
 
@@ -24,6 +24,20 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
   const [goals, setGoals] = useState<string[]>([]);
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [enteredAmount, setEnteredAmount] = useState<number | null>(null);
+  const [totalBalance, setTotalBalance] = useState(0); // Add a state for total balance
+
+  useEffect(() => {
+    // Calculate and set the total balance whenever the currentUser.goals array changes
+    const calculateTotalBalance = () => {
+      const balance = currentUser.goals.reduce(
+        (total: number, goal: any) => total + goal.amountSaved,
+        0
+      );
+      setTotalBalance(balance);
+    };
+
+    calculateTotalBalance();
+  }, [currentUser.goals]);
 
 
 
@@ -46,13 +60,14 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
 
   const saveGoal=()=>{
     const newGoal={
-      goal_name:enteredGoalText,
-      target_amount:enteredAmount,
+      goalName:enteredGoalText,
+      targetAmount:enteredAmount,
       user:currentUser
     }
     addGoal(newGoal)
     console.log("NEWGOAL HERE___> ", newGoal)
     endAddGoalHandler()
+    handleButtonClick()
   }
   
   
@@ -61,7 +76,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     <>
       <View style={styles.container}>
         <Text style={styles.balanceText}>Total Pocket Balance:</Text>
-        <Text style={styles.balanceAmount}>£67.98</Text>
+        <Text style={styles.balanceAmount}>£{totalBalance.toFixed(2)}</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={startAddGoalHandler}
@@ -73,17 +88,17 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
       {/* modal below----- */}
       <Modal visible={modalIsVisible} animationType="slide">
         <View style={styles.inputContainer}>
-          {/* <Text>Add Goal:</Text> */}
+          <Text style={styles.text}>New Saving Pocket:</Text>
           <TextInput
             style={styles.TextInput}
-            placeholder="Enter goal"
+            placeholder="What are you saving for?"
             onChangeText={goalInputHandler}
             value={enteredGoalText}
           />
           {/* <Text>Add Amount:</Text> */}
           <TextInput
             style={styles.TextInput}
-            placeholder="Enter amount"
+            placeholder="How much does it cost?"
             onChangeText={goalAmountHandler}
             value={enteredAmount ? enteredAmount.toString() : ""}
             keyboardType="numeric"
@@ -151,7 +166,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderBottomWidth: 1,
     borderBottomColor: "blue",
-    backgroundColor:"#311b6b"
+    backgroundColor:"#fe5454"
   },
   image:{
     width:100,
@@ -162,12 +177,13 @@ const styles = StyleSheet.create({
     color:"blace",
     borderWidth: 1,
     borderColor: "#e4d0ff",
-    backgroundColor:"#e4d0ff",
+    backgroundColor:"#ffffff",
 
-    width: "90%",
-    height: 35,
+    width: "75%",
+    height: 45,
     marginRight: 3,
     paddingLeft: 10,
+    marginBottom: 10,
   },
   buttonContainer:{
     flexDirection:'row',
@@ -177,6 +193,13 @@ const styles = StyleSheet.create({
   savebutton:{
     width:'30%',
     marginHorizontal:8
+  }, 
+  text: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+    textAlign: "center",
   }
 });
 

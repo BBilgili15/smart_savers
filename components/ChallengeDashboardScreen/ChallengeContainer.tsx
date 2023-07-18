@@ -11,14 +11,16 @@ import ChallengeCard from './ChallengeCard';
   const ChallengeContainer: React.FC<ChallengeContainerProps> = () => {
 
     const [completedDailyChallenge, setCompletedDailyChallenge] = useState(false);
+    const [completedDailyChallenge1, setCompletedDailyChallenge1] = useState(false);
+    const [completedDailyChallenge2, setCompletedDailyChallenge2] = useState(false);
   
 
 
   return (
     <ScrollView style={styles.container}>
       <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
-      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
-      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
+      <ChallengeCard completedDailyChallenge={completedDailyChallenge1} setCompletedDailyChallenge={() => setCompletedDailyChallenge1(!completedDailyChallenge1)}/>
+      <ChallengeCard completedDailyChallenge={completedDailyChallenge2} setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}/>
     </ScrollView>
   )
 }
