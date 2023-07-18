@@ -172,6 +172,7 @@ useEffect(() => {
         <Stack.Screen
           name="ChallengeScreen"
           component={ChallengeScreen}
+          initialParams={{currentUser, setCurrentUser}}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

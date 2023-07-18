@@ -6,11 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 
 // Import Components
 import AnswerCard from './AnswerCard';
+import { updateUser } from '../../services/UserServices';
 
   type AnswerContainerProps = {
+    currentUser: any,
+    setCurrentUser: any,
   };
 
-  const AnswerContainer: React.FC<AnswerContainerProps> = () => {
+  const AnswerContainer: React.FC<AnswerContainerProps> = ({currentUser, setCurrentUser}) => {
 
     // Navigate
     const navigation = useNavigation();
@@ -36,11 +39,45 @@ import AnswerCard from './AnswerCard';
     const handleRightAnswer = () => {
       setShowCorrectAnimation(true);
     };
+
   
     const onRightAnimationFinish = () => {
       setShowCorrectAnimation(false);
       navigation.navigate('ChallengeDashBoardScreen' as never);
+
+      const updatedPoints = currentUser.points +25;
+        let updatedLevel = currentUser.level;
+
+    if (updatedPoints >= 50 && currentUser.level == "ONE") {
+      updatedLevel = "TWO";
+    } else if (updatedPoints >= 100 && currentUser.level == "TWO") {
+      updatedLevel = "THREE";
+    }
+
+      const updatedUser = {
+        ...currentUser,
+      points: updatedPoints,
+      level: updatedLevel
+    };
+
+      updateUser(updatedUser, currentUser.id)
+      .then(() => {
+        setCurrentUser(updatedUser);
+      })
+      .catch(error => {
+        console.error("Failed to update user: ", error);
+      })
+
+    
+
       // ADD POINTS TO USER HERE
+      // get user
+      // get user's points
+      // add points to points' total
+      // set user's new points
+      // update user backend
+      // update current user (fe)
+      // Toastify points
     };
 
 

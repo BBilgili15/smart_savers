@@ -13,14 +13,7 @@ import StatsContainer from '../components/ChallengeDashboardScreen/StatsContaine
   };
 
   const ChallengeDashBoardScreen: React.FC<ChallengeDashBoardScreenProps> = () => {
-    
-    const navigation = useNavigation();
 
-    
-  
-    const launchDailyChallenge = () => {
-      navigation.navigate('ChallengeScreen' as never);
-    };
     
     
 

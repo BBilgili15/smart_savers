@@ -8,7 +8,7 @@ type AvailableBalanceProps = {
 const AvailableBalanceDisplay: React.FC<AvailableBalanceProps> = ({ currentUser }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Balance: {currentUser ? '£' + currentUser.balance : null}</Text>
+      <Text style={styles.text}>Balance: {currentUser ? '£' + currentUser.balance.toFixed(2) : null}</Text>
     </View>
   );
 };
