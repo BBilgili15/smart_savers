@@ -1,7 +1,10 @@
-import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView, TouchableOpacity, Text} from "react-native";
 import React, { useState } from "react";
 import { FirebaseAuth } from "../FirebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
+
+import AnimalSelector from "../components/AnimalSelector";
+
 
 // type LoginScreenProps = {
 //   currentUser: any;
@@ -15,7 +18,13 @@ const LoginScreen = ({route, navigation}) => {
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [selectedAnimal, setSelectedAnimal] = useState("");
   const auth = FirebaseAuth;
+
+  const handleAnimalSelect = (animal) => {
+    setSelectedAnimal(animal);
+  };
+  
 
   type FirebaseResponse = {
     _tokenResponse: {
@@ -44,7 +53,7 @@ const LoginScreen = ({route, navigation}) => {
   };
 
   // Function to send the Firebase user ID to the Spring backend
-  const sendUserIdToBackend = async (firebaseResponse: FirebaseResponse, username: string, email: string) => {
+  const sendUserIdToBackend = async (firebaseResponse: FirebaseResponse, username: string, email: string, favouriteAnimal: string) => {
     try {
 
       const payload = {
@@ -52,6 +61,8 @@ const LoginScreen = ({route, navigation}) => {
         displayName: firebaseResponse.user.displayName,
         email: firebaseResponse._tokenResponse.email,
         username,
+        favouriteAnimal: selectedAnimal,
+        
       };
   
       console.log('Payload:', payload);
@@ -64,13 +75,14 @@ const LoginScreen = ({route, navigation}) => {
         body: JSON.stringify({ firebaseUserId: firebaseResponse.user.uid,
         displayName: firebaseResponse.user.displayName,
         email:firebaseResponse._tokenResponse.email,
-        username }),
+        username,
+        favouriteAnimal: selectedAnimal }),
       });
 
       if (response.ok) {
         const user = await response.json()
         setCurrentUser(user)
-        console.log("User:", user)
+        console.log("User from Response:", user)
         console.log('Firebase user ID and user details sent to backend successfully');
       } else {
         console.log('Else Failed to send Firebase user ID and user details to backend', response.status, await response.text());
@@ -95,6 +107,7 @@ const LoginScreen = ({route, navigation}) => {
         console.log("User: ", user);
         console.log("displayName: ", displayName);
         console.log("email: ", email);
+        console.log("selectedAnimal: ", selectedAnimal)
 
         await updateProfile(user, {
           displayName: displayName,
@@ -117,11 +130,11 @@ const LoginScreen = ({route, navigation}) => {
         };
 
         // Send the Firebase user ID to the Spring backend
-        await sendUserIdToBackend(firebaseResponse, displayName, email);
+        await sendUserIdToBackend(firebaseResponse, displayName, email, selectedAnimal);
         //set user here
       }
 
-      alert('Registration Successful');
+      // alert('Registration Successful');
     } catch(error: any) {
       console.log(error);
       alert('Registration failed: ' + error.message);
@@ -129,6 +142,8 @@ const LoginScreen = ({route, navigation}) => {
       setLoading(false);
     }
   };
+
+
 
   return (
     <View style={styles.container} >
@@ -138,6 +153,7 @@ const LoginScreen = ({route, navigation}) => {
           value={email}
           style={styles.input}
           placeholder="Parent Email"
+          placeholderTextColor="#35d0ba"
           autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
         />
@@ -145,6 +161,7 @@ const LoginScreen = ({route, navigation}) => {
           value={displayName}
           style={styles.input}
           placeholder="Child's Name"
+          placeholderTextColor="#35d0ba"
           autoCapitalize="none"
           onChangeText={(text) => setDisplayName(text)}
         />
@@ -153,16 +170,23 @@ const LoginScreen = ({route, navigation}) => {
           value={password}
           style={styles.input}
           placeholder="Password"
+          placeholderTextColor="#35d0ba"
           autoCapitalize="none"
           onChangeText={(text) => setPassword(text)}
         />
+        <AnimalSelector onAnimalSelect={(animal) => handleAnimalSelect(animal)} />
         {loading ? (
           <ActivityIndicator size="large" color="#35d0ba" />
         ) : (
           <>
-            <Button title="Login" onPress={signIn} />
-            <Button title="Register" onPress={signUp} />
-          </>
+          
+          <TouchableOpacity style={styles.button} onPress={signIn}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={signUp}>
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
+        </>
         )}
       </KeyboardAvoidingView>
     </View>
@@ -173,52 +197,37 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
+    
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "#F8F8F8",
   },
   input: {
-    marginVertical: 20,
+    marginVertical: 10,
     height: 50,
     borderWidth: 1,
-    borderRadius: 4,
-    padding: 10,
-    backgroundColor: '#fff'
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    backgroundColor: "#FFFFFF",
+    borderColor: "#ff9234",
+    fontSize: 16,
+    color: "#716f6f",
+  },
+  button: {
+    marginTop: 20,
+    height: 50,
+    borderRadius: 8,
+    backgroundColor: "#35d0ba",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#F8F8F8",
+    
+  },
+  buttonText: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#F8F8F8",
   }
 });
-
-// Alternative Style
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     paddingHorizontal: 20,
-//     backgroundColor: "#F8F8F8",
-//   },
-//   input: {
-//     marginVertical: 10,
-//     height: 50,
-//     borderWidth: 1,
-//     borderRadius: 8,
-//     paddingHorizontal: 12,
-//     backgroundColor: "#FFFFFF",
-//     borderColor: "#DDDDDD",
-//     fontSize: 16,
-//     color: "#333333",
-//   },
-//   button: {
-//     marginTop: 20,
-//     height: 50,
-//     borderRadius: 8,
-//     backgroundColor: "#007AFF",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   buttonText: {
-//     fontSize: 18,
-//     fontWeight: "bold",
-//     color: "#FFFFFF",
-//   }
-// });
 

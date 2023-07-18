@@ -41,7 +41,6 @@ public class UserController {
     public ResponseEntity<User> postUser(@RequestBody User user) {
         try {
             logger.info("Received Payload: {}", user.toString());
-
             String firebaseUserId = user.getFirebaseUserId();
             user.setFirebaseUserId(firebaseUserId);
             user.setPoints(0);
@@ -49,6 +48,7 @@ public class UserController {
             user.setLevel(Level.ONE);
             user.setEmail(user.getEmail());
             user.setDisplayName(user.getDisplayName());
+            user.setFavouriteAnimal(user.getFavouriteAnimal());
             User savedUser = userRepository.save(user);
 
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
