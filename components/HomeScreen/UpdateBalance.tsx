@@ -19,13 +19,18 @@ type UpdateBalanceProps = {
   userTransactions: any;
   setUserTransactions: (transaction: any) => void;
   setCurrentUser:(currentUser: any) => void;
+  goals: any;
+  setGoals: (goals: any) => void;
 };
 
 const UpdateBalance: React.FC<UpdateBalanceProps> = ({
   currentUser,
   userTransactions,
   setUserTransactions,
-  setCurrentUser
+  setCurrentUser,
+  goals,
+  setGoals,
+
 }) => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -159,6 +164,8 @@ function endSaveForGoalHandler(){
 
 {/* 🎉🎉🎉🎉🎉---------------------------this is SaveForGoal Component */}
 <SaveForGoal
+goals={goals}
+setGoals={setGoals}
   saveModalVisible={saveModalVisible}
   currentUser={currentUser}
   endSaveForGoalHandler={endSaveForGoalHandler}

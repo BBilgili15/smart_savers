@@ -197,6 +197,8 @@ useEffect(() => {
         setAvailableAmount={setAvailableAmount}
         userTransactions={userTransactions}
         setUserTransactions={setUserTransactions}
+        goals={goals}
+        setGoals={setGoals}
 
       />
     );

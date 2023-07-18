@@ -17,16 +17,18 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
     setCurrentUser: (user:any) => void;
     userTransactions:any;
     setUserTransactions:(transaction:any)=>void;
+    goals: any;
+    setGoals: (goals: any) => void;
   };
 
-  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions}) => {
+  const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions, goals, setGoals}) => {
     
     return (
       <ScrollView>
         <UserProfile currentUser={currentUser} />
         <LevelProgressBar currentUser={currentUser} />
         <AvailableBalanceDisplay currentUser={currentUser} />
-        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}  setCurrentUser={setCurrentUser}/>
+        <UpdateBalance currentUser={currentUser} userTransactions={userTransactions} setUserTransactions={setUserTransactions}  setCurrentUser={setCurrentUser} goals={goals} setGoals={setGoals}/>
       </ScrollView>
     );
 }

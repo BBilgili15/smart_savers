@@ -16,6 +16,8 @@ type SaveForGoalProps = {
   saveModalVisible: boolean;
   endSaveForGoalHandler: any;
   setSaveModalVisible: any;
+  goals: any;
+  setGoals: any;
 };
 
 const SaveForGoal: React.FC<SaveForGoalProps> = ({
@@ -23,22 +25,24 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
   saveModalVisible,
   endSaveForGoalHandler,
   setSaveModalVisible,
+  goals,
+  setGoals
 }) => {
   const [amount, setAmount] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState("");
   const [enteredGoalAmount, setEnteredGoalAmount] = useState("");
-  const [goals, setGoals] = useState<any>([]);
+  
 
-  useEffect(() => {
-    // Fetch goals and update state
-    getGoals()
-      .then((fetchedGoals) => {
-        setGoals(fetchedGoals);
-      })
-      .catch((error) => {
-        console.log('Error fetching goals:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch goals and update state
+  //   getGoals()
+  //     .then((fetchedGoals) => {
+  //       setGoals(fetchedGoals);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error fetching goals:', error);
+  //     });
+  // }, []);
 
 
 
