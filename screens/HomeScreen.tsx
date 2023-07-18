@@ -33,4 +33,4 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
     );
 }
 
-export default HomeScreen
+export default HomeScreen;

@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import {View, StyleSheet} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
 import LottieView from 'lottie-react-native';
@@ -63,27 +63,15 @@ import { updateUser } from '../../services/UserServices';
       updateUser(updatedUser, currentUser.id)
       .then(() => {
         setCurrentUser(updatedUser);
+        navigation.navigate('HO')
       })
+      
       .catch(error => {
         console.error("Failed to update user: ", error);
       })
 
-    
-
-      // ADD POINTS TO USER HERE
-      // get user
-      // get user's points
-      // add points to points' total
-      // set user's new points
-      // update user backend
-      // update current user (fe)
       // Toastify points
     };
-
-
-
-  
-
 
   return (
     <View style={styles.container}>

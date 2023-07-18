@@ -1,15 +1,11 @@
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native'
-import {useState} from 'react'
+import {View, Text, StyleSheet, Image} from 'react-native'
 import React from 'react'
 
   type QuestionContainerProps = {
-    question: String,
+    question: string,
   };
 
   const QuestionContainer: React.FC<QuestionContainerProps> = ({question}) => {
-
-
-  
 
 
   return (
@@ -42,4 +38,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default QuestionContainer
+export default QuestionContainer;

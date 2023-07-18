@@ -1,9 +1,7 @@
-import {View, Text, ScrollView} from 'react-native'
-import {useState} from 'react'
-import React from 'react'
+import {ScrollView} from 'react-native'
+
 
 // Import Components
-import AnswerCard from '../components/ChallengeScreen/AnswerCard';
 import AnswerContainer from '../components/ChallengeScreen/AnswerContainer';
 import QuestionContainer from '../components/ChallengeScreen/QuestionContainer';
 
