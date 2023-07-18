@@ -10,6 +10,7 @@ import {
 import { useState, useEffect } from "react";
 import React from "react";
 import {addGoal} from '../../services/GoalServices';
+import { Picker } from "@react-native-picker/picker";
 
 type PocketInformationContainerProps = {
   currentUser: any;
