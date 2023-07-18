@@ -35,11 +35,23 @@ import GiraffeImage from '../../images/GiraffeCB.png';
       // Fox is the default image source if no favourite animal is set or currentUser is not available
       return require('../../images/Giraffe.png');
     };
+
+    const getUserLevelText = () => {
+      if (currentUser && currentUser.level === 'ONE') {
+        return 'Savvy Spender';
+      } else if (currentUser && currentUser.level === 'TWO') {
+        return 'Super Saver';
+      } else if (currentUser && currentUser.level === 'THREE') {
+        return 'Financial Guru';
+      } else {
+        return null;
+      }
+    };
      
 
   return (
       <View style={styles.container}>
-        <Text style={styles.textSub}>{currentUser ? (currentUser.level === "ONE" ? "Savvy Spender" : "Test") : null}</Text>
+        <Text style={styles.textSub}>{getUserLevelText()}</Text>
         <Image source={getProfileImage()} style={styles.image}/>
         <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
       </View>

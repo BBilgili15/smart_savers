@@ -15,7 +15,7 @@ import React from 'react'
 
   return (
     <View style={styles.container}>
-      <Text>{currentUser ? currentUser.points : null} points / 100 points</Text>
+      <Text>{currentUser ? currentUser.points : null} points / 50 points</Text>
     </View>
   )
 }

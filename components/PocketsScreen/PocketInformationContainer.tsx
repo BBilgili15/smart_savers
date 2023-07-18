@@ -75,12 +75,16 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
       goalName: enteredGoalText,
       amountSaved: 0,
       targetAmount: enteredAmount,
-      user: currentUser,
+      user: currentUser.id,
     };
+
+    console.log("NEWGOAL: ", newGoal)
     
-    const newGoalRes = await addGoal(newGoal);
+    // const newGoalRes = await addGoal(newGoal);
+
+    // console.log("NewGoalRes: ", newGoalRes)
     
-    const newGoals = [...goals, newGoalRes]; 
+    const newGoals = [...goals, newGoal]; 
     setGoals(newGoals);
     // endAddGoalHandler();
     // console.log("NEW GOALS 123 ", newGoals)
