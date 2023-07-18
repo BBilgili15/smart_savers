@@ -21,10 +21,6 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
   const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions}) => {
     
-  
- 
-
-
     return (
       <ScrollView>
         <UserProfile currentUser={currentUser} />
@@ -36,17 +32,3 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 }
 
 export default HomeScreen
-
-
-//  {
-//     "category": "FOOD",
-//     "amount": 90.0,
-//     "user": {
-//       "id": 1,
-//       "userName": "Ben",
-//       "parentEmail": "parent@test.com",
-//       "points": 0,
-//       "level": "ONE",
-//       "balance": 85.0
-//     }
-//   }
