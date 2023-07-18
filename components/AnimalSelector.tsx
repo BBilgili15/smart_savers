@@ -30,7 +30,7 @@ const AnimalSelector = ({ onAnimalSelect }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 1,
   },
   label: {
     fontSize: 12,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 15,
     borderColor: "#ff9234",
     backgroundColor: "#FFFFFF", 
 

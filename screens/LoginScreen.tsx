@@ -4,15 +4,16 @@ import { FirebaseAuth } from "../FirebaseConfig";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateEmail, updateProfile } from "firebase/auth";
 
 import AnimalSelector from "../components/AnimalSelector";
+import LoginHeader from "../components/LoginHeader";
 
 
-// type LoginScreenProps = {
-//   currentUser: any;
-//   setCurrentUser: (user:any) => void;
-// };
+type LoginScreenProps = {
+  route:any;
+  navigation:any;
+};
 
 
-const LoginScreen = ({route, navigation}) => {
+const LoginScreen = ({route, navigation}: LoginScreenProps) => {
   const { setCurrentUser } = route.params;
   const [email, setEmail] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -147,6 +148,7 @@ const LoginScreen = ({route, navigation}) => {
 
   return (
     <View style={styles.container} >
+      <LoginHeader />
       {/* keyboard avoiding view moves input for keyboard placement/visibility */}
       <KeyboardAvoidingView behavior="padding"> 
         <TextInput
@@ -197,11 +199,10 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {
-    
     flex: 1,
     justifyContent: "center",
     paddingHorizontal: 20,
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "#ff9234",
   },
   input: {
     marginVertical: 10,
@@ -218,16 +219,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     height: 50,
     borderRadius: 8,
-    backgroundColor: "#35d0ba",
+    backgroundColor: "#F8F8F8",
     justifyContent: "center",
     alignItems: "center",
     color: "#F8F8F8",
     
   },
   buttonText: {
-    fontSize: 40,
+    fontSize: 26,
     fontWeight: "bold",
-    color: "#F8F8F8",
+    color: "#35d0ba",
   }
 });
 

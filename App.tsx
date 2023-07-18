@@ -189,7 +189,7 @@ useEffect(() => {
             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
             </>
           ) : (
-            <LoginStack.Screen name="Smart Savers Login" component={LoginScreen} initialParams={{setCurrentUser}}/>
+            <LoginStack.Screen name="Smart Savers Login" component={LoginScreen} initialParams={{setCurrentUser}} options={{ headerShown: false }}/>
 
           )}
         </LoginStack.Navigator>

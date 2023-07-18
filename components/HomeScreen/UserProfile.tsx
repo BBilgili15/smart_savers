@@ -3,11 +3,11 @@ import { getUser } from '../../services/UserServices';
 import {useState, useEffect} from 'react'
 import React from 'react'
 
-import FoxImage from  '../../images/Fox.png';
-import OwlImage from '../../images/Owl.png';
-import RacoonImage from '../../images/Racoon.png';
-import SnakeImage from '../../images/Snake.png';
-import GiraffeImage from '../../images/Giraffe.png';
+import FoxImage from '../../images/FoxCB.png'
+import OwlImage from '../../images/OwlCB.png';
+import RaccoonImage from '../../images/RaccoonCB.png';
+import SnakeImage from '../../images/SnakeCB.png';
+import GiraffeImage from '../../images/GiraffeCB.png';
 
   type UserProfileProps = {
     currentUser: any
@@ -21,13 +21,13 @@ import GiraffeImage from '../../images/Giraffe.png';
           case 'fox':
             return FoxImage
           case 'owl':
-            return require('../../images/Owl.png');
+            return OwlImage;
           case 'racoon':
-            return require('../../images/Racoon.png');
+            return RaccoonImage;
           case 'snake':
-            return require('../../images/Snake.png');
+            return SnakeImage;
           case 'giraffe':
-            return require('../../images/Giraffe.png');
+            return GiraffeImage;
           default:
             break;
         }
