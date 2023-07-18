@@ -9,7 +9,8 @@ import {
   TextInput,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { addGoal, getGoals, updateGoal } from "../../services/GoalServices";
+import { addGoal, getGoals } from "../../services/GoalServices";
+import { updateGoal } from "../../services/GoalServices";
 
 type SaveForGoalProps = {
   currentUser: any;
@@ -32,6 +33,20 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
   const [selectedItem, setSelectedItem] = useState("");
   const [enteredGoalAmount, setEnteredGoalAmount] = useState("");
   
+  const reduceBalanceAddToPocket = () => {
+    // const currentBalance=currentUser.balance
+    // const newBalance=currentBalance-amount
+    const payload={
+      amountSaved:amount
+      
+    }
+    console.log("this is payload",payload)
+    updateGoal(payload, selectedItem)
+    setSaveModalVisible(false);
+    endSaveForGoalHandler(); 
+
+    console.log("this is selected item,", selectedItem)
+  };
 
   // useEffect(() => {
   //   // Fetch goals and update state
@@ -56,13 +71,6 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
     // setEnteredGoalAmount(Number(enteredAmount));
   };
 
-  const updateGoal = () => {
-    const updatedGoal = {
-      // goalName:enteredGoalText,
-      // targetAmount:enteredAmount,
-      // user:currentUser
-    };
-  };
 
   return (
     <>
@@ -72,22 +80,23 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
         // style={styles.modalContainer}
       >
         <View style={styles.container}>
-          <Text style={styles.modalText}>Which item are you saving for?</Text>
           <Picker
             selectedValue={selectedItem}
-            onValueChange={(itemValue: string) => setSelectedItem(itemValue)}
+            onValueChange={(itemValue: number) => setSelectedItem(itemValue)}
             style={styles.picker}
           >
-            <Picker.Item label="" value="" />
-            {goals.map((goal: any, index: number) => (
+
+            <Picker.Item label="Select A Pocket" value="" />
+            {/* {goals.map((goal: any, index: number) => (
               <Picker.Item
                 key={index}
-                label={goal.label}
-                value={goal.value}
+                label={goal.goalName}
+                value={String(goal.id)}
               />
-            ))}
+            ))} */}
           </Picker>
           <Text style={styles.modalText}>Enter income:</Text>
+         
           <TextInput
             style={styles.inputField}
             value={amount}
@@ -95,7 +104,7 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
             placeholder="Amount"
             keyboardType="numeric"
           />
-          <Button title="Save" onPress={() => endSaveForGoalHandler2()} />
+          <Button title="Save" onPress={() => reduceBalanceAddToPocket()} />
         </View>
       </Modal>
     </>
@@ -116,8 +125,8 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: "100%",
-    height: 50,
-    marginBottom: 10,
+    height: 100,
+    marginBottom: 150,
   },
   inputField: {
     width: "100%",

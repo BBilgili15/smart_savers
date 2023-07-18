@@ -26,14 +26,12 @@ import PocketCard from './PocketCard';
   }
 
   const pocketCardComponents = goals?.map((goal: any) => {
+    const key = goal.id ? goal.id.toString() : undefined;
+
     return (
-      <PocketCard key={goal.id} id={goal.id} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} removeGoal={removeGoal}/>
+      <PocketCard key={key} id={goal.id} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} removeGoal={removeGoal}/>
     )
   })
-
-
-  
-
 
   return (
     <ScrollView style={styles.container}>
