@@ -11,34 +11,44 @@ import { useState, useEffect } from "react";
 import React from "react";
 import {addGoal} from '../../services/GoalServices';
 import { Picker } from "@react-native-picker/picker";
+import { getGoalsByUserId } from "../../services/GoalServices";
+import { useNavigation } from '@react-navigation/native';
 
 type PocketInformationContainerProps = {
   currentUser: any;
   handleButtonClick: () => void;
+  goals: any
+  setGoals: (param: any) => void;
 };
 
 const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
   handleButtonClick,
   currentUser,
+  goals,
+  setGoals
 }) => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [goals, setGoals] = useState<string[]>([]);
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [enteredAmount, setEnteredAmount] = useState<number | null>(null);
   const [totalBalance, setTotalBalance] = useState(0); // Add a state for total balance
 
+  const navigation = useNavigation();
+
+
   useEffect(() => {
     // Calculate and set the total balance whenever the currentUser.goals array changes
     const calculateTotalBalance = () => {
-      const balance = currentUser.goals.reduce(
-        (total: number, goal: any) => total + goal.amountSaved,
-        0
-      );
-      setTotalBalance(balance);
+      if (currentUser && currentUser.goals) {
+        const balance = goals.reduce(
+          (total: number, goal: any) => total + goal.amountSaved,
+          0
+        );
+        setTotalBalance(balance);
+      }
     };
-
+  
     calculateTotalBalance();
-  }, [currentUser.goals]);
+  }, [currentUser?.goals, currentUser]);
 
 
 
@@ -59,17 +69,24 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     setEnteredAmount(Number(enteredAmount));
   };
 
-  const saveGoal=()=>{
-    const newGoal={
-      goalName:enteredGoalText,
-      targetAmount:enteredAmount,
-      user:currentUser
-    }
-    addGoal(newGoal)
-    console.log("NEWGOAL HERE___> ", newGoal)
-    endAddGoalHandler()
-    handleButtonClick()
-  }
+  const saveGoal = async () => {
+    endAddGoalHandler();
+    const newGoal = {
+      goalName: enteredGoalText,
+      amountSaved: 0,
+      targetAmount: enteredAmount,
+      user: currentUser,
+    };
+    
+    const newGoalRes = await addGoal(newGoal);
+    
+    const newGoals = [...goals, newGoalRes]; 
+    setGoals(newGoals);
+    // endAddGoalHandler();
+    // console.log("NEW GOALS 123 ", newGoals)
+    handleButtonClick();
+  
+  };
   
   
 
@@ -175,7 +192,7 @@ const styles = StyleSheet.create({
     margin:20
   },
   TextInput: {
-    color:"blace",
+    color:"black",
     borderWidth: 1,
     borderColor: "#e4d0ff",
     backgroundColor:"#ffffff",

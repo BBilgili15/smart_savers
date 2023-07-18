@@ -1,22 +1,37 @@
 import {View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList} from 'react-native'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import React from 'react'
+
+import { deleteGoal } from '../../services/GoalServices';
 
 // Import Components
 import PocketCard from './PocketCard';
 
   type PocketContainerProps = {
     currentUser: any
+    goals: any
+    setGoals: (param: any) => void;
   };
 
-  const PocketContainer: React.FC<PocketContainerProps> = ({currentUser}) => {
+  const PocketContainer: React.FC<PocketContainerProps> = ({currentUser, goals, setGoals}) => {
 
 
-  const pocketCardComponents = currentUser.goals.map((goal: any) => {
+  // console.log("Goals (Container) ", goals);
+
+  const removeGoal = (id: number) => {
+    deleteGoal(id)
+    setGoals((goals: any) => {
+      return goals.filter((goal: any) => goal.id != id)
+    })
+  }
+
+  const pocketCardComponents = goals?.map((goal: any) => {
     return (
-      <PocketCard key={goal.goalId} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} />
+      <PocketCard key={goal.id} id={goal.id} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} removeGoal={removeGoal}/>
     )
   })
+
+
   
 
 

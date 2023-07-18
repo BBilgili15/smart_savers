@@ -2,19 +2,26 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type PocketCardProps = {
+  id: number;
   goalName: string;
   goalTarget: number;
   amountSaved: number;
+  removeGoal: (param: any) => void;
 };
 
-const PocketCard: React.FC<PocketCardProps> = ({ goalName, goalTarget, amountSaved }) => {
+const PocketCard: React.FC<PocketCardProps> = ({ id, goalName, goalTarget, amountSaved, removeGoal }) => {
   const progressPercentage = (amountSaved / goalTarget) * 100;
   const foregroundWidth = Math.max((350 * progressPercentage) / 100, 0.1 * 350); // minimum width is now 10%
+
+
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>{goalName}</Text>
-      <Text style={styles.subheading}>Saving Pocket</Text>
+      <TouchableOpacity onPress={() => removeGoal(id)}>
+        <Text style={styles.delete}>Delete {goalName}</Text>
+      </TouchableOpacity>
       <View style={styles.savingBarBackground}>
         <View style={[styles.savingBarForeground, { width: foregroundWidth }]}>
           <Text style={styles.spending}>£{amountSaved}</Text>
@@ -63,7 +70,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
-  subheading: {
+  delete: {
     fontSize: 16,
     color: '#666',
   },

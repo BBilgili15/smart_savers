@@ -22,41 +22,51 @@ public class GoalController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value="/goals")
-    public List<Goal> getAllGoals(){
-        return goalRepository.findAll();
-    }
-
     @GetMapping(value="/goals/{id}")
     public Optional<Goal> getGoalById(@PathVariable Long id){
         return goalRepository.findById(id);
     }
 
-//    @PostMapping(value = "/goals")
-//    public ResponseEntity<Goal> postGoal(@RequestBody Goal goal){
-//        goalRepository.save(goal);
-//        return new ResponseEntity<>(goal, HttpStatus.CREATED);
-//    }
+    @GetMapping(value="/goals")
+    public ResponseEntity<List<Goal>> getAllGoals(@RequestParam(name = "byUserId", required = false) Long userId){
+        if (userId != null) {
+            Optional<User> user = userRepository.findById(userId);
+            System.out.println(user);
+            if (user.isPresent()) {
+                List<Goal> goals = goalRepository.findByUser(user.get());
+                return new ResponseEntity<>(goals, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            List<Goal> goals = goalRepository.findAll();
+            return new ResponseEntity<>(goals, HttpStatus.OK);
+        }
+    }
 
 
 
-//    @PostMapping(value = "/goals")
-//    public ResponseEntity<Goal> postGoal(@RequestBody Goal goal){
-//        GoalService.saveGoalAndUpdateUserGoals(goal,goalRepository,userRepository);
-//        return new ResponseEntity<>(goal, HttpStatus.CREATED);
-//    }
+
 
     @PostMapping(value = "/goals")
     public ResponseEntity<Goal> postGoal(@RequestBody Goal goal) {
+        // Assuming you have the user ID available
         User user = userRepository.findById(goal.getUser().getId()).orElse(null); // Fetch the user from the repository
+
         if (user != null) {
-            goal.setUser(user);
+            goal.setUser(user); // Set the user object on the goal
+
+            // Call the service method to save the goal and update user goals
             GoalService.saveGoalAndUpdateUserGoals(goal, goalRepository, userRepository);
+
             return new ResponseEntity<>(goal, HttpStatus.CREATED);
         } else {
+            // Handle the case when the user is not found
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 
     @PutMapping(value = "/goals/{id}")

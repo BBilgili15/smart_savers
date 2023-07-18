@@ -17,6 +17,7 @@ import LoginScreen from './screens/LoginScreen';
 
 import { getUser } from './services/UserServices';
 import { getTransactionsByUserId } from './services/TransactionServices';
+import { getGoalsByUserId } from './services/GoalServices';
 
 import Header from './components/Header';
 import { User, onAuthStateChanged } from '@firebase/auth';
@@ -32,8 +33,30 @@ type AppProps = {};
 
 export default function App(_: AppProps) {
   const [firebaseUser, setFirebaseUser] = useState(null);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [userTransactions, setUserTransactions] = useState([]);
+
+
+  // Pocket State
+  const [goals, setGoals] = useState(currentUser?.goals);
+
+  // console.log("Goals (App) ", goals)
+
+  useEffect(() => {
+    
+    if (currentUser) {
+      console.log("Current User")
+      console.log(goals.length)
+      goals.length == 0 &&
+          getGoalsByUserId(currentUser.id) 
+          .then((goals) => setGoals(goals))
+          .catch((error) => console.log('Error fetching goals:', error));
+      } else {
+        setGoals([])
+        console.log("empty goals")
+      }
+    }, [currentUser?.goals, currentUser]);
+
 
 
   useEffect(() => {
@@ -160,7 +183,7 @@ useEffect(() => {
   }
 
   function Pockets() {
-    return <PocketsScreen currentUser={currentUser} />;
+    return <PocketsScreen currentUser={currentUser} goals={goals} setGoals={setGoals} />;
   }
 
   function Home() {

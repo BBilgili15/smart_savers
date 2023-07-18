@@ -21,13 +21,13 @@ import GiraffeImage from '../../images/GiraffeCB.png';
           case 'fox':
             return FoxImage
           case 'owl':
-            return OwlImage;
+            return require('../../images/Owl.png');
           case 'racoon':
-            return RaccoonImage;
+            return require('../../images/Racoon.png');
           case 'snake':
-            return SnakeImage;
+            return require('../../images/Snake.png');
           case 'giraffe':
-            return GiraffeImage;
+            return require('../../images/Giraffe.png');
           default:
             break;
         }

@@ -10,10 +10,17 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
 
   type PocketsScreenProps = {
     currentUser:any
+    goals: any
+    setGoals: (param: any) => void;
   };
 
-  const PocketsScreen: React.FC<PocketsScreenProps> = ({currentUser}) => {
+  const PocketsScreen: React.FC<PocketsScreenProps> = ({currentUser, goals, setGoals}) => {
     
+
+
+
+
+  // Animation Functions
   const [showAnimation, setShowAnimation] = useState(false);
 
   const handleButtonClick = () => {
@@ -39,8 +46,8 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
         />
       )}
         
-        <PocketInformationContainer handleButtonClick={handleButtonClick} currentUser={currentUser}/>
-        <PocketContainer currentUser={currentUser}/>
+        <PocketInformationContainer handleButtonClick={handleButtonClick} currentUser={currentUser} goals={goals} setGoals={setGoals}/>
+        <PocketContainer currentUser={currentUser} goals={goals} setGoals={setGoals}/>
     </View>
   )
 }
