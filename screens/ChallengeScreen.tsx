@@ -8,16 +8,16 @@ import QuestionContainer from '../components/ChallengeScreen/QuestionContainer';
 
 
   type ChallengeScreenProps = {
-    route:any;
-    navigation:any;
+    currentUser: any;
+    setCurrentUser: (user: any) => void;
     
   };
 
-  const ChallengeScreen = ({route, navigation}: ChallengeScreenProps) => {
-    const { currentUser, setCurrentUser } = route.params;
+  const ChallengeScreen = ({currentUser, setCurrentUser}: ChallengeScreenProps) => {
+    // const { currentUser, setCurrentUser } = route.params;
    
 
-    console.log("CURRENT USER: ", currentUser)
+    // console.log("CURRENT USER: ", currentUser)
     
     
   return (
