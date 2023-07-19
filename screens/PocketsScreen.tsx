@@ -16,7 +16,7 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
 
   const PocketsScreen: React.FC<PocketsScreenProps> = ({currentUser, goals, setGoals}) => {
     
-
+ 
 
 
 
