@@ -51,11 +51,11 @@ import GiraffeImage from '../../images/GiraffeCB.png';
 
     const getUserProfileStyle = () => {
       if (currentUser && currentUser.level === 'TWO') {
-        return styles.profileImageBorderTwo;
+        return 'silver'; // Return color name for the border color of level TWO
       } else if (currentUser && currentUser.level === 'THREE') {
-        return styles.profileImageBorderThree;
+        return 'gold'; // Return color name for the border color of level THREE
       } else {
-        return styles.profileImageBorderDefault;
+        return 'goldenrod'; // Return color name for the default border color
       }
     };
      
@@ -63,10 +63,10 @@ import GiraffeImage from '../../images/GiraffeCB.png';
   return (
       <View style={styles.container}>
         <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
-        <View style={[styles.imageContainer, getUserProfileStyle()]}>
+        <View style={[styles.imageContainer, { borderColor: getUserProfileStyle() }]}>
           <Image source={getProfileImage()} style={styles.image} />
         </View>
-        <Text style={styles.textSub}>{getUserLevelText()}</Text>
+        <Text style={[styles.textSub, { color: getUserProfileStyle() }]}>{getUserLevelText()}</Text>
       </View>
   )
 }
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
 
   },
   textSub: {
-    color: 'black', // get the colour to match the border
-    fontSize: 20,
+    fontWeight: 'bold',
+    fontSize: 25,
     marginTop: 20,
     fontFamily: 'OpenDyslexic-Regular',
   }
