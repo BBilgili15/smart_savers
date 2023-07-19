@@ -2,10 +2,38 @@
 # Smart Savers
 
 ## Our Brief
-We have created a money management mobile application for 8 to 12 years olds that would teach them financial literacy. 
+We have created a money management mobile application for 8 to 12 years olds that would teach them financial literacy. The app includes the following features:
+
+- Authenticated Login: Parents must log in with their credentials to access the app's features, ensuring their data is secure.
+
+- Record and Categorise Transactions: Users can record their financial transactions, categorising them into different income expense categories for better budgeting and understanding of their spending habits.
+
+- Complete Interactive Challenges: The app offers interactive financial challenges to users, encouraging them to make informed financial decisions and develop responsible money management skills.
+
+- Earn Rewards / Level Up: By completing challenges, users can earn rewards and level up, fostering a sense of achievement and progress in their financial journey.
+
+- Create a Monetary Goal & Record Progress: Users can set monetary goals, such as saving for a specific item or target amount, and track their progress towards achieving these goals.
+
+- Select a Profile Picture: Users have the option to personalise their profiles by selecting a profile picture based on their favourite animal, making the app experience more engaging and enjoyable.
+
+### Extension:
+As an extension to the core features, the app provides a visual breakdown of users' spending and income. This feature enables users to gain insights into their financial patterns through easy-to-understand charts and graphs, helping them make more informed decisions about their money.
+
+### With these features, our Smart Savers app aims to empower young users with essential financial skills and knowledge, setting them on a path of financial responsibility and independence. 
 
 ## Demo
-[Watch a run through of our app](https://www.youtube.com/watch?v=K_ngJpReB6Q)
+[Please watch a demonstration of our app by clicking here](https://www.youtube.com/watch?v=K_ngJpReB6Q)
+
+## Screenshots
+
+| Login Screen                   | Home Screen                   | Daily Challenges              | Pie Chart Income                |
+|:------------------------------:|:------------------------------:|:-----------------------------:|:-------------------------------:|
+| ![Login Screen](./ReadMePics/LoginScreen.png) | ![Home Screen](./ReadMePics/HomeScreen.png) | ![Daily Challenges](./ReadMePics/DailyChallenges.png) | ![Pie Chart Income](./ReadMePics/PieChartIncome.png) |
+| One Daily Challenge            | Point Level Badge and Points Progress | Next Level Badge            | Expenses Chart                  |
+| ![One Daily Challenge](./ReadMePics/OneDailyChallenge.png) | ![Point Level Badge](./ReadMePics/PointLevelBadge.png) | ![Next Level Badge](./ReadMePics/ChangePointLevelBadege.png) | ![Expenses Chart](./ReadMePics/PieChartExpenses.png) |
+| Top Level Badge                | Balance and Transaction Buttons | Savings Pockets               | Updated Savings Pocket          |
+| ![Top Level Badge](./ReadMePics/TopPointLevelBadge.png) | ![Balance and Transaction Buttons](./ReadMePics/Balance.png) | ![Savings Pockets](./ReadMePics/PocketsScreen.png) | ![Updated Savings Pocket](./ReadMePics/UpdateSavingsPockets.png) |
+
 
 ## Our Tech Stack
 - React Native (Expo Go)
