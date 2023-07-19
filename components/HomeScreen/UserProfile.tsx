@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
     width: 200,
     borderRadius: 10,
     margin: 0,
+    borderWidth: 2,
+    borderColor: "white",
   }, 
   profileImageBorderDefault: {
     borderColor: '#CD7F32',
