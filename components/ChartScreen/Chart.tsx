@@ -118,7 +118,7 @@ const Chart: React.FC<ChartProps> = ({
 
     {selectedTab === "outgoing" && (
       <View style={styles.imageContainer}>
-        <Image style={styles.img} source={require('../../images/expenses_legend_720.png')} />
+        <Image style={styles.img2} source={require('../../images/expenses_legend_720.png')} />
       </View>
     )}
 
@@ -130,6 +130,9 @@ const Chart: React.FC<ChartProps> = ({
 export default Chart;
 
 const styles = StyleSheet.create({
+  imageContainer:{
+    marginTop:50
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -141,12 +144,14 @@ const styles = StyleSheet.create({
     height: 350,
     marginBottom: 20,
   },
-  imageContainer: {
-
+ 
+  img2:{
+    height: 110,
+    width: "48%",
   },
   img: {
-    height: 120,
-    width: "50%",
+    height: 110,
+    width: "48%",
   },
 });
 
