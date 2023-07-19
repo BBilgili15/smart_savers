@@ -44,7 +44,7 @@ As an extension to the core features, the app provides a visual breakdown of use
 ### Backend:
 - Java (Spring Framework)
 ### Database:
-PostgreSQL
+- PostgreSQL
 
 ## Prerequisites
 Before running the app locally, ensure you have the following installed:
