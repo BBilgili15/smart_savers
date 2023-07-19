@@ -51,11 +51,11 @@ import GiraffeImage from '../../images/GiraffeCB.png';
 
     const getUserProfileStyle = () => {
       if (currentUser && currentUser.level === 'TWO') {
-        return 'silver'; // Return color name for the border color of level TWO
+        return '#C0C0C0'; // Return color name for the border color of level TWO
       } else if (currentUser && currentUser.level === 'THREE') {
-        return 'gold'; // Return color name for the border color of level THREE
+        return '#FFD700'; // Return color name for the border color of level THREE
       } else {
-        return 'goldenrod'; // Return color name for the default border color
+        return '#CD7F32'; // Return color name for the default border color
       }
     };
      
