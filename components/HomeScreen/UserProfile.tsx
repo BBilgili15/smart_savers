@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'OpenDyslexic-Regular',
     marginBottom: 30,
-    marginTop: 20,
+    // marginTop: 20,
 
   },
   textSub: {
