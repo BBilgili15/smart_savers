@@ -30,10 +30,10 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(String goalName, double targetAmount, User user) {
+    public Goal(String goalName, double targetAmount, double amountSaved, User user) {
         this.goalName = goalName;
         this.targetAmount = targetAmount;
-        this.amountSaved = 0.0;
+        this.amountSaved = amountSaved;
         this.user = user;
     }
 
