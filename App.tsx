@@ -32,7 +32,6 @@ const InsideStack = createNativeStackNavigator();
 type AppProps = {};
 
 export default function App(_: AppProps) {
-  const [firebaseUser, setFirebaseUser] = useState(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [userTransactions, setUserTransactions] = useState([]);
 

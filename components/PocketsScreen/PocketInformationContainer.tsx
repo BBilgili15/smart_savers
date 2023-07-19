@@ -75,7 +75,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
       goalName: enteredGoalText,
       amountSaved: 0,
       targetAmount: enteredAmount,
-      user: currentUser.id,
+      user: currentUser,
     };
 
     console.log("NEWGOAL: ", newGoal)
