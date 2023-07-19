@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   textMain: {
     // backgroundColor: 'lightblue',
     fontSize: 30,
+    fontWeight: 'bold'
   },
   textSub: {
     // backgroundColor: 'lightgreen',

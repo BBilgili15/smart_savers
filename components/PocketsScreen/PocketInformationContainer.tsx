@@ -69,7 +69,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     setEnteredAmount(Number(enteredAmount));
   };
 
-  const saveGoal = async () => {
+  const saveGoal = () => {
     endAddGoalHandler();
     const newGoal = {
       goalName: enteredGoalText,
@@ -79,6 +79,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     };
 
     console.log("NEWGOAL: ", newGoal)
+    addGoal(newGoal)
     
     // const newGoalRes = await addGoal(newGoal);
 
@@ -86,8 +87,6 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     
     const newGoals = [...goals, newGoal]; 
     setGoals(newGoals);
-    // endAddGoalHandler();
-    // console.log("NEW GOALS 123 ", newGoals)
     handleButtonClick();
   
   };
@@ -143,7 +142,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f1f1f1",
+    backgroundColor: "#f7f7f7",
     width: 400,
     height: 200,
     justifyContent: "center",

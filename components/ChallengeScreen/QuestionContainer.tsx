@@ -11,7 +11,9 @@ import React from 'react'
   return (
     <View style={styles.container}>
       <Image source={require('../../images/dc-image.jpg')} style={styles.image}/>
-      <Text style={styles.text}>{question}</Text>
+      <View style={styles.questionBackground}>
+        <Text style={styles.text}>{question}</Text>
+      </View>
     </View>
   )
 }
@@ -25,16 +27,31 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     margin: 10, 
-    marginBottom: 40,
+    marginBottom: 45,
   }, 
+  questionBackground: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
   image: {
     height: 275,
     width: 275,
     borderRadius: 15,
-    margin: 25,
+    // margin: 35,
+    marginTop: 50,
+    marginBottom: 20,
   }, 
   text: {
     fontSize: 20,
+    textAlign: 'center'
   }
 })
 

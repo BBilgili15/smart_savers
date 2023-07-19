@@ -3,11 +3,12 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 type ChallengeCardProps = {
+  color: string;
   completedDailyChallenge: boolean;
   setCompletedDailyChallenge: (prop: any) => void;
 };
 
-const ChallengeCard: React.FC<ChallengeCardProps> = ({ completedDailyChallenge, setCompletedDailyChallenge }) => {
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ color, completedDailyChallenge, setCompletedDailyChallenge }) => {
   const navigation = useNavigation();
 
   const launchDailyChallenge = () => {
@@ -18,7 +19,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ completedDailyChallenge, 
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => launchDailyChallenge()}>
+    <TouchableOpacity style={[styles.container, { backgroundColor: color }]} onPress={() => launchDailyChallenge()}>
       <Text style={styles.text}>Daily Challenge</Text>
       <Image
         source={completedDailyChallenge ? require('../../images/check.png') : require('../../images/unchecked.png')}
@@ -31,25 +32,25 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ completedDailyChallenge, 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FDE9B1',
-    width: 400,
-    height: 75,
-    justifyContent: 'space-between',
+    width: 180,
+    height: 200,
+    justifyContent: 'space-evenly',
     alignSelf: 'center',
     alignItems: 'center',
     margin: 10,
-    flexDirection: 'row',
-    paddingLeft: 50,
-    paddingRight: 50,
+    flexDirection: 'column',
+    paddingLeft: 10,
+    paddingRight: 10,
     borderRadius: 30,
     shadowColor: '#000',
     shadowOffset: {
-      width: 3,
-      height: 3,
+      width: 5,
+      height: 5,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    borderColor: '#FFD700',
+    borderColor: '#fcfcfc',
     borderWidth: 2,
   },
   image: {
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: 'bold',
-    // color: '#FFD700',
+    textAlign: 'center',
   },
 });
 

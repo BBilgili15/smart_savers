@@ -15,14 +15,14 @@ const AvailableBalanceDisplay: React.FC<AvailableBalanceProps> = ({ currentUser 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FDE9B1',
+    backgroundColor: '#fdb1b1',
     width: 300,
     height: 100,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 10,
-    borderColor: '#FFD700',
+    borderColor: '#ffffff',
     borderWidth: 2,
     borderRadius: 15,
     shadowColor: '#000',

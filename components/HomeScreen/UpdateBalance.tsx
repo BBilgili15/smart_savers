@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: "#4287f5",
+    backgroundColor: "#fe8383",
     height: 60,
     width: 100,
     alignItems: "center",
@@ -275,8 +275,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: 3,
+      height: 3,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
