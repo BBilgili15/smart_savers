@@ -73,7 +73,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     endAddGoalHandler();
     const newGoal = {
       goalName: enteredGoalText,
-      amountSaved: 0,
+      amountSaved: 0.00,
       targetAmount: enteredAmount,
       user: currentUser,
     };
