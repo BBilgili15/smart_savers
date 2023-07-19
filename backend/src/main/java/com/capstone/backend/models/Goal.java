@@ -17,10 +17,10 @@ public class Goal {
     private String goalName;
 
     @Column(name="target_amount")
-    private double targetAmount;
+    private Double targetAmount;
 
     @Column(name="amount_saved")
-    private double amountSaved;
+    private Double amountSaved;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
@@ -49,7 +49,7 @@ public class Goal {
         this.goalName = goalName;
     }
 
-    public double getTargetAmount() {
+    public Double getTargetAmount() {
         return targetAmount;
     }
 
@@ -57,7 +57,7 @@ public class Goal {
         this.targetAmount = targetAmount;
     }
 
-    public double getAmountSaved() {
+    public Double getAmountSaved() {
         return amountSaved;
     }
 

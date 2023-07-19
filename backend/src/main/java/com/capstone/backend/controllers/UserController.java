@@ -1,5 +1,6 @@
 package com.capstone.backend.controllers;
 
+import com.capstone.backend.models.Goal;
 import com.capstone.backend.models.Level;
 import com.capstone.backend.models.User;
 import com.capstone.backend.repositories.UserRepository;
@@ -34,6 +35,28 @@ public class UserController {
         logger.info("Firebase userID: {}", firebaseUserId);
         return userRepository.findByFirebaseUserId(firebaseUserId);
     }
+
+
+//    why is patch not working here??
+//   @PatchMapping(value = "/users/{id}")
+//   public ResponseEntity<User> updateUserBalance(@PathVariable Long id, @RequestBody User updatedUser) {
+//        Optional<User> optionalUser = userRepository.findById(id);
+//
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//
+////            if (updatedUser.getBalance() != null) {
+//                user.setBalance(updatedUser.getBalance());
+////            }
+//
+//            User savedUser = userRepository.save(user);
+//
+//            return ResponseEntity.ok(savedUser);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -75,6 +98,13 @@ public class UserController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+
+
     }
+
+
+
+
 
 }

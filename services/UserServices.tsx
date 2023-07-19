@@ -36,3 +36,18 @@ export const updateUser = (payload: any, id: Number) => {
   .then(res => res.json())
 }
 
+// below is patch method: but not woking....
+// export const updateUserBalance = (payload: any, id: Number) => {
+//     return fetch(baseURL + `/${id}`, {
+//       method: 'PATCH',
+//       body: JSON.stringify(payload),
+//       headers: { 'Content-Type': 'application/json' }
+//     })
+//       .then(res => res.json());
+//   }
+  
+
+
+
+
+

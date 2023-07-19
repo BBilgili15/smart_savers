@@ -27,12 +27,23 @@ export const deleteGoal = (id: Number) => {
     })
 }
 
-export const updateGoal = (payload: any, id: any) => {
-  return fetch(baseURL + `/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' }
-  })
-  .then(res => res.json())
-}
+
+export const updateGoalAmountSaved = (payload:any, id:number) => {
+    return fetch(baseURL + `/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => res.json());
+  }
+  
+
+// export const updateGoal = (payload: any, id: any) => {
+//   return fetch(baseURL + `/${id}`, {
+//         method: 'PUT',
+//         body: JSON.stringify(payload),
+//         headers: { 'Content-Type': 'application/json' }
+//   })
+//   .then(res => res.json())
+// }
 
