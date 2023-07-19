@@ -11,15 +11,15 @@ export const getGoalsByUserId = (userId: number) => {
       .then(res => res.json());
   }
 
-export const addGoal = async (payload: any) => {
-    const response =  await fetch(baseURL, {
+export const addGoal = (payload: any) => {
+    return fetch(baseURL, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
     })
-    const newGoal = await response.json()
-    return newGoal;
+        .then(res => res.json());
 }
+
 
 export const deleteGoal = (id: Number) => {
     return fetch(baseURL + `/${id}`, {

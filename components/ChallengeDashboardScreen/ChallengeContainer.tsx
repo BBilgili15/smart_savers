@@ -15,28 +15,57 @@ import ChallengeCard from './ChallengeCard';
     const [completedDailyChallenge2, setCompletedDailyChallenge2] = useState(false);
   
 
-
-  return (
-    <ScrollView style={styles.container}>
-      <ChallengeCard completedDailyChallenge={completedDailyChallenge} setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}/>
-      <ChallengeCard completedDailyChallenge={completedDailyChallenge1} setCompletedDailyChallenge={() => setCompletedDailyChallenge1(!completedDailyChallenge1)}/>
-      <ChallengeCard completedDailyChallenge={completedDailyChallenge2} setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}/>
+    return (
+      <ScrollView style={styles.container}>
+      <View style={styles.gridContainer}>
+        <ChallengeCard
+          color="#FDE9B1"
+          completedDailyChallenge={completedDailyChallenge}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}
+        />
+        <ChallengeCard
+          color="#ffcde2"
+          completedDailyChallenge={completedDailyChallenge1}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge1(!completedDailyChallenge1)}
+        />
+        <ChallengeCard
+          color="#c6ffd5"
+          completedDailyChallenge={completedDailyChallenge2}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
+        />
+        <ChallengeCard
+          color="#c6ccff"
+          completedDailyChallenge={completedDailyChallenge2}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
+        />
+        <ChallengeCard
+          color="#c6ffff"
+          completedDailyChallenge={completedDailyChallenge2}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
+        />
+        <ChallengeCard
+          color="#ffc6c6"
+          completedDailyChallenge={completedDailyChallenge2}
+          setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
+        />
+      </View>
     </ScrollView>
-  )
-}
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: 'lightblue',
-    width: 400,
-    height: 600,
-    alignSelf: 'center',
-    // alignItems: 'center',
-    margin: 10,
-    
-  }
-})
-
-export default ChallengeContainer
+    );
+  };
+  
+  const styles = StyleSheet.create({
+    container: {
+      // backgroundColor: 'lightblue',
+      width: 400,
+      height: 900,
+      alignSelf: 'center',
+      margin: 10,
+    },
+    gridContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+    },
+  });
+  
+  export default ChallengeContainer;

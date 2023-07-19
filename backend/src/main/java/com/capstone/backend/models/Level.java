@@ -1,9 +1,9 @@
 package com.capstone.backend.models;
 
 public enum Level {
-    ONE(1, "Savvy Starter"),
-    TWO(2, "Super Saver"),
-    THREE(3, "Financial Guru");
+    ONE(1, "Money Explorer"),
+    TWO(2, "Saving Star"),
+    THREE(3, "Financial Wizard");
 
     private final int level;
 

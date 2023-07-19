@@ -22,7 +22,7 @@ import GiraffeImage from '../../images/GiraffeCB.png';
             return FoxImage
           case 'owl':
             return OwlImage;
-          case 'racoon':
+          case 'raccoon':
             return RaccoonImage;
           case 'snake':
             return SnakeImage;
@@ -38,13 +38,23 @@ import GiraffeImage from '../../images/GiraffeCB.png';
 
     const getUserLevelText = () => {
       if (currentUser && currentUser.level === 'ONE') {
-        return 'Savvy Spender';
+        return 'Money Explorer';
       } else if (currentUser && currentUser.level === 'TWO') {
-        return 'Super Saver';
+        return 'Saving Star';
       } else if (currentUser && currentUser.level === 'THREE') {
-        return 'Financial Guru';
+        return 'Financial Wizard';
       } else {
         return null;
+      }
+    };
+
+    const getUserProfileStyle = () => {
+      if (currentUser && currentUser.level === 'TWO') {
+        return styles.profileImageBorderTwo;
+      } else if (currentUser && currentUser.level === 'THREE') {
+        return styles.profileImageBorderThree;
+      } else {
+        return styles.profileImageBorderDefault;
       }
     };
      
@@ -52,19 +62,38 @@ import GiraffeImage from '../../images/GiraffeCB.png';
   return (
       <View style={styles.container}>
         <Text style={styles.textSub}>{getUserLevelText()}</Text>
-        <Image source={getProfileImage()} style={styles.image}/>
+        <View style={[styles.imageContainer, getUserProfileStyle()]}>
+          <Image source={getProfileImage()} style={styles.image} />
+        </View>
         <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
       </View>
   )
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    borderWidth: 10,
+    borderColor: 'gray',
+    borderRadius: 20,
+  },
   image: {
     height: 200,
     width: 200,
-    borderRadius: 15,
-    margin: 25,
+    borderRadius: 10,
+    margin: 0,
+    borderWidth: 2,
+    borderColor: "white",
   }, 
+  profileImageBorderDefault: {
+    borderColor: '#CD7F32',
+  },
+  profileImageBorderTwo: {
+    borderColor: '#C0C0C0',
+  },
+  profileImageBorderThree: {
+    // borderWidth: 10,
+    borderColor: '#FFD700',
+  },
   container: {
     // backgroundColor: 'lightpink',
     alignItems: 'center',
@@ -73,6 +102,7 @@ const styles = StyleSheet.create({
   textMain: {
     // backgroundColor: 'lightblue',
     fontSize: 30,
+    fontWeight: 'bold'
   },
   textSub: {
     // backgroundColor: 'lightgreen',
@@ -80,53 +110,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default UserProfile
-
-
-// import { View, Text, Image, StyleSheet } from 'react-native';
-// import React from 'react';
-
-// type UserProfileProps = {
-//   currentUser: any;
-// };
-
-// const UserProfile: React.FC<UserProfileProps> = ({ currentUser }) => {
-//   const getProfileImage = () => {
-//     if (currentUser && currentUser.favouriteAnimal) {
-//       const imageSource = require(`../../images/${currentUser.favouriteAnimal}.png`);
-//       return imageSource;
-//     }
-//     // Default image source if no favorite animal is set or currentUser is not available
-//     return require('../../images/Fox.png');
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.textSub}>{currentUser ? (currentUser.level === 'ONE' ? 'Savvy Spender' : 'Test') : null}</Text>
-//       <Image source={getProfileImage()} style={styles.image} />
-//       <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   image: {
-//     height: 250,
-//     width: 250,
-//     borderRadius: 15,
-//     margin: 25,
-//   },
-//   container: {
-//     alignItems: 'center',
-//     margin: 20,
-//   },
-//   textMain: {
-//     fontSize: 30,
-//   },
-//   textSub: {
-//     backgroundColor: 'lightgreen',
-//     fontSize: 20,
-//   },
-// });
-
-// export default UserProfile;
+export default UserProfile;

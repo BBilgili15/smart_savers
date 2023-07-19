@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import {useState} from 'react'
 import React from 'react'
 import LottieView from 'lottie-react-native';
@@ -35,7 +35,7 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
 
 
   return (
-    <View>
+    <View style={styles.container}>
         {showAnimation && (
         <LottieView
           source={require('../animations/success.json')}
@@ -51,5 +51,11 @@ import PocketInformationContainer from '../components/PocketsScreen/PocketInform
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f9f9f9'
+  },
+});
 
 export default PocketsScreen

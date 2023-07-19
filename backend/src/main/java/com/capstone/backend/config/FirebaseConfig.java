@@ -17,14 +17,15 @@ public class FirebaseConfig {
     @Bean
     public FirebaseApp firebaseApp() throws IOException {
 
-        // /Users/benbilgili/Desktop/codeclan/professional-software/projects/capstone/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.jso
+        // /Users/benbilgili/Desktop/codeclan/professional-software/projects/capstone/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json
 
        // FileInputStream serviceAccount = new FileInputStream("/Users/user/CodeClan_work/finalProject/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
 //        /Users/bartram/codeclan_work/CAPSTONE PROJECT/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json
 
         if (FirebaseApp.getApps().isEmpty()) {
-            FileInputStream serviceAccount = new FileInputStream("/Users/user/CodeClan_work/finalProject/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
+
+            FileInputStream serviceAccount = new FileInputStream("/Users/bartram/codeclan_work/CAPSTONE PROJECT/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
 
             FirebaseOptions options = new FirebaseOptions.Builder()
