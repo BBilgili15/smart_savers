@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -18,11 +18,17 @@ import StatsContainer from '../components/ChallengeDashboardScreen/StatsContaine
     
 
   return (
-    <View>
-        <StatsContainer/>
+    <View style={styles.container}>
+        {/* <StatsContainer/> */}
         <ChallengeContainer/>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#b7ffb7'
+  },
+});
 
 export default ChallengeDashBoardScreen

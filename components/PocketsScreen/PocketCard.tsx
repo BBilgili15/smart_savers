@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useState } from 'react';
 
 type PocketCardProps = {
   id: number;
@@ -16,18 +17,31 @@ const PocketCard: React.FC<PocketCardProps> = ({ id, goalName, goalTarget, amoun
 
 
 
+
+  const handleDelete = () => {
+    Alert.alert(
+      'Delete Goal',
+      `Are you sure you want to delete ${goalName}?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Delete', style: 'destructive', onPress: () => removeGoal(id) },
+      ]
+    );
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <Text style={styles.heading}>{goalName}</Text>
-      <TouchableOpacity onPress={() => removeGoal(id)}>
-        <Text style={styles.delete}>Delete {goalName}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleDelete}>
+          <Text style={styles.delete}>Delete {goalName}</Text>
+        </TouchableOpacity>
       <View style={styles.savingBarBackground}>
         <View style={[styles.savingBarForeground, { width: foregroundWidth }]}>
           <Text style={styles.spending}>£{amountSaved}</Text>
         </View>
-      </View>
     </View>
+    </TouchableOpacity>
+
   );
 };
 
