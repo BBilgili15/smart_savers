@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#7D7D7D",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   selectedTabText: {
     color: "#FFF",

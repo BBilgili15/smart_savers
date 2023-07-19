@@ -226,7 +226,7 @@ useEffect(() => {
   return (
 
     <SafeAreaView style={styles.container}>
-      <NavigationContainer>
+      <NavigationContainer >
         <LoginStack.Navigator initialRouteName="Login">
           {currentUser ? (
             <>

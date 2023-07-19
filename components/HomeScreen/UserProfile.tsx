@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     color: 'black', // get the colour to match the border
     fontSize: 20,
     marginTop: 20,
+    fontFamily: 'OpenDyslexic-Regular',
   }
 })
 

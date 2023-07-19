@@ -40,19 +40,20 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    marginBottom: 15,
   },
   image: {
-    height: 275,
-    width: 275,
+    height: 250,
+    width: 250,
     borderRadius: 15,
     // margin: 35,
     marginTop: 50,
     marginBottom: 20,
   }, 
   text: {
-    fontSize: 20,
+    fontSize: 17,
     textAlign: 'center',
-    // fontFamily: 'tahoma',
+    fontFamily: 'OpenDyslexic-Regular',
   }
 })
 

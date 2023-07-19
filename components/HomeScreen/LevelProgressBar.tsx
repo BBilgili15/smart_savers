@@ -35,11 +35,11 @@ import React from 'react'
   
     return (
       <View style={styles.mainContainer}>
-        <Text>{currentUser ? currentUser.points : null}</Text>
+        <Text style={{fontFamily: 'OpenDyslexic-Regular',}}>{currentUser ? currentUser.points : null}</Text>
         <View style={styles.savingBarBackground}>
         <View style={[styles.savingBarForeground, { width: `${progressPercentage}%` }]}></View>
         </View>
-        <Text>{maxPoints}</Text>
+        <Text style={{fontFamily: 'OpenDyslexic-Regular',}}>{maxPoints}</Text>
       </View>
     );
   };

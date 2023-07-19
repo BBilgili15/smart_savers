@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
     alignSelf: 'center',
+    fontFamily: 'OpenDyslexic-Regular',
   },
   imageLogo: {
     height: 50,

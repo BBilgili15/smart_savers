@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     borderColor: "#ff9234",
     fontSize: 16,
     color: "#716f6f",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   button: {
     marginTop: 20,
@@ -228,6 +229,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     color: "#35d0ba",
+    fontFamily: 'OpenDyslexic-Regular',
   }
 });
 

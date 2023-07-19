@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
     marginBottom:30,
   },
   text: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#35d0ba',
     alignSelf: 'center',
+    fontFamily: 'OpenDyslexic-Regular',
   },
   imageLogo: {
     height: 70,
