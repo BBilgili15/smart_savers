@@ -56,6 +56,22 @@ console.log("this is for goals: ", goals)
       balance:newBalance
   };
 
+    const goalsToUpdate = goals.filter((goal: any) => {
+      return goal.id == idToSend
+    })
+    
+
+    const goalToUpdate = goalsToUpdate[0]
+    const copyGoalToUpdate = {...goalToUpdate};
+    copyGoalToUpdate.amountSaved += amountToSave;
+    const copyGoals = [...goals];
+
+    const newListOfGoals = copyGoals.filter((goal) => {
+      return goal.id != idToSend;
+    })
+
+    const newGoalsWithUpdate = [...newListOfGoals, copyGoalToUpdate];
+    setGoals(newGoalsWithUpdate);
     updateUser(updatedUser, currentUser.id)
     .then(() => {
       setCurrentUser(updatedUser);
@@ -64,16 +80,10 @@ console.log("this is for goals: ", goals)
       console.error("Failed to update user: ", error);
     })
 
-
-    console.log("this is payload for updating amountsaved(saveforgoal",payload,newBalance)
-    console.log("this is updateduser(saveforgoal)",updatedUser)
-
     updateGoalAmountSaved(payload, idToSend)
     updateUser
     setSaveModalVisible(false);
     endSaveForGoalHandler(); 
-
-    console.log("this is selected item,", selectedItem)
   };
   
 
