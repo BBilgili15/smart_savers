@@ -42,53 +42,16 @@ const Toggle: React.FC<ToggleProps> = ({ selectedTab, setSelectedTab }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  toggleContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    height: 45,
-    borderWidth: 1,
-    borderRadius: 30,
-    borderColor: "#ccc",
-    marginVertical: 10,
-  },
-  tabButton: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 10,
-  },
-  selectedTabButton: {
-    backgroundColor: "pink",
-    borderRadius:30,
-    marginLeft:2,
-    marginRight:2
-  },
-  tabText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#7D7D7D",
-  },
-  selectedTabText: {
-    color: "#0F907B",
-  },
-});
-
-
-// Alternative Style Option
-
 // const styles = StyleSheet.create({
 //   toggleContainer: {
 //     flexDirection: "row",
 //     justifyContent: "center",
 //     alignItems: "center",
 //     height: 45,
+//     borderWidth: 1,
 //     borderRadius: 30,
-//     borderColor: "#E0E0E0",
+//     borderColor: "#ccc",
 //     marginVertical: 10,
-//     backgroundColor: "#F8F8F8",
-//     overflow: "hidden",
 //   },
 //   tabButton: {
 //     flex: 1,
@@ -97,7 +60,10 @@ const styles = StyleSheet.create({
 //     paddingVertical: 10,
 //   },
 //   selectedTabButton: {
-//     backgroundColor: "#FF8C8C",
+//     backgroundColor: "pink",
+//     borderRadius:30,
+//     marginLeft:2,
+//     marginRight:2
 //   },
 //   tabText: {
 //     fontSize: 16,
@@ -105,9 +71,43 @@ const styles = StyleSheet.create({
 //     color: "#7D7D7D",
 //   },
 //   selectedTabText: {
-//     color: "#FFF",
+//     color: "#0F907B",
 //   },
 // });
+
+
+// Alternative Style Option
+
+const styles = StyleSheet.create({
+  toggleContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 45,
+    borderRadius: 30,
+    borderColor: "#E0E0E0",
+    marginVertical: 10,
+    backgroundColor: "#F8F8F8",
+    overflow: "hidden",
+  },
+  tabButton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 10,
+  },
+  selectedTabButton: {
+    backgroundColor: "#FF8C8C",
+  },
+  tabText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#7D7D7D",
+  },
+  selectedTabText: {
+    color: "#FFF",
+  },
+});
 
 
 export default Toggle;

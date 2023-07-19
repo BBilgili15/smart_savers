@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
-    "@react-native-picker/picker": "^2.4.10",
+    "@react-native-picker/picker": "2.4.8",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/material-bottom-tabs": "^6.2.16",
     "@react-navigation/native": "^6.1.7",
@@ -23,10 +23,8 @@
     "lottie-react-native": "5.1.4",
     "react": "18.2.0",
     "react-native": "0.71.8",
-
     "react-native-progress": "^5.0.0",
-    "react-native-svg": "^13.10.0",
-
+    "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
     "victory-native": "^36.6.11"
   },

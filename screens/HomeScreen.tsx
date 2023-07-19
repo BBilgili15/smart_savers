@@ -1,4 +1,4 @@
-import {View, Text, ProgressBarAndroidComponent, ScrollView} from 'react-native'
+import {View, Text, ProgressBarAndroidComponent, ScrollView, StyleSheet } from 'react-native'
 import {useState, useEffect} from 'react'
 import React from 'react'
 
@@ -24,7 +24,7 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
   const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions, goals, setGoals}) => {
     
     return (
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <UserProfile currentUser={currentUser} />
         <LevelProgressBar currentUser={currentUser} />
         <AvailableBalanceDisplay currentUser={currentUser} />
@@ -33,4 +33,12 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
     );
 }
 
-export default HomeScreen
+const styles = StyleSheet.create({
+  container: {
+    // backgroundColor: 'white'
+  },
+});
+
+
+export default HomeScreen;
+
