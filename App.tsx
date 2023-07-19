@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { useFonts } from 'expo-font';
 import { LogBox } from 'react-native';
 
 
@@ -29,6 +29,7 @@ import { FirebaseAuth } from './FirebaseConfig';
 LogBox.ignoreLogs([
   'Constants.platform.ios.model has been deprecated in favor of expo-device\'s Device.modelName property.',
 'Warning: Each child in a list should have a unique "key" prop.']);
+
 
 
 // Creating the stacks
@@ -211,6 +212,17 @@ useEffect(() => {
     );
   }
 
+  const [fontsLoaded] = useFonts({
+    'OpenDyslexic-Regular': require('./assets/font/OpenDyslexic-Regular.otf'),
+    'OpenDyslexic-Italic': require('./assets/font/OpenDyslexic-Italic.otf'),
+    'OpenDyslexic-Bold': require('./assets/font/OpenDyslexic-Bold.otf'),
+    'OpenDyslexic-BoldItalic': require('./assets/font/OpenDyslexic-BoldItalic.otf'),
+    
+  });
+
+  if (!fontsLoaded) {
+    return null; // Render a loading indicator or return an empty view
+  }
   return (
 
     <SafeAreaView style={styles.container}>
@@ -241,6 +253,7 @@ useEffect(() => {
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: 'OpenDyslexic-Regular',
     flex: 1,
     // backgroundColor: '#FDE9B1', // Pastel yellow color
   },
