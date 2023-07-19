@@ -35,10 +35,16 @@ As an extension to the core features, the app provides a visual breakdown of use
 | ![Top Level Badge](./ReadMePics/TopPointLevelBadge.png) | ![Balance and Transaction Buttons](./ReadMePics/Balance.png) | ![Savings Pockets](./ReadMePics/PocketsScreen.png) | ![Updated Savings Pocket](./ReadMePics/UpdateSavingsPockets.png) |
 
 
-## Our Tech Stack
+## Tech Stack
+### Frontend:
 - React Native (Expo Go)
 - TypeScript
-- Java Spring (Backend)
+- Lottie (for animations)
+- Victory Pie Charts (for interactive pie charts)
+### Backend:
+- Java (Spring Framework)
+### Database:
+PostgreSQL
 
 ## Prerequisites
 Before running the app locally, ensure you have the following installed:
