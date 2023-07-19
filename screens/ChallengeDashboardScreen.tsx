@@ -27,7 +27,7 @@ import StatsContainer from '../components/ChallengeDashboardScreen/StatsContaine
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#b7ffb7'
+    // backgroundColor: '#beffb7'
   },
 });
 

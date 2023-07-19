@@ -28,7 +28,7 @@ import PocketCard from './PocketCard';
   
 
   const pocketCardComponents = goals?.map((goal: any) => {
-    const key = goal.id ? goal.id.toString() : undefined;
+    const key = goal.id ? goal.id : undefined;
 
     return (
       <PocketCard key={key} id={goal.id} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} removeGoal={removeGoal}/>

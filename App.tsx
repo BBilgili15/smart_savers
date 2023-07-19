@@ -108,8 +108,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="home" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#35d0ba',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
@@ -121,8 +121,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="gamepad" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#ff9234',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}>
           {(props) => <GamesHub {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
@@ -136,8 +136,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <AntDesign name="barschart" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#f15c55',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
@@ -150,8 +150,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="wallet" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#ffcd3c',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
