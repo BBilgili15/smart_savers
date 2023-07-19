@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     backgroundColor: "#F8F8F8",
     overflow: "hidden",
+    marginLeft: 10,
+    marginRight: 10,
   },
   tabButton: {
     flex: 1,
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   selectedTabButton: {
-    backgroundColor: "#FF8C8C",
+    backgroundColor: "#f15c55",
   },
   tabText: {
     fontSize: 16,

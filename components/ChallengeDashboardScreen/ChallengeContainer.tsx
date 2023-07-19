@@ -19,32 +19,32 @@ import ChallengeCard from './ChallengeCard';
       <ScrollView style={styles.container}>
       <View style={styles.gridContainer}>
         <ChallengeCard
-          color="#FDE9B1"
+          color="#35d0ba"
           completedDailyChallenge={completedDailyChallenge}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge(!completedDailyChallenge)}
         />
         <ChallengeCard
-          color="#ffcde2"
+          color="#ffcd3c"
           completedDailyChallenge={completedDailyChallenge1}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge1(!completedDailyChallenge1)}
         />
         <ChallengeCard
-          color="#c6ffd5"
+          color="#ff9234"
           completedDailyChallenge={completedDailyChallenge2}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
         />
         <ChallengeCard
-          color="#c6ccff"
+          color="#ff7770"
           completedDailyChallenge={completedDailyChallenge2}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
         />
         <ChallengeCard
-          color="#c6ffff"
+          color="#35d0ba"
           completedDailyChallenge={completedDailyChallenge2}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
         />
         <ChallengeCard
-          color="#ffc6c6"
+          color="#ffcd3c"
           completedDailyChallenge={completedDailyChallenge2}
           setCompletedDailyChallenge={() => setCompletedDailyChallenge2(!completedDailyChallenge2)}
         />
