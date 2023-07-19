@@ -62,11 +62,11 @@ import GiraffeImage from '../../images/GiraffeCB.png';
 
   return (
       <View style={styles.container}>
-        <Text style={styles.textSub}>{getUserLevelText()}</Text>
+        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
         <View style={[styles.imageContainer, getUserProfileStyle()]}>
           <Image source={getProfileImage()} style={styles.image} />
         </View>
-        <Text style={styles.textMain}>Welcome {currentUser ? currentUser.displayName : null}</Text>
+        <Text style={styles.textSub}>{getUserLevelText()}</Text>
       </View>
   )
 }
@@ -102,13 +102,17 @@ const styles = StyleSheet.create({
   }, 
   textMain: {
     // backgroundColor: 'lightblue',
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: 'bold',
     fontFamily: 'OpenDyslexic-Regular',
+    marginBottom: 30,
+    marginTop: 20,
+
   },
   textSub: {
-    // backgroundColor: 'lightgreen',
+    color: 'black', // get the colour to match the border
     fontSize: 20,
+    marginTop: 20,
   }
 })
 

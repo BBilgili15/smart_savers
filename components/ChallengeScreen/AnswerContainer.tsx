@@ -93,10 +93,10 @@ import { updateUser } from '../../services/UserServices';
           style={{zIndex: 1}}
         />)}
 
-      <AnswerCard answerText={"4 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#ff6961'/>
-      <AnswerCard answerText={"6 weeks"} handleButtonClick={handleRightAnswer} backgroundColor='#77dd77'/>
-      <AnswerCard answerText={"8 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#A7C7E7'/>
-      <AnswerCard answerText={"10 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#fdfd96'/>
+      <AnswerCard answerText={"4 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#f15c55'/>
+      <AnswerCard answerText={"6 weeks"} handleButtonClick={handleRightAnswer} backgroundColor='#35d0ba'/>
+      <AnswerCard answerText={"8 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#ff9234'/>
+      <AnswerCard answerText={"10 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#ffcd3c'/>
     </View>
   )
 }
