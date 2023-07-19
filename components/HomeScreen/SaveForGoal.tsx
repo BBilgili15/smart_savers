@@ -35,7 +35,7 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
   const [selectedItem, setSelectedItem] = useState("");
   const [enteredGoalAmount, setEnteredGoalAmount] = useState("");
   
-console.log("this is for goals: ", goals)
+// console.log("this is for goals: ", goals)
  
     // const currentBalance=currentUser.balance
   
