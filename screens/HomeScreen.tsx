@@ -36,6 +36,7 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 const styles = StyleSheet.create({
   container: {
     // backgroundColor: 'white'
+    fontFamily: 'OpenDyslexic-Regular',
   },
 });
 

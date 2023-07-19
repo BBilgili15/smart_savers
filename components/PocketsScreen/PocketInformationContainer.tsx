@@ -156,12 +156,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: "#333",
     textAlign: "center",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   balanceAmount: {
     fontSize: 30,
     fontWeight: "bold",
     color: "#0F907B",
     textAlign: "center",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   button: {
     backgroundColor: "lightpink",
@@ -175,6 +177,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   inputContainer: {
     flex: 1,
@@ -199,6 +202,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#e4d0ff",
     backgroundColor:"#ffffff",
+    fontFamily: 'OpenDyslexic-Regular',
 
     width: "75%",
     height: 45,
@@ -214,6 +218,7 @@ const styles = StyleSheet.create({
   savebutton:{
     width:'30%',
     marginHorizontal:8
+    
   }, 
   text: {
     color: 'white',
@@ -221,6 +226,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
+    fontFamily: 'OpenDyslexic-Regular',
   }
 });
 

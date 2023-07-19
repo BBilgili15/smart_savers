@@ -83,15 +83,18 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
+    fontFamily: 'OpenDyslexic-Regular',
   },
   delete: {
     fontSize: 16,
     color: '#666',
+    fontFamily: 'OpenDyslexic-Regular',
   },
   spending: {
     fontSize: 14,
     color: '#FFF',
     fontWeight: 'bold',
+    
   },
 });
 

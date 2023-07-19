@@ -13,6 +13,7 @@ import { addTransaction } from "../../services/TransactionServices";
 import { Picker } from "@react-native-picker/picker";
 
 import SaveForGoal from "./SaveForGoal";
+import { Background } from "victory-native";
 
 type UpdateBalanceProps = {
   currentUser: any;
@@ -192,14 +193,15 @@ setGoals={setGoals}
                 onValueChange={(itemValue: string) =>
                   setSelectedCategory(itemValue)
                 }
-                style={styles.picker}
+                style={[styles.picker, { color: "white" }]}
               >
-                 <Picker.Item label="" value="" /> 
+                 <Picker.Item color="#white" label="" value="" /> 
                 {incomeCategoryOptions.map((incomeCategoryOption, index) => (
-                  <Picker.Item
+                  <Picker.Item color="#white"
                     key={index}
                     label={incomeCategoryOption.label}
                     value={incomeCategoryOption.value}
+                    
                   />
                 ))}
               </Picker>
@@ -213,15 +215,16 @@ setGoals={setGoals}
                 onValueChange={(itemValue: string) =>
                   setSelectedCategory(itemValue)
                 }
-                style={styles.picker}
+                style={[styles.picker, { color: "white" }]}
               >
                  <Picker.Item label="" value="" /> 
                 {spendingCategoryOptions.map(
                   (spendingCategoryOption, index) => (
-                    <Picker.Item
+                    <Picker.Item 
                       key={index}
                       label={spendingCategoryOption.label}
                       value={spendingCategoryOption.value}
+                      style={{ color: "white" }}
                     />
                   )
                 )}
@@ -237,8 +240,9 @@ setGoals={setGoals}
             placeholder="£"
             keyboardType="numeric"
           />
-          <Button title="Submit" onPress={() => endButtonHandler()} />
-    
+          <View style={styles.savebutton}>
+          <Button title="Submit" onPress={() => endButtonHandler()} color="pink" />
+          </View>
         </View>
       </Modal>
     </>
@@ -265,6 +269,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
+    fontFamily: 'OpenDyslexic-Regular',
   },
   button: {
     padding: 15,
@@ -287,26 +292,40 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:"#fe5454"
   },
   modalText: {
     fontSize: 18,
     marginBottom: 10,
     fontWeight: "bold",
+    fontFamily: 'OpenDyslexic-Regular',
+    color: 'white',
   },
   modalContainer: {
     height: 80,
+    
   },
   inputField: {
-    borderColor: "black",
+    borderColor: "white",
+    backgroundColor: "white",
     borderWidth: 1,
     padding: 10,
     width: 200,
     marginBottom: 10,
+    fontFamily: 'OpenDyslexic-Regular',
   },
   picker: {
     width: 200,
     marginBottom: 10,
   },
+  pickerText: {
+    color: "white",
+  },
+  savebutton:{
+    width:'30%',
+    marginHorizontal:8
+    
+  }, 
   
 });
 

@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'OpenDyslexic-Regular',
   },
 });
 
