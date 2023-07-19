@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: "center",
     alignItems: "center",
-    margin: 10,
+    margin: 30,
     justifyContent: "space-evenly",
   },
   text: {
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 15,
-    backgroundColor: "#fe8383",
+    backgroundColor: "#ff4949",
     height: 60,
     width: 100,
     alignItems: "center",

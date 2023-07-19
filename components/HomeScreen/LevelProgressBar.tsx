@@ -27,12 +27,19 @@ import React from 'react'
         setNextLevel(nextLevel);
       }
     }, [currentUser]);
+
+
+  const progressPercentage = (currentUser.points / maxPoints) * 100;
+  const foregroundWidth = Math.max((350 * progressPercentage) / 100, 0.1 * 350); // minimum width is now 10%
+
   
     return (
-      <View style={styles.container}>
-        <Text>
-          {currentUser ? currentUser.points : null} points / {maxPoints} points
-        </Text>
+      <View style={styles.mainContainer}>
+        <Text>{currentUser ? currentUser.points : null}</Text>
+        <View style={styles.savingBarBackground}>
+        <View style={[styles.savingBarForeground, { width: `${progressPercentage}%` }]}></View>
+        </View>
+        <Text>{maxPoints}</Text>
       </View>
     );
   };
@@ -46,8 +53,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
-    margin: 10,
-  }
+    // marginBottom: 10,
+  }, 
+  mainContainer: {
+    // backgroundColor: 'lightblue',
+    width: 500,
+    height: 30,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+    flexDirection: 'row',
+  }, 
+  savingBarBackground: {
+    width: 300,
+    height: 20,
+    backgroundColor: '#FFDFDF',
+    borderRadius: 10,
+    overflow: 'hidden',
+    alignSelf: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  savingBarForeground: {
+    height: 20,
+    backgroundColor: '#FF4D4D',
+    borderRadius: 10,
+  },
 })
 
 export default LevelProgressBar

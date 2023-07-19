@@ -5,6 +5,9 @@ import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { LogBox } from 'react-native';
+
 
 
 import ChallengeDashboardScreen from './screens/ChallengeDashboardScreen';
@@ -22,6 +25,11 @@ import { getGoalsByUserId } from './services/GoalServices';
 import Header from './components/Header';
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
+
+LogBox.ignoreLogs([
+  'Constants.platform.ios.model has been deprecated in favor of expo-device\'s Device.modelName property.',
+'Warning: Each child in a list should have a unique "key" prop.']);
+
 
 
 // Creating the stacks
@@ -108,8 +116,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="home" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#35d0ba',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
@@ -121,8 +129,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="gamepad" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#ff9234',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}>
           {(props) => <GamesHub {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
@@ -136,8 +144,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <AntDesign name="barschart" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#f15c55',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
@@ -150,8 +158,8 @@ useEffect(() => {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="wallet" color={color} size={45} />
             ),
-            tabBarActiveTintColor: 'orange',
-            tabBarInactiveTintColor: 'purple',
+            tabBarActiveTintColor: '#ffcd3c',
+            tabBarInactiveTintColor: 'black',
             headerShown: false,
           }}
         />
@@ -204,6 +212,17 @@ useEffect(() => {
     );
   }
 
+  const [fontsLoaded] = useFonts({
+    'OpenDyslexic-Regular': require('./assets/font/OpenDyslexic-Regular.otf'),
+    'OpenDyslexic-Italic': require('./assets/font/OpenDyslexic-Italic.otf'),
+    'OpenDyslexic-Bold': require('./assets/font/OpenDyslexic-Bold.otf'),
+    'OpenDyslexic-BoldItalic': require('./assets/font/OpenDyslexic-BoldItalic.otf'),
+    
+  });
+
+  if (!fontsLoaded) {
+    return null; // Render a loading indicator or return an empty view
+  }
   return (
 
     <SafeAreaView style={styles.container}>
@@ -234,6 +253,7 @@ useEffect(() => {
 
 const styles = StyleSheet.create({
   container: {
+    fontFamily: 'OpenDyslexic-Regular',
     flex: 1,
     // backgroundColor: '#FDE9B1', // Pastel yellow color
   },
