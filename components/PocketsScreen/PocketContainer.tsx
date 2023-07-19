@@ -25,6 +25,8 @@ import PocketCard from './PocketCard';
     })
   }
 
+  
+
   const pocketCardComponents = goals?.map((goal: any) => {
     const key = goal.id ? goal.id.toString() : undefined;
 

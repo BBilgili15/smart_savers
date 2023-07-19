@@ -48,7 +48,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     };
   
     calculateTotalBalance();
-  }, [currentUser?.goals, currentUser]);
+  }, [currentUser?.goals, currentUser, goals]);
 
 
 
