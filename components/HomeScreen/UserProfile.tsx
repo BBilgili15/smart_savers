@@ -3,6 +3,7 @@ import { getUser } from '../../services/UserServices';
 import {useState, useEffect} from 'react'
 import React from 'react'
 
+
 import FoxImage from '../../images/FoxCB.png'
 import OwlImage from '../../images/OwlCB.png';
 import RaccoonImage from '../../images/RaccoonCB.png';
@@ -103,8 +104,10 @@ const styles = StyleSheet.create({
     // backgroundColor: 'lightblue',
     fontSize: 40,
     fontWeight: 'bold',
+    fontFamily: 'OpenDyslexic-Regular',
     marginBottom: 30,
     marginTop: 20,
+
   },
   textSub: {
     color: 'black', // get the colour to match the border
