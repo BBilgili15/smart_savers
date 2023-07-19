@@ -74,7 +74,10 @@ public class GoalController {
             Goal goal = optionalGoal.get();
 
             if (updatedGoal.getAmountSaved() != null) {
-                goal.setAmountSaved(updatedGoal.getAmountSaved());
+                double currentAmountSaved = goal.getAmountSaved();
+                double updatedAmountSaved = updatedGoal.getAmountSaved();
+                double newAmountSaved = currentAmountSaved + updatedAmountSaved;
+                goal.setAmountSaved(newAmountSaved);
             }
 
             Goal savedGoal = goalRepository.save(goal);
