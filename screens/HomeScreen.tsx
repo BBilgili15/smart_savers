@@ -1,6 +1,7 @@
 import {View, Text, ProgressBarAndroidComponent, ScrollView, StyleSheet } from 'react-native'
 import {useState, useEffect} from 'react'
 import React from 'react'
+import LottieView from 'lottie-react-native';
 
 import { getUser } from '../services/UserServices';
 
@@ -23,8 +24,31 @@ import LevelProgressBar from '../components/HomeScreen/LevelProgressBar';
 
   const HomeScreen: React.FC<HomeScreenProps> = ({availableAmount, setAvailableAmount,currentUser, setCurrentUser,userTransactions,setUserTransactions, goals, setGoals}) => {
     
+    // Right Animation
+    const [showCorrectAnimation, setShowCorrectAnimation] = useState(false);
+
+    const handleRightAnswer = () => {
+      setShowCorrectAnimation(true);
+    };
+
+    const onRightAnimationFinish = () => {
+      setShowCorrectAnimation(false);
+    }
+
+    useEffect(() => {
+      handleRightAnswer();
+    }, []);
+
     return (
       <ScrollView style={styles.container}>
+        {showCorrectAnimation && (
+          <LottieView
+            source={require('../animations/celebrate.json')}
+            autoPlay
+            loop={false}
+            onAnimationFinish={onRightAnimationFinish}
+            style={{zIndex: 1}}
+          />)}
         <UserProfile currentUser={currentUser} />
         <LevelProgressBar currentUser={currentUser} />
         <AvailableBalanceDisplay currentUser={currentUser} />

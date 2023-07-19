@@ -101,7 +101,7 @@ console.log("this is for goals: ", goals)
             onValueChange={(itemValue: string) => setSelectedItem(itemValue)}
             style={styles.picker}
           >
-            <Picker.Item label="select a pocket" value="" />
+            <Picker.Item label="Select Your Pocket:" value="" />
             {goals.map((goal: any, index: number) => (
               <Picker.Item
                 key={index}
@@ -116,10 +116,11 @@ console.log("this is for goals: ", goals)
             style={styles.inputField}
             value={amount}
             onChangeText={(text) => setAmount(text)}
-            placeholder="Enter amount to pocket:"
+            placeholder="£"
             keyboardType="numeric"
+            placeholderTextColor = "#413b3b"
           />
-          <Button title="Save" onPress={() => reduceBalanceAddToPocket()} />
+          <Button title="Save" onPress={() => reduceBalanceAddToPocket()} color="pink" />
         </View>
       </Modal>
     </>
@@ -129,10 +130,10 @@ console.log("this is for goals: ", goals)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f1f1f1",
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "#ff4949",
   },
   modalText: {
     fontSize: 18,
@@ -145,11 +146,14 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: "100%",
-    height: 40,
+    height: 50,
     borderColor: "gray",
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 10,
+    backgroundColor: "#ffffff",
+    fontFamily: 'OpenDyslexic-Regular',
+    color: "black",
   },
 });
 
