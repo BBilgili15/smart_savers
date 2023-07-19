@@ -115,7 +115,6 @@ useEffect(() => {
         />
         <Tab.Screen
           name="DC"
-          component={GamesHub}
           options={{
             tabBarLabel: 'GAME',
             tabBarShowLabel: false,
@@ -125,8 +124,9 @@ useEffect(() => {
             tabBarActiveTintColor: 'orange',
             tabBarInactiveTintColor: 'purple',
             headerShown: false,
-          }}
-        />
+          }}>
+          {(props) => <GamesHub {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+        </Tab.Screen>
         <Tab.Screen
           name="HT"
           component={Habits}
@@ -160,7 +160,7 @@ useEffect(() => {
   }
 
   // View Functions (Bottom Bar Tabs)
-  function GamesHub() {
+  function GamesHub({ currentUser, setCurrentUser }) {
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -170,10 +170,10 @@ useEffect(() => {
         />
         <Stack.Screen
           name="ChallengeScreen"
-          component={ChallengeScreen}
-          initialParams={{currentUser, setCurrentUser}}
           options={{ headerShown: false }}
-        />
+        >
+          {(props) => <ChallengeScreen {...props} currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+        </Stack.Screen>
       </Stack.Navigator>
     );
   }
@@ -214,7 +214,13 @@ useEffect(() => {
             <LoginStack.Screen name="Inside" component={InsideLayout} options={{ headerShown: false }} />
             </>
           ) : (
-            <LoginStack.Screen name="Smart Savers Login" component={LoginScreen} initialParams={{setCurrentUser}} options={{ headerShown: false }}/>
+            <LoginStack.Screen
+              name="Smart Savers Login"
+              options={{ headerShown: false }}>
+              {(props) => (
+                <LoginScreen {...props} setCurrentUser={setCurrentUser} />
+              )}
+            </LoginStack.Screen>
 
           )}
         </LoginStack.Navigator>

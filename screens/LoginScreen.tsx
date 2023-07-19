@@ -8,13 +8,12 @@ import LoginHeader from "../components/LoginHeader";
 
 
 type LoginScreenProps = {
-  route:any;
-  navigation:any;
+  setCurrentUser: (user: any) => void;
 };
 
 
-const LoginScreen = ({route, navigation}: LoginScreenProps) => {
-  const { setCurrentUser } = route.params;
+const LoginScreen = ({ setCurrentUser }: LoginScreenProps) => {
+  
   const [email, setEmail] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
