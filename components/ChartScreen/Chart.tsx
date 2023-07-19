@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image,StyleSheet } from "react-native";
 import { VictoryPie } from "victory-native";
+
 type ChartProps = {
   currentUser: {
     id: number;
@@ -76,25 +77,29 @@ const Chart: React.FC<ChartProps> = ({
         ([category, amount]) => ({
           x: category,
           y: amount,
+          label: `£${amount.toFixed(2)}`,
         })
       );
       setGraphicData(graphData);
     }
   }, [selectedTab, userTransactions]);
   return (
-    <View style={{ justifyContent: "center", marginLeft: 15, marginTop: 90 }}>
+    <View style={styles.container}>
+    <View style={styles.chartContainer}>
       <VictoryPie
+      standalone={true}
         padAngle={({ datum }) => datum.y * 0.05}
         cornerRadius={({ datum }) => datum.y * 0.1}
         padding={60}
         width={350}
         height={350}
-        colorScale={["tomato", "orange", "gold", "cyan", "purple"]}
+        colorScale={["#ffcd3c", "#ff9234", "#35d0ba", "#f15c55", "#8154ea"]}
         animate={{ easing: "exp" }}
         data={graphicData}
         innerRadius={40}
         style={{
           data: {
+            flex:1,
             fillOpacity: 0.9,
             strokeWidth: 5,
           },
@@ -104,22 +109,46 @@ const Chart: React.FC<ChartProps> = ({
           },
         }}
       />
-      <View>
-        {graphicData.map((data) => (
-          <View key={data.x}>
-            <Text>
-             <Text>{data.x}: </Text>
-              <Text>£ {data.y}</Text>
-            </Text>
-          </View>
-        ))}
+
+{selectedTab === "income" && (
+      <View style={styles.imageContainer}>
+        <Image style={styles.img} source={require('../../images/income_legend_720.png')} />
       </View>
+    )}
+
+    {selectedTab === "outgoing" && (
+      <View style={styles.imageContainer}>
+        <Image style={styles.img} source={require('../../images/expenses_legend_720.png')} />
+      </View>
+    )}
+
     </View>
+    </View>
+
   );
 };
 export default Chart;
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 90,
+  },
+  chartContainer: {
+    width: 350,
+    height: 350,
+    marginBottom: 20,
+  },
+  imageContainer: {
 
+  },
+  img: {
+    height: 120,
+    width: "50%",
+  },
+});
 
 
 

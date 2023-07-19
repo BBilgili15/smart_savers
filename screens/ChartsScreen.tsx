@@ -24,7 +24,7 @@ const ChartsScreen: React.FC<ChartsScreenProps> = ({currentUser, userTransaction
   const [selectedTab, setSelectedTab] = useState<string>('income');
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: '#b7ffb7' }}>
+      <ScrollView style={{ flex: 1}}>
         <Toggle selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         <Chart selectedTab={selectedTab} setSelectedTab={setSelectedTab} currentUser={currentUser} userTransactions={userTransactions}/>
       </ScrollView>
