@@ -6,6 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
+import { LogBox } from 'react-native';
+
+
 
 import ChallengeDashboardScreen from './screens/ChallengeDashboardScreen';
 import ChallengeScreen from './screens/ChallengeScreen';
@@ -22,6 +25,10 @@ import { getGoalsByUserId } from './services/GoalServices';
 import Header from './components/Header';
 import { User, onAuthStateChanged } from '@firebase/auth';
 import { FirebaseAuth } from './FirebaseConfig';
+
+LogBox.ignoreLogs([
+  'Constants.platform.ios.model has been deprecated in favor of expo-device\'s Device.modelName property.',
+'Warning: Each child in a list should have a unique "key" prop.']);
 
 
 // Creating the stacks
