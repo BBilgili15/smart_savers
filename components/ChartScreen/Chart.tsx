@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { VictoryPie} from "victory-native";
+import { VictoryPie } from "victory-native";
 
 type ChartProps = {
   currentUser: {
@@ -21,29 +21,44 @@ type ChartProps = {
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
 };
 
+type CategoryColors = {
+  [category: string]: string;
+};
+
 const Chart: React.FC<ChartProps> = ({
   selectedTab,
   currentUser,
   userTransactions,
 }) => {
-  const [graphicData, setGraphicData] = useState<{ x: string; y: number; color: string }[]>([]);
+  const [graphicData, setGraphicData] = useState<{ x: string; y: number }[]>([]);
 
   useEffect(() => {
     if (userTransactions) {
-      // Define category colors
-      const categoryColors: { [category: string]: string } = {
-        EARNINGS: "#ffcd3c",
-        POCKET_MONEY: "#ff9234",
-        GIFT: "#35d0ba",
-        OTHER_INCOME: "#f15c55",
-        ENTERTAINMENT: "#8154ea",
-        FOOD: "#ffa500",
-        TRANSPORT: "#0099ff",
-        OTHER_SPEND: "#ff69b4",
-        SHOPPING: "#ff6347",
+      const colorforcategories: CategoryColors = {
+        EARNINGS: "#FFCD3C",
+        POCKET_MONEY: "#FF9234",
+        GIFT: "#35D0BA",
+        OTHER_INCOME: "#F15C55",
+        ENTERTAINMENT: "#8C52FF",
+        FOOD: "#F15C55",
+        TRANSPORT: "#FF9234",
+        OTHER_SPEND: "#35D0BA",
+        SHOPPING: "#FFCD3C",
       };
 
-      // Filter transactions based on selected tab
+      const incomeCategories = [
+        "EARNINGS",
+        "POCKET_MONEY",
+        "GIFT",
+        "OTHER_INCOME",
+      ];
+      const outgoingCategories = [
+        "ENTERTAINMENT",
+        "FOOD",
+        "TRANSPORT",
+        "OTHER_SPEND",
+        "SHOPPING",
+      ];
       let filteredTransactions: {
         id: number;
         category: any;
@@ -53,11 +68,13 @@ const Chart: React.FC<ChartProps> = ({
 
       if (selectedTab === "income") {
         filteredTransactions = userTransactions.filter((transaction) =>
-          transaction.category && transaction.category.toUpperCase() in categoryColors
+          transaction.category &&
+          incomeCategories.includes(transaction.category.toUpperCase())
         );
       } else if (selectedTab === "outgoing") {
         filteredTransactions = userTransactions.filter((transaction) =>
-          transaction.category && transaction.category.toUpperCase() in categoryColors
+          transaction.category &&
+          outgoingCategories.includes(transaction.category.toUpperCase())
         );
       }
 
@@ -72,14 +89,15 @@ const Chart: React.FC<ChartProps> = ({
         }
       });
 
-      // Convert aggregated data to required format, including the color for each category
-      const graphData = Object.entries(categoryAmounts).map(([category, amount]) => ({
-        x: category,
-        y: amount,
-        label: `£${amount.toFixed(2)}`,
-        color: categoryColors[category.toUpperCase()] || "#cccccc", // Default color if category color is not defined
-      }));
-
+      // Convert aggregated data to required format, including category-specific colors
+      const graphData = Object.entries(categoryAmounts).map(
+        ([category, amount]) => ({
+          x: category,
+          y: amount,
+          label: `£${amount.toFixed(2)}`,
+          color: colorforcategories[category.toUpperCase()] || "#cccccc", // Default color if category color is not defined
+        })
+      );
       setGraphicData(graphData);
     }
   }, [selectedTab, userTransactions]);
@@ -143,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 90,
   },
   chartContainer: {
     width: 350,
@@ -159,12 +177,3 @@ const styles = StyleSheet.create({
     width: "48%",
   },
 });
-
-
-
-
-
-
-
-
-

@@ -29,7 +29,6 @@ public class FirebaseConfig {
             FileInputStream serviceAccount = new FileInputStream("/Users/bartram/codeclan_work/CAPSTONE PROJECT/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
 
-
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl("https://smartsavers-c0852-default-rtdb.europe-west1.firebasedatabase.app/")
