@@ -69,7 +69,7 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
     setEnteredAmount(Number(enteredAmount));
   };
 
-  const saveGoal = () => {
+  const saveGoal = async () => {
     endAddGoalHandler();
     const newGoal = {
       goalName: enteredGoalText,
@@ -77,19 +77,35 @@ const PocketInformationContainer: React.FC<PocketInformationContainerProps> = ({
       targetAmount: enteredAmount,
       user: currentUser,
     };
-
-    console.log("NEWGOAL: ", newGoal)
-    addGoal(newGoal)
+  
+    console.log("NEWGOAL: ", newGoal);
+  
+    try {
+      // Call the addGoal function and wait for the response
+      const newGoalRes = await addGoal(newGoal);
+      console.log("NewGoalRes: ", newGoalRes);
+  
+      if (newGoalRes) {
+        // Update the state only after receiving the response
+        const updatedGoals = [...goals, newGoalRes];
+        setGoals(updatedGoals);
+        handleButtonClick();
+      }
+    } catch (error) {
+      console.error("Error saving goal:", error);
+    }
+  };
+  
     
     // const newGoalRes = await addGoal(newGoal);
 
     // console.log("NewGoalRes: ", newGoalRes)
     
-    const newGoals = [...goals, newGoal]; 
-    setGoals(newGoals);
-    handleButtonClick();
+  //   const newGoals = [...goals, newGoal]; 
+  //   setGoals(newGoals);
+  //   handleButtonClick();
   
-  };
+  // };
   
   
 

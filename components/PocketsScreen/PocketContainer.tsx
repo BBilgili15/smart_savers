@@ -16,26 +16,39 @@ import PocketCard from './PocketCard';
   const PocketContainer: React.FC<PocketContainerProps> = ({currentUser, goals, setGoals}) => {
 
 
-  // console.log("Goals (Container) ", goals);
+  console.log("Goals (Container) ", goals);
 
-  const removeGoal = (id: number) => {
-    deleteGoal(id)
+  const removeGoal = async (id: number) => {
+    try {
+      await deleteGoal(id);
+
     setGoals((goals: any) => {
-      return goals.filter((goal: any) => goal.id != id)
-    })
+      return goals.filter((goal: any) => goal.id !== id);
+    });
+  } catch (error) {
+    console.error("Failed to delete goal: ", error);
   }
+};
 
   
 
-  const pocketCardComponents = goals?.map((goal: any) => {
+const pocketCardComponents = goals?.length > 0 ? goals.map((goal: any) => {
+    console.log("KEY: ", goal.id)
 
-    const key = goal.id ? goal.id : undefined;
+    const key = goal.id ? goal.id : `new-goal-${Date.now()}`;
 
 
     return (
-      <PocketCard key={key} id={goal.id} goalName={goal.goalName} goalTarget={goal.targetAmount} amountSaved={goal.amountSaved} removeGoal={removeGoal}/>
+      <PocketCard 
+      key={key} 
+      id={goal.id} 
+      goalName={goal.goalName} 
+      goalTarget={goal.targetAmount} 
+      amountSaved={goal.amountSaved} 
+      removeGoal={removeGoal}
+      />
     )
-  })
+  }) : null;
 
   return (
     <ScrollView style={styles.container}>

@@ -49,8 +49,8 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
 
     const payload={
       amountSaved:amountToSave
-      
     }
+
     const updatedUser = {
       ...currentUser,
       balance:newBalance
@@ -60,7 +60,6 @@ const SaveForGoal: React.FC<SaveForGoalProps> = ({
       return goal.id == idToSend
     })
     
-
     const goalToUpdate = goalsToUpdate[0]
     const copyGoalToUpdate = {...goalToUpdate};
     copyGoalToUpdate.amountSaved += amountToSave;
