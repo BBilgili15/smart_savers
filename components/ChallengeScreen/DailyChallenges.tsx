@@ -22,9 +22,9 @@ export const dailyChallenges = [
   },
   {
     question: "What is the purpose of creating a budget?",
-    wrongAnswer1: "£To track how many toys you can buy", 
-    correctAnswer: "£To save money for a future goal",
+    wrongAnswer1: "To track how many toys you can buy", 
+    correctAnswer: "To save money for a future goal",
     wrongAnswer2: "To spend all your money at once", 
-    wrongAnswer3: "£To show off your wealth to friends"
+    wrongAnswer3: "To show off your wealth to friends"
   },
 ];
