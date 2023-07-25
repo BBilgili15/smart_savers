@@ -26,7 +26,7 @@ public class FirebaseConfig {
         if (FirebaseApp.getApps().isEmpty()) {
 
 
-            FileInputStream serviceAccount = new FileInputStream("/Users/bartram/codeclan_work/CAPSTONE PROJECT/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
+            FileInputStream serviceAccount = new FileInputStream("/Users/benbilgili/Desktop/codeclan/professional-software/projects/capstone/capstone_project/backend/src/main/resources/smartsavers-c0852-firebase-adminsdk-8qvm9-c817f7022d.json");
 
 
             FirebaseOptions options = new FirebaseOptions.Builder()

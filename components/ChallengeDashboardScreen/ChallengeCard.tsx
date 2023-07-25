@@ -5,16 +5,20 @@ import { useNavigation } from '@react-navigation/native';
 type ChallengeCardProps = {
   color: string;
   completedDailyChallenge: boolean;
-  setCompletedDailyChallenge: (prop: any) => void;
+  setCompletedDailyChallenge: () => void;
+  challengeIndex: number;
+  challenges: Array<any>;
 };
 
-const ChallengeCard: React.FC<ChallengeCardProps> = ({ color, completedDailyChallenge, setCompletedDailyChallenge }) => {
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ color, completedDailyChallenge, setCompletedDailyChallenge, challengeIndex, challenges }) => {
   const navigation = useNavigation();
 
   const launchDailyChallenge = () => {
     if (!completedDailyChallenge) {
-      navigation.navigate('ChallengeScreen' as never);
-      setCompletedDailyChallenge(true);
+      navigation.navigate('ChallengeScreen', {
+        challenge: challenges[challengeIndex],
+      });
+      setCompletedDailyChallenge();
     }
   };
 

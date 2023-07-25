@@ -9,11 +9,18 @@ import AnswerCard from './AnswerCard';
 import { updateUser } from '../../services/UserServices';
 
   type AnswerContainerProps = {
-    currentUser: any,
-    setCurrentUser: any,
+    challenge: {
+      question: string;
+      correctAnswer: string;
+      wrongAnswer1: string;
+      wrongAnswer2: string;
+      wrongAnswer3: string;
+    };
+    currentUser: any;
+    setCurrentUser: any;
   };
 
-  const AnswerContainer: React.FC<AnswerContainerProps> = ({currentUser, setCurrentUser}) => {
+  const AnswerContainer: React.FC<AnswerContainerProps> = ({challenge, currentUser, setCurrentUser}) => {
 
     // Navigate
     const navigation = useNavigation();
@@ -93,10 +100,10 @@ import { updateUser } from '../../services/UserServices';
           style={{zIndex: 1}}
         />)}
 
-      <AnswerCard answerText={"4 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#f15c55'/>
-      <AnswerCard answerText={"6 weeks"} handleButtonClick={handleRightAnswer} backgroundColor='#35d0ba'/>
-      <AnswerCard answerText={"8 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#ff9234'/>
-      <AnswerCard answerText={"10 weeks"} handleButtonClick={handleWrongAnswer} backgroundColor='#ffcd3c'/>
+      <AnswerCard answerText={challenge.wrongAnswer1} handleButtonClick={handleWrongAnswer} backgroundColor='#f15c55'/>
+      <AnswerCard answerText={challenge.correctAnswer} handleButtonClick={handleRightAnswer} backgroundColor='#35d0ba'/>
+      <AnswerCard answerText={challenge.wrongAnswer2} handleButtonClick={handleWrongAnswer} backgroundColor='#ff9234'/>
+      <AnswerCard answerText={challenge.wrongAnswer3} handleButtonClick={handleWrongAnswer} backgroundColor='#ffcd3c'/>
     </View>
   )
 }
