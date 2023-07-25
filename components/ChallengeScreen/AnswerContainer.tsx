@@ -100,6 +100,7 @@ import { updateUser } from '../../services/UserServices';
           style={{zIndex: 1}}
         />)}
 
+          {/* Maybe map these rather than hard coding the 4? Need them to be random but the correct answer always to action right answer */}
       <AnswerCard answerText={challenge.wrongAnswer1} handleButtonClick={handleWrongAnswer} backgroundColor='#f15c55'/>
       <AnswerCard answerText={challenge.correctAnswer} handleButtonClick={handleRightAnswer} backgroundColor='#35d0ba'/>
       <AnswerCard answerText={challenge.wrongAnswer2} handleButtonClick={handleWrongAnswer} backgroundColor='#ff9234'/>

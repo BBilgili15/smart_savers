@@ -30,7 +30,6 @@ const ChallengeScreen = ({ route, navigation, currentUser, setCurrentUser }) => 
     <View>
       <QuestionContainer question={challenge.question}/>
       <AnswerContainer challenge={challenge} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-      {/* <Text>{challenge.question}</Text> */}
     </View>
   );
 };
